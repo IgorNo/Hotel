@@ -3,30 +3,39 @@ package com.nov.hotel.gui.controllers;
 import com.nov.hotel.collections.impl.AppartTypeCollecImpl;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.entities.AppartType;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PriceListController implements Initializable {
 
+    @FXML
     public Label labelCount;
 
+    @FXML
     public TableView tableAppartType;
 
+    @FXML
     public TableColumn<AppartType, String> columnRoomType;
+    @FXML
     public TableColumn<AppartType, Float> columnPrice1;
+    @FXML
     public TableColumn<AppartType, Float> columnPrice2;
+    @FXML
     public TableColumn<AppartType, Float> columnPrice3;
 
     private ObservaableCollection<AppartType> price = new AppartTypeCollecImpl();
-
+    private PriceListEditController editDialogController;
     private ResourceBundle resourceBundle;
 
     @FXML
@@ -43,10 +52,33 @@ public class PriceListController implements Initializable {
 
             tableAppartType.setItems(price.getList());
 
+            initListeners();
             updateCountLabel();
         }
 
     }
+
+    private void initListeners() {
+        price.getList().addListener(new ListChangeListener<AppartType>() {
+            @Override
+            public void onChanged(Change<? extends AppartType> c) {
+                updateCountLabel();
+            }
+        });
+
+
+        tableAppartType.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    editDialogController.setAppType((AppartType) tableAppartType.getSelectionModel().getSelectedItem());
+//                    showDialog();
+                }
+            }
+        });
+
+    }
+
     public void print(ActionEvent actionEvent) {
     }
 

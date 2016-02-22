@@ -5,18 +5,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.javabegin.training.fastjava2.javafx.controllers.EditDialogController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.javabegin.training.fastjava2.javafx.controllers.EditDialogController">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="%fio">
+            <Label prefHeight="31.0" prefWidth="66.0" text="%table.column.room.type">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Label text="%phone">
+            <Label prefHeight="31.0" text="%table.column.price1">
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="56.0" prefHeight="31.0" text="%table.column.price2">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="97.0" prefHeight="31.0" text="%table.column.price3">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
          </children>
@@ -28,12 +38,22 @@
    <center>
       <VBox minWidth="200.0" prefHeight="82.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtFIO" prefHeight="31.0" prefWidth="120.0">
+            <TextField fx:id="txtFIO" prefHeight="31.0" prefWidth="190.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="txtPhone">
+            <TextField fx:id="txtPhone" prefHeight="31.0" prefWidth="190.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtPhone1" layoutX="15.0" layoutY="56.0" prefHeight="31.0" prefWidth="190.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="txtPhone11" layoutX="15.0" layoutY="97.0" prefHeight="31.0" prefWidth="190.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -45,14 +65,14 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="120.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="184.0" prefWidth="123.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#actionSave" prefHeight="31.0" prefWidth="100.0" text="ОК">
                <VBox.margin>
                   <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#actionClose" prefHeight="31.0" prefWidth="100.0" text="%cancel">
+            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#actionClose" prefHeight="31.0" prefWidth="100.0" text="%button.cancel">
                <VBox.margin>
                   <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
                </VBox.margin>

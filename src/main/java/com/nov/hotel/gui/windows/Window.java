@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -13,13 +14,15 @@ public class Window {
     private Stage stage;
     private Scene scene;
 
-    public Window(Stage thatStage) throws IOException {
+    private static Logger LOG = Logger.getLogger(AuthorWindow.class);
+
+    public Window(Stage thatStage)  {
         if (stage == null) {
             stage = thatStage;
         }
     }
 
-    public Window() throws IOException{
+    public Window() {
         if (stage == null) {
             stage = new Stage();
         }
@@ -47,19 +50,22 @@ public class Window {
         scene = null;
     }
 
-    public void init(String fxmlFile, String header, String styleFile, boolean isResize) throws IOException {
+    public void init(String fxmlFile, String header, String styleFile, boolean isResize)  {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(AuthorWindow.class.getResource(fxmlFile));
         loader.setResources(ResourceBundle.getBundle("Locale"));
-
         stage.setTitle(loader.getResources().getString(header));
         stage.setResizable(isResize);
-
-        Parent parent = loader.load();
-        scene = new Scene(parent);
-        scene.getStylesheets().add(styleFile);
-        stage.setScene(scene);
-    }
+        try{
+            Parent parent = loader.load();
+            scene = new Scene(parent);
+            scene.getStylesheets().add(styleFile);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            LOG.error("Can't load resource", e);
+            throw new RuntimeException(e);
+        }
+}
 
 }

@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class Start {
 
-	private static final Locale DEFAULT_LOCALE = new Locale("en");
+	private static final Locale DEFAULT_LOCALE = new Locale("uk");
 
 	public static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext("/spring/app-context.xml");
 
