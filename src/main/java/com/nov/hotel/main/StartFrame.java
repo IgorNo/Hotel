@@ -1,5 +1,6 @@
 package com.nov.hotel.main;
 
+import com.nov.hotel.dao.interfaces.AppartTypeDao;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;

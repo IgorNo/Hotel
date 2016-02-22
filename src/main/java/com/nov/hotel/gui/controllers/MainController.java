@@ -23,6 +23,7 @@ public class MainController {
     }
 
     public void editAppartments(ActionEvent actionEvent) throws IOException{
+
         AppartmentsWindow.create();
         AppartmentsWindow.show();
     }

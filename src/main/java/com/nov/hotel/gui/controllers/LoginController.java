@@ -11,6 +11,7 @@ public class LoginController extends AbstractController {
 
     public void login(ActionEvent actionEvent) throws IOException {
 //        AuthorWindow.hide();
+
         MainWindow.create();
         MainWindow.show();
     }

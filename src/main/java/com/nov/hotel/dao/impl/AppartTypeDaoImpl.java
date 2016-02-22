@@ -1,7 +1,9 @@
-package com.nov.hotel.dao.impls;
+package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.AppartTypeDao;
 import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.main.Start;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
