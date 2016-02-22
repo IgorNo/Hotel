@@ -6,23 +6,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SettlingWindow {
+public class SettlingWindow extends Window{
 
-    private static Window window;
+    private static WindowInit window;
 
-    private static final String FXML_FILE = "/fxml/settling.fxml";
-    private static final String HEADER = "header.settling";
-    private static final String STYLE = "/styles/styles.css";
-    private static final Boolean IS_RESIZE = true;
+    private static Window.Properties properties = getProperties();
 
-    public static void create(Stage stage) throws IOException{
-        window = new Window(stage);
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
-    }
+    public static void create() {
 
-    public static void create() throws IOException{
-        window = new Window();
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
+        properties.fxmlFile = "/fxml/pricelist.fxml";
+        properties.header = "header.price.list";
+        properties.style = "/styles/styles.css";
+        properties.isResize = true;
+
+        window = new WindowInit(properties);
     }
 
     public static Stage getStage() {

@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class StartFrame extends JFrame{
 
     public void init() {
-        JFrame frame = new JFrame("LogIn Window");
+        JFrame frame = new JFrame("LogIn WindowInit");
         final JFXPanel panel = new JFXPanel();
 
         frame.setLocation(400,200);

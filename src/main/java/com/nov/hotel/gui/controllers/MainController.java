@@ -10,30 +10,27 @@ import java.io.IOException;
 public class MainController {
 
 
-    public void hotelSettling(ActionEvent actionEvent) throws IOException {
+    public void hotelSettling(ActionEvent actionEvent) {
         SettlingWindow.create();
         SettlingWindow.show();
     }
 
-    public void editPriceList(ActionEvent actionEvent) throws IOException{
+    public void editPriceList(ActionEvent actionEvent) {
         PriceListWindow.create();
-        PriceListWindow.getStage().initModality(Modality.WINDOW_MODAL);
-        PriceListWindow.getStage().initOwner(MainWindow.getStage());
-        PriceListWindow.getStage().showAndWait();
+        PriceListWindow.initModality(MainWindow.getStage());
     }
 
-    public void editAppartments(ActionEvent actionEvent) throws IOException{
-
+    public void editAppartments(ActionEvent actionEvent) {
         AppartmentsWindow.create();
         AppartmentsWindow.show();
     }
 
-    public void editServices(ActionEvent actionEvent) throws IOException{
+    public void editServices(ActionEvent actionEvent) {
         ServicesWindow.create();
         ServicesWindow.show();
     }
 
-    public void editAppartmentStatus(ActionEvent actionEvent) throws IOException{
+    public void editAppartmentStatus(ActionEvent actionEvent) {
         AppartStatusWindow.create();
         AppartStatusWindow.show();
     }

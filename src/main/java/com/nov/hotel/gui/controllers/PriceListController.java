@@ -89,6 +89,9 @@ public class PriceListController implements Initializable {
     }
 
     public void add(ActionEvent actionEvent) {
+//        editDialogController.setPerson(new Person());
+//        showDialog();
+//        addressBookImpl.add(editDialogController.getPerson());
     }
 
     public void change(ActionEvent actionEvent) {

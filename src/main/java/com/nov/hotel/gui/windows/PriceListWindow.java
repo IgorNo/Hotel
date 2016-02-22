@@ -3,24 +3,22 @@ package com.nov.hotel.gui.windows;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+public class PriceListWindow  extends Window {
+    private static WindowInit window;
+    private static Window.Properties properties = getProperties();
 
-public class PriceListWindow {
-    private static Window window;
+    public static void create() {
 
-    private static final String FXML_FILE = "/fxml/pricelist.fxml";
-    private static final String HEADER = "header.price.list";
-    private static final String STYLE = "/styles/styles.css";
-    private static final Boolean IS_RESIZE = true;
+        properties.fxmlFile = "/fxml/pricelist.fxml";
+        properties.header = "header.price.list";
+        properties.style = "/styles/styles.css";
+        properties.isResize = true;
 
-    public static void create(Stage stage) throws IOException{
-        window = new Window(stage);
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
+        window = new WindowInit(properties);
     }
 
-    public static void create() throws IOException{
-        window = new Window();
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
+    public static void initModality(Stage ownerStage){
+        window.initModality(ownerStage);
     }
 
     public static Stage getStage() {

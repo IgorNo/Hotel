@@ -5,31 +5,26 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AppartStatusWindow {
+public class AppartStatusWindow extends Window{
 
-    private static Window window;
+    private static WindowInit windowInit;
+    private static Window.Properties properties = getProperties();
 
-    private static final String FXML_FILE = "/fxml/appart_status.fxml";
-    private static final String HEADER = "header.appart.status";
-    private static final String STYLE = "/styles/styles.css";
-    private static final Boolean IS_RESIZE = true;
+    public static void create() {
+        properties.fxmlFile = "/fxml/appart_status.fxml";
+        properties.header = "header.appart.status";
+        properties.style = "/styles/styles.css";
+        properties.isResize = true;
 
-    public static void create(Stage stage) throws IOException{
-        window = new Window(stage);
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
-    }
-
-    public static void create() throws IOException{
-        window = new Window();
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
+        windowInit = new WindowInit(properties);
     }
 
     public static Stage getStage() {
-        return window.getStage();
+        return windowInit.getStage();
     }
 
     public static Scene getScene() {
-        return window.getScene();
+        return windowInit.getScene();
     }
 
     public static void show(){
@@ -41,7 +36,7 @@ public class AppartStatusWindow {
     }
 
     public static void close() {
-        window.close();
-        window = null;
+        windowInit.close();
+        windowInit = null;
     }
 }

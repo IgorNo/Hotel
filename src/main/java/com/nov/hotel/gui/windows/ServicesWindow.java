@@ -5,22 +5,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ServicesWindow {
-    private static Window window;
+public class ServicesWindow extends Window{
+    private static WindowInit window;
 
-    private static final String FXML_FILE = "/fxml/services.fxml";
-    private static final String HEADER = "header.services";
-    private static final String STYLE = "/styles/styles.css";
-    private static final Boolean IS_RESIZE = true;
+    private static Window.Properties properties = getProperties();
 
-    public static void create(Stage stage) throws IOException{
-        window = new Window(stage);
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
-    }
+    public static void create(){
 
-    public static void create() throws IOException{
-        window = new Window();
-        window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
+        properties.fxmlFile = "/fxml/services.fxml";
+        properties.header = "header.services";
+        properties.style = "/styles/styles.css";
+        properties.isResize = true;
+
+        window = new WindowInit(properties);
     }
 
     public static Stage getStage() {
