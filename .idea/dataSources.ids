@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - hotel@localhost" uuid="af67be32-85e4-4c28-93bf-ae1ba84588cb">
+    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="hotel"/>
+      <table id="2" parent="1" name="appart_status"/>
+      <table id="3" parent="1" name="appart_types"/>
+      <table id="4" parent="1" name="appartments"/>
+      <table id="5" parent="1" name="check_clients"/>
+      <table id="6" parent="1" name="checks"/>
+      <table id="7" parent="1" name="clients"/>
+      <table id="8" parent="1" name="reservations"/>
+      <table id="9" parent="1" name="serv_check_detail"/>
+      <table id="10" parent="1" name="serv_checks"/>
+      <table id="11" parent="1" name="services"/>
+      <column id="12" parent="2" name="app_stat_id_n">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="13" parent="2" name="app_stat_name_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(45)</data-type>
+      </column>
+      <column id="14" parent="2" name="app_stat_color_n">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="15" parent="2" name="PRIMARY">
+        <columns>app_stat_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <column id="16" parent="3" name="app_typ_id_n">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="17" parent="3" name="app_typ_name_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="18" parent="3" name="app_typ_price1_n">
+        <mandatory>1</mandatory>
+        <data-type>float</data-type>
+      </column>
+      <column id="19" parent="3" name="app_typ_price2_n">
+        <mandatory>1</mandatory>
+        <data-type>float</data-type>
+      </column>
+      <column id="20" parent="3" name="app_typ_price3_n">
+        <mandatory>1</mandatory>
+        <data-type>float</data-type>
+      </column>
+      <index id="21" parent="3" name="app_typ_name_s_UNIQUE">
+        <columns>app_typ_name_s</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="22" parent="3" name="app_typ_name_s_UNIQUE">
+        <columns>app_typ_name_s</columns>
+        <underlying-index>app_typ_name_s_UNIQUE</underlying-index>
+      </key>
+      <key id="23" parent="3" name="PRIMARY">
+        <columns>app_typ_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <column id="24" parent="4" name="appart_id_n">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="25" parent="4" name="appart_room_number_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="26" parent="4" name="appart_level_number_n">
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="27" parent="4" name="appart_sizing_n">
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="28" parent="4" name="appart_type_fk">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="29" parent="4" name="appart_status_fk">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="30" parent="4" name="room_status_idx">
+        <columns>appart_status_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="31" parent="4" name="room_type_idx">
+        <columns>appart_type_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="32" parent="4" name="PRIMARY">
+        <columns>appart_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="33" parent="4" name="room_status">
+        <columns>appart_status_fk</columns>
+        <ref-key>~.appart_status.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="34" parent="4" name="room_type">
+        <columns>appart_type_fk</columns>
+        <ref-key>~.appart_types.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="35" parent="5" name="ch_clt_check_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="36" parent="5" name="ch_clt_client_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <index id="37" parent="5" name="ch_clt_check_id_idx">
+        <columns>ch_clt_check_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="38" parent="5" name="ch_clt_client_id_idx">
+        <columns>ch_clt_client_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="39" parent="5" name="ch_clt_check_id">
+        <columns>ch_clt_check_id_fk</columns>
+        <ref-key>~.checks.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="40" parent="5" name="ch_clt_client_id">
+        <columns>ch_clt_client_id_fk</columns>
+        <ref-key>~.clients.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="41" parent="6" name="check_id_n">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="42" parent="6" name="check_date_d">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="43" parent="6" name="check_start_date_d">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="44" parent="6" name="check_end_date_d">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="45" parent="6" name="check_price_n">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <column id="46" parent="6" name="check_appart_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="47" parent="6" name="check_reserv_id_fk">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <index id="48" parent="6" name="appartments_idx">
+        <columns>check_appart_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="49" parent="6" name="reserv_id_idx">
+        <columns>check_reserv_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="50" parent="6" name="PRIMARY">
+        <columns>check_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="51" parent="6" name="appartments">
+        <columns>check_appart_id_fk</columns>
+        <ref-key>~.appartments.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="52" parent="6" name="reserv_id">
+        <columns>check_reserv_id_fk</columns>
+        <ref-key>~.reservations.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="53" parent="7" name="client_id_n">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="54" parent="7" name="client_name_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="55" parent="7" name="client_passport_ser_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(4)</data-type>
+      </column>
+      <column id="56" parent="7" name="client_passport_num_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="57" parent="7" name="client_passport_date_s">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="58" parent="7" name="client_inn_okpo_s">
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="59" parent="7" name="client_bank_req_s">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="60" parent="7" name="client_birth_day_d">
+        <data-type>date</data-type>
+      </column>
+      <column id="61" parent="7" name="client_sex_b">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(1)</data-type>
+      </column>
+      <key id="62" parent="7" name="PRIMARY">
+        <columns>client_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <column id="63" parent="8" name="reserv_id_n">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="64" parent="8" name="reserv_date_d">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="65" parent="8" name="reserv_start_date_d">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="66" parent="8" name="reserv_end_date_d">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="67" parent="8" name="reserv_note_s">
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="68" parent="8" name="reserv_appart_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="69" parent="8" name="reserv_client_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <index id="70" parent="8" name="appart_id_idx">
+        <columns>reserv_appart_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="71" parent="8" name="client_id_idx">
+        <columns>reserv_client_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="72" parent="8" name="PRIMARY">
+        <columns>reserv_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="73" parent="8" name="appart_id">
+        <columns>reserv_appart_id_fk</columns>
+        <ref-key>~.appartments.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="74" parent="8" name="client_id">
+        <columns>reserv_client_id_fk</columns>
+        <ref-key>~.clients.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="75" parent="9" name="serv_det_check_serv_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="76" parent="9" name="serv_det_serv_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="77" parent="9" name="serv_det_quantity_n">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <column id="78" parent="9" name="serv_det_price_n">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <index id="79" parent="9" name="check_serv_id_idx">
+        <columns>serv_det_check_serv_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="80" parent="9" name="service_id_idx">
+        <columns>serv_det_serv_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <foreign-key id="81" parent="9" name="check_serv_id">
+        <columns>serv_det_check_serv_id_fk</columns>
+        <ref-key>~.serv_checks.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="82" parent="9" name="service_id">
+        <columns>serv_det_serv_id_fk</columns>
+        <ref-key>~.services.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="83" parent="10" name="serv_check_id_n">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="84" parent="10" name="serv_check_date_d">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="85" parent="10" name="serv_check_client_id_fk">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <index id="86" parent="10" name="serv_check_client_id_idx">
+        <columns>serv_check_client_id_fk</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="87" parent="10" name="PRIMARY">
+        <columns>serv_check_id_n</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="88" parent="10" name="serv_check_client_id">
+        <columns>serv_check_client_id_fk</columns>
+        <ref-key>~.clients.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="89" parent="11" name="service_id_n">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="90" parent="11" name="service_name_s">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="91" parent="11" name="service_price_n">
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <key id="92" parent="11" name="PRIMARY">
+        <columns>service_id_n</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
