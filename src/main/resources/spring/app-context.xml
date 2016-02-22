@@ -12,5 +12,9 @@
 
 	<import resource="datasource-dbcp.xml"/>
 
+	<beans>
+		<bean id="loginFrame" class="com.nov.hotel.main.StartFrame" init-method="init">
+		</bean>
+	</beans>
 
 </beans>

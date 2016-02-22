@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class Start {
 
-	private static final Locale DEFAULT_LOCALE = new Locale("ua");
+	private static final Locale DEFAULT_LOCALE = new Locale("en");
 
 	public static void main(String[] args) {
 
