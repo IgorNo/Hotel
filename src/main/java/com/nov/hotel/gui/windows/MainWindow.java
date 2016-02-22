@@ -41,7 +41,7 @@ public class MainWindow {
     }
 
     public static void close() {
-        getStage().close();
+        window.close();
         window = null;
     }
 }

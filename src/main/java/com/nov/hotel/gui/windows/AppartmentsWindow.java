@@ -40,7 +40,7 @@ public class AppartmentsWindow {
     }
 
     public static void close() {
-        getStage().close();
+        window.close();
         window = null;
     }
 }

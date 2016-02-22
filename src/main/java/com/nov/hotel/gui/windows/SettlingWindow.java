@@ -42,7 +42,7 @@ public class SettlingWindow {
     }
 
     public static void close() {
-        getStage().close();
+        window.close();
         window = null;
     }
 }

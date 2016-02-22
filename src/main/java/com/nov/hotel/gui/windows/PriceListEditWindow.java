@@ -5,15 +5,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PriceListWindow {
+public class PriceListEditWindow {
     private static Window window;
 
-    private static final String FXML_FILE = "/fxml/pricelist.fxml";
-    private static final String HEADER = "header.price.list";
+    private static final String FXML_FILE = "/fxml/pricelist-edi.fxml";
+    private static final String HEADER = "header.edit.price.list";
     private static final String STYLE = "/styles/styles.css";
-    private static final Boolean IS_RESIZE = true;
+    private static final Boolean IS_RESIZE = false;
 
-    public static void create(Stage stage) throws IOException{
+    public static void create(Stage stage) throws IOException {
         window = new Window(stage);
         window.init(FXML_FILE, HEADER, STYLE, IS_RESIZE);
     }

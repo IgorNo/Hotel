@@ -41,7 +41,7 @@ public class AppartStatusWindow {
     }
 
     public static void close() {
-        getStage().close();
+        window.close();
         window = null;
     }
 }

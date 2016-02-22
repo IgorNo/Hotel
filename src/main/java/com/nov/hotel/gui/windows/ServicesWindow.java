@@ -40,6 +40,6 @@ public class ServicesWindow {
     }
 
     public static void close() {
-        getStage().close();
+        window.close();
         window = null;
     }}
