@@ -38,13 +38,5 @@ public class MainController extends AbstractController{
         apartStatusWindow = initModalityWindow(apartStatusWindow, new ApartStatusWindow());
         apartStatusWindow.showAndWait();
     }
-    protected  WindowInit initModalityWindow(WindowInit windowInit, AbstractWindow window) {
-        if (windowInit == null) {
-            windowInit = new WindowInit(window.getProperties());
-            windowInit.initModality(this.getOwnerStage());
-        }
-        return windowInit;
-    }
-
 
 }
