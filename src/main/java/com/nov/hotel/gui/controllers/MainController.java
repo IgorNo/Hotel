@@ -15,34 +15,35 @@ public class MainController extends AbstractController{
     
 
     public void hotelSettling(ActionEvent actionEvent) {
-        initModalityWindow(settlingWindow);
+        settlingWindow = initModalityWindow(settlingWindow, new SettlingWindow());
         settlingWindow.showAndWait();
     }
 
     public void editPriceList(ActionEvent actionEvent) {
-        initModalityWindow(priceListWindow);
+        priceListWindow = initModalityWindow(priceListWindow, new PriceListWindow());
         priceListWindow.showAndWait();
     }
 
     public void editAppartments(ActionEvent actionEvent) {
-        initModalityWindow(apartmentsWindow);
+        apartmentsWindow = initModalityWindow(apartmentsWindow, new ApartmentsWindow());
         apartmentsWindow.showAndWait();
     }
 
     public void editServices(ActionEvent actionEvent) {
-        initModalityWindow(servicesWindow); 
+        servicesWindow = initModalityWindow(servicesWindow, new ServicesWindow());
         servicesWindow.showAndWait();
     }
 
     public void editAppartmentStatus(ActionEvent actionEvent) {
-        initModalityWindow(apartStatusWindow);
+        apartStatusWindow = initModalityWindow(apartStatusWindow, new ApartStatusWindow());
         apartStatusWindow.showAndWait();
     }
-    protected void initModalityWindow(WindowInit window) {
-        if (window != null) {
-            window = new WindowInit(new ApartStatusWindow().getProperties());
-            window.initModality(this.getOwnerStage());
-        } 
+    protected  WindowInit initModalityWindow(WindowInit windowInit, AbstractWindow window) {
+        if (windowInit == null) {
+            windowInit = new WindowInit(window.getProperties());
+            windowInit.initModality(this.getOwnerStage());
+        }
+        return windowInit;
     }
 
 
