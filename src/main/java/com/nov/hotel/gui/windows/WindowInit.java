@@ -1,5 +1,7 @@
 package com.nov.hotel.gui.windows;
 
+import com.nov.hotel.gui.controllers.AbstractController;
+import com.nov.hotel.gui.windows.properties.AbstractWindow;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +16,13 @@ public class WindowInit {
 
     private Stage stage;
     private Scene scene;
+    private AbstractController controller;
 
     private static Logger LOG = Logger.getLogger(AuthorWindow.class);
 
-    public WindowInit(Stage thatStage, AbstractWindow.Properties properties)  {
+    public WindowInit(Stage stage, AbstractWindow.Properties properties)  {
         if (stage == null) {
-            stage = thatStage;
+            this.stage = stage;
             init(properties);
         }
     }
@@ -39,8 +42,16 @@ public class WindowInit {
         return scene;
     }
 
+    public AbstractController getController() {
+        return controller;
+    }
+
     public void show(){
         stage.show();
+    }
+
+    public void showAndWait(){
+        stage.showAndWait();
     }
 
     public void hide() {
@@ -56,11 +67,11 @@ public class WindowInit {
     private void init(AbstractWindow.Properties properties)  {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(WindowInit.class.getResource(properties.fxmlFile));
+        loader.setLocation(WindowInit.class.getResource(properties.getFxmlFile()));
         loader.setResources(ResourceBundle.getBundle("Locale"));
-        stage.setTitle(loader.getResources().getString(properties.header));
-        stage.setResizable(properties.isResize);
-        if (properties.isResize){
+        stage.setTitle(loader.getResources().getString(properties.getHeader()));
+        stage.setResizable(properties.getResize());
+        if (properties.getResize()){
             stage.setMinHeight(150);
             stage.setMinWidth(300);
         }
@@ -71,13 +82,13 @@ public class WindowInit {
             LOG.error("Can't load resource", e);
             throw new RuntimeException(e);
         }
-        scene.getStylesheets().add(properties.style);
+        controller = loader.getController();
+        scene.getStylesheets().add(properties.getStyle());
         stage.setScene(scene);
     }
 
-    public void initModality(Stage ownerSager){
+    public void initModality(Stage ownerStage){
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(ownerSager);
-        stage.showAndWait();
+        stage.initOwner(ownerStage);
     }
 }

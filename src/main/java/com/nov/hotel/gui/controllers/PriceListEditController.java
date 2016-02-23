@@ -4,7 +4,7 @@ import com.nov.hotel.entities.AppartType;
 
 import java.util.ResourceBundle;
 
-public class PriceListEditController {
+public class PriceListEditController extends AbstractController {
 
     private AppartType appartType;
 

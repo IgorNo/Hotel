@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PriceListController implements Initializable {
+public class PriceListController extends AbstractController implements Initializable {
 
     @FXML
     public Label labelCount;

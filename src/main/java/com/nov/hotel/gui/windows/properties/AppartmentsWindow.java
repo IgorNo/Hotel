@@ -1,4 +1,4 @@
-package com.nov.hotel.gui.windows;
+package com.nov.hotel.gui.windows.properties;
 
 public class AppartmentsWindow extends AbstractWindow {
     {

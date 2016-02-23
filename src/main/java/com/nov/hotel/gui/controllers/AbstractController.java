@@ -6,12 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public abstract class AbstractController {
+public abstract class AbstractController implements Controller{
 
-    protected void initModality(ActionEvent actionEvent, WindowInit priceListWindow) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        priceListWindow.initModality(stage);
+    Stage ownerStage;
+
+    public Stage getOwnerStage() {
+        return ownerStage;
     }
 
+    public void setOwnerStage(Stage ownerStage) {
+        this.ownerStage = ownerStage;
+    }
 }

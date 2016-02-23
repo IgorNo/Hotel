@@ -2,12 +2,10 @@ package com.nov.hotel.gui.controllers;
 
 
 import com.nov.hotel.gui.windows.*;
+import com.nov.hotel.gui.windows.properties.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainController extends AbstractController{
 
@@ -18,7 +16,7 @@ public class MainController extends AbstractController{
 
     public void editPriceList(ActionEvent actionEvent) {
         WindowInit priceListWindow = new WindowInit(new PriceListWindow().getProperties());
-        initModality(actionEvent, priceListWindow);
+        priceListWindow.initModality(getOwnerStage());
     }
 
     public void editAppartments(ActionEvent actionEvent) {
@@ -34,6 +32,11 @@ public class MainController extends AbstractController{
     public void editAppartmentStatus(ActionEvent actionEvent) {
         WindowInit appartStatusWindow = new WindowInit(new AppartStatusWindow().getProperties());
         initModality(actionEvent, appartStatusWindow);
+    }
+    protected void initModality(ActionEvent actionEvent, WindowInit window) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        window.initModality(stage);
     }
 
 }

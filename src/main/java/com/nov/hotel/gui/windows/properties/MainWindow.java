@@ -1,6 +1,7 @@
-package com.nov.hotel.gui.windows;
+package com.nov.hotel.gui.windows.properties;
 
 public class MainWindow extends AbstractWindow {
+
      {
          properties.fxmlFile = "/fxml/main.fxml";
          properties.header = "header.main";
