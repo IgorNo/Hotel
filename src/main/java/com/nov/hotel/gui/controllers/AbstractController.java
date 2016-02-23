@@ -1,16 +1,17 @@
 package com.nov.hotel.gui.controllers;
 
 import com.nov.hotel.gui.controllers.interfaces.Controller;
+import com.nov.hotel.gui.windows.WindowInit;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 
-public abstract class AbstractController implements Controller {
-    private Node view;
+public abstract class AbstractController {
 
-    public Node getView() {
-        return view;
+    protected void initModality(ActionEvent actionEvent, WindowInit priceListWindow) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        priceListWindow.initModality(stage);
     }
 
-    public void setView (Node view){
-        this.view = view;
-    }
 }

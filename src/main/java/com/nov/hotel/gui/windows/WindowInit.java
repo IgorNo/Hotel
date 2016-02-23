@@ -17,14 +17,14 @@ public class WindowInit {
 
     private static Logger LOG = Logger.getLogger(AuthorWindow.class);
 
-    public WindowInit(Stage thatStage, Window.Properties properties)  {
+    public WindowInit(Stage thatStage, AbstractWindow.Properties properties)  {
         if (stage == null) {
             stage = thatStage;
             init(properties);
         }
     }
 
-    public WindowInit( Window.Properties properties) {
+    public WindowInit( AbstractWindow.Properties properties) {
         if (stage == null) {
             stage = new Stage();
             init(properties);
@@ -53,13 +53,17 @@ public class WindowInit {
         scene = null;
     }
 
-    private void init(Window.Properties properties)  {
+    private void init(AbstractWindow.Properties properties)  {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(WindowInit.class.getResource(properties.fxmlFile));
         loader.setResources(ResourceBundle.getBundle("Locale"));
         stage.setTitle(loader.getResources().getString(properties.header));
         stage.setResizable(properties.isResize);
+        if (properties.isResize){
+            stage.setMinHeight(150);
+            stage.setMinWidth(300);
+        }
         try {
             Parent parent = loader.load();
             scene = new Scene(parent);

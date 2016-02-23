@@ -3,35 +3,37 @@ package com.nov.hotel.gui.controllers;
 
 import com.nov.hotel.gui.windows.*;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
-
+public class MainController extends AbstractController{
 
     public void hotelSettling(ActionEvent actionEvent) {
-        SettlingWindow.create();
-        SettlingWindow.show();
+        WindowInit settlingWindow = new WindowInit(new SettlingWindow().getProperties());
+        initModality(actionEvent, settlingWindow);
     }
 
     public void editPriceList(ActionEvent actionEvent) {
-        PriceListWindow.create();
-        PriceListWindow.initModality(MainWindow.getStage());
+        WindowInit priceListWindow = new WindowInit(new PriceListWindow().getProperties());
+        initModality(actionEvent, priceListWindow);
     }
 
     public void editAppartments(ActionEvent actionEvent) {
-        AppartmentsWindow.create();
-        AppartmentsWindow.show();
+        WindowInit appartmentsWindow = new WindowInit(new AppartmentsWindow().getProperties());
+        initModality(actionEvent, appartmentsWindow);
     }
 
     public void editServices(ActionEvent actionEvent) {
-        ServicesWindow.create();
-        ServicesWindow.show();
+        WindowInit servicesWindow = new WindowInit(new ServicesWindow().getProperties());
+        initModality(actionEvent, servicesWindow);
     }
 
     public void editAppartmentStatus(ActionEvent actionEvent) {
-        AppartStatusWindow.create();
-        AppartStatusWindow.show();
+        WindowInit appartStatusWindow = new WindowInit(new AppartStatusWindow().getProperties());
+        initModality(actionEvent, appartStatusWindow);
     }
+
 }
