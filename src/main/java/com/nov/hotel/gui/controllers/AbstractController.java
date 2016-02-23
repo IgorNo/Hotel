@@ -17,4 +17,5 @@ public abstract class AbstractController implements Controller{
     public void setOwnerStage(Stage ownerStage) {
         this.ownerStage = ownerStage;
     }
+
 }

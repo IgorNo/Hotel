@@ -4,9 +4,9 @@ import com.nov.hotel.entities.AppartType;
 
 import java.util.List;
 
-public interface AppartTypeService {
+public interface ApartTypeService {
     //Create
-    AppartTypeService insert(AppartType appartType);
+    ApartTypeService insert(AppartType appartType);
 
     //Read
     AppartType getById(int id);
@@ -18,10 +18,10 @@ public interface AppartTypeService {
     List<AppartType> getAll();
 
     //Update
-    AppartTypeService update(AppartType appartType);
+    ApartTypeService update(AppartType appartType);
 
     //Delete
-    AppartTypeService delete(int id);
+    ApartTypeService delete(int id);
 
     //Count
     int count();

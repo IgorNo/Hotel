@@ -1,8 +1,8 @@
 package com.nov.hotel.gui.windows.properties;
 
-public class AppartStatusWindow extends AbstractWindow {
+public class ApartStatusWindow extends AbstractWindow {
     {
-        properties.fxmlFile = "/fxml/appart_status.fxml";
+        properties.fxmlFile = "/fxml/apart_status.fxml";
         properties.header = "header.appart.status";
         properties.style = "/styles/styles.css";
         properties.isResize = true;

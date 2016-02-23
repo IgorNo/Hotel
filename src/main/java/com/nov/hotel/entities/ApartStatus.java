@@ -1,6 +1,6 @@
 package com.nov.hotel.entities;
 
-public class AppartStatus {
+public class ApartStatus {
     private int id;
     private String name;
     private int nColor;

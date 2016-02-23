@@ -3,8 +3,8 @@ package com.nov.hotel.gui.windows.properties;
 
 public class SettlingWindow extends AbstractWindow {
     {
-        properties.fxmlFile = "/fxml/pricelist.fxml";
-        properties.header = "header.price.list";
+        properties.fxmlFile = "/fxml/settling.fxml";
+        properties.header = "header.settling";
         properties.style = "/styles/styles.css";
         properties.isResize = true;
     }

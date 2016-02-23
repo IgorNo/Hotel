@@ -1,6 +1,6 @@
 package com.nov.hotel.gui.controllers;
 
-import com.nov.hotel.collections.impl.AppartTypeCollecImpl;
+import com.nov.hotel.collections.impl.ApartTypeCollecImpl;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.entities.AppartType;
 import javafx.collections.ListChangeListener;
@@ -34,7 +34,7 @@ public class PriceListController extends AbstractController implements Initializ
     @FXML
     public TableColumn<AppartType, Float> columnPrice3;
 
-    private ObservaableCollection<AppartType> price = new AppartTypeCollecImpl();
+    private ObservaableCollection<AppartType> price = new ApartTypeCollecImpl();
     private PriceListEditController editDialogController;
     private ResourceBundle resourceBundle;
 

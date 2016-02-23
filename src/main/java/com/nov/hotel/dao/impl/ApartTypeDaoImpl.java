@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("appartTypeDao")
-public class AppartTypeDaoImpl implements AppartTypeDao{
+public class ApartTypeDaoImpl implements AppartTypeDao{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 

@@ -1,13 +1,13 @@
 package com.nov.hotel.dao.interfaces;
 
 
-import com.nov.hotel.entities.AppartStatus;
+import com.nov.hotel.entities.ApartStatus;
 import com.nov.hotel.entities.AppartType;
 import com.nov.hotel.entities.Appartment;
 
 import java.util.List;
 
-public interface AppartmentDao {
+public interface ApartmentDao {
     //Create
     void insert(Appartment appartment);
 
@@ -18,7 +18,7 @@ public interface AppartmentDao {
     Appartment getByRoomNumber(String roomNumber);
 
     //Read
-    List<Appartment> getByStatus(AppartStatus status);
+    List<Appartment> getByStatus(ApartStatus status);
 
     //Read
     List<Appartment> getByType(AppartType type);

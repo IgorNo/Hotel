@@ -3,16 +3,14 @@ package com.nov.hotel.collections.impl;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.entities.AppartType;
 import com.nov.hotel.main.Start;
-import com.nov.hotel.services.impl.AppartTypeServiceImpl;
-import com.nov.hotel.services.interfaces.AppartTypeService;
+import com.nov.hotel.services.interfaces.ApartTypeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class AppartTypeCollecImpl implements ObservaableCollection<AppartType> {
+public class ApartTypeCollecImpl implements ObservaableCollection<AppartType> {
 
-    private AppartTypeService service = (AppartTypeService) Start.APPLICATION_CONTEXT.getBean("appartTypeService");
+    private ApartTypeService service = (ApartTypeService) Start.APPLICATION_CONTEXT.getBean("appartTypeService");
 
     private ObservableList<AppartType> list = FXCollections.observableArrayList(service.getAll());
 

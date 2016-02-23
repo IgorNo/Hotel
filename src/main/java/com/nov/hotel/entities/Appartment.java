@@ -5,7 +5,7 @@ public class Appartment {
     private String roomNumber;
     private int levelNumber;
     private int sizing;
-    private AppartStatus status;
+    private ApartStatus status;
     private AppartType type;
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Appartment {
         this.sizing = sizing;
     }
 
-    public AppartStatus getStatus() {
+    public ApartStatus getStatus() {
         return status;
     }
 
-    public void setStatus(AppartStatus status) {
+    public void setStatus(ApartStatus status) {
         this.status = status;
     }
 
