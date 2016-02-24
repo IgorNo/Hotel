@@ -10,6 +10,26 @@ public class AppartType {
     private SimpleFloatProperty price2 = new SimpleFloatProperty();
     private SimpleFloatProperty price3 = new SimpleFloatProperty();
 
+    public AppartType() {
+
+    }
+
+    public AppartType(AppartType appartType){
+        setId(appartType.getId());
+        setName(appartType.getName());
+        setPrice1(appartType.getPrice1());
+        setPrice2(appartType.getPrice2());
+        setPrice3(appartType.getPrice3());
+    }
+
+    public void assign(AppartType appartType){
+        setId(appartType.getId());
+        setName(appartType.getName());
+        setPrice1(appartType.getPrice1());
+        setPrice2(appartType.getPrice2());
+        setPrice3(appartType.getPrice3());
+    }
+
     public int getId() {
         return id;
     }

@@ -25,7 +25,6 @@
         <Menu mnemonicParsing="false" text="%menu.title.edit">
           <items>
             <MenuItem fx:id="mItemAdd" mnemonicParsing="false" onAction="#add" text="%menu.title.add" />
-            <MenuItem fx:id="mItemCopy" mnemonicParsing="false" onAction="#copy" text="%menu.title.copy" />
             <MenuItem fx:id="mItemChange" mnemonicParsing="false" onAction="#change" text="%menu.title.change" />
             <MenuItem fx:id="mItemDelete" mnemonicParsing="false" onAction="#delete" text="%menu.title.delete" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -36,8 +35,6 @@
         <Menu mnemonicParsing="false" text="%menu.title.help">
           <items>
                   <MenuItem fx:id="mItemHelp" mnemonicParsing="false" onAction="#help" text="%menu.title.help.topics" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="mItemAbout" mnemonicParsing="false" onAction="#about" text="%menu.title.about" />
           </items>
         </Menu>
       </menus>
@@ -67,9 +64,8 @@
       <AnchorPane prefHeight="49.0" prefWidth="640.0">
          <children>
             <Button fx:id="btnAdd" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefWidth="80.0" text="%menu.title.add" AnchorPane.leftAnchor="20.0" />
-            <Button fx:id="btnCopy" layoutX="121.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copy" prefWidth="80.0" text="%menu.title.copy" AnchorPane.leftAnchor="120.0" />
-            <Button fx:id="btnChange" layoutX="237.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change" prefWidth="80.0" text="%menu.title.change" AnchorPane.leftAnchor="220.0" />
-            <Button fx:id="btnDelete" layoutX="349.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefWidth="80.0" text="%menu.title.delete" AnchorPane.leftAnchor="320.0" />
+            <Button fx:id="btnChange" layoutX="237.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change" prefWidth="80.0" text="%menu.title.change" AnchorPane.leftAnchor="120.0" />
+            <Button fx:id="btnDelete" layoutX="349.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefWidth="80.0" text="%menu.title.delete" AnchorPane.leftAnchor="220.0" />
             <Button fx:id="btnExit" layoutX="538.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exit" prefWidth="80.0" text="%menu.title.exit" AnchorPane.rightAnchor="20.0" />
          </children>
       </AnchorPane>

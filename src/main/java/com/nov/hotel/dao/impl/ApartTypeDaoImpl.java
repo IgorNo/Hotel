@@ -91,7 +91,7 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
 
     @Override
     public void delete(int id) {
-        String sql = "DELETE FROM appart_types WHERE id = :id";
+        String sql = "DELETE FROM appart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);

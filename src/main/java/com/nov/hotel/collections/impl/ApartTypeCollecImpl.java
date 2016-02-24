@@ -12,8 +12,12 @@ public class ApartTypeCollecImpl implements ObservaableCollection<AppartType> {
 
     private ApartTypeService service = (ApartTypeService) Start.APPLICATION_CONTEXT.getBean("appartTypeService");
 
-    private ObservableList<AppartType> list = FXCollections.observableArrayList(service.getAll());
+    private ObservableList<AppartType> list = FXCollections.observableArrayList();;
 
+    @Override
+    public void fillData() {
+        list.addAll(service.getAll());
+    }
 
     @Override
     public ObservaableCollection<AppartType> add(AppartType element) {

@@ -2,16 +2,18 @@ package com.nov.hotel.collections.interfaces;
 
 import javafx.collections.ObservableList;
 
-public interface ObservaableCollection<T> {
-    // добавить запись
-    ObservaableCollection<T> add(T element);
+public interface ObservaableCollection<E> {
+    // add records
+    ObservaableCollection<E> add(E element);
 
-    // внести измененные значения (подтвердить измененные данные)
-    ObservaableCollection<T> update(T element);
+    // update records
+    ObservaableCollection<E> update(E element);
 
-    // удалить запись
-    ObservaableCollection<T> delete(T element);
+    // delete records
+    ObservaableCollection<E> delete(E element);
 
-    public ObservableList<T> getList();
+    public ObservableList<E> getList();
+
+    public void fillData();
 
 }

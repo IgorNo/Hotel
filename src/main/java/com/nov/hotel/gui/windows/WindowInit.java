@@ -16,7 +16,7 @@ public class WindowInit {
 
     private Stage stage;
     private Scene scene;
-    private AbstractController controller;
+    private FXMLLoader loader;
 
     private static Logger LOG = Logger.getLogger(AuthorWindow.class);
 
@@ -42,8 +42,8 @@ public class WindowInit {
         return scene;
     }
 
-    public AbstractController getController() {
-        return controller;
+    public FXMLLoader getLoader() {
+        return loader;
     }
 
     public void show(){
@@ -66,14 +66,14 @@ public class WindowInit {
 
     private void init(AbstractWindow.Properties properties)  {
 
-        FXMLLoader loader = new FXMLLoader();
+        loader = new FXMLLoader();
         loader.setLocation(WindowInit.class.getResource(properties.getFxmlFile()));
         loader.setResources(ResourceBundle.getBundle("Locale"));
         stage.setTitle(loader.getResources().getString(properties.getHeader()));
         stage.setResizable(properties.getResize());
         if (properties.getResize()){
-            stage.setMinHeight(150);
-            stage.setMinWidth(300);
+            stage.setMinHeight(properties.getMinHeight());
+            stage.setMinWidth(properties.getMinWidth());
         }
         try {
             Parent parent = loader.load();
@@ -82,7 +82,6 @@ public class WindowInit {
             LOG.error("Can't load resource", e);
             throw new RuntimeException(e);
         }
-        controller = loader.getController();
         scene.getStylesheets().add(properties.getStyle());
         stage.setScene(scene);
     }

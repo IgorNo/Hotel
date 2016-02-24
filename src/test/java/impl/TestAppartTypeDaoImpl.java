@@ -30,7 +30,7 @@ public class TestAppartTypeDaoImpl {
     private static AppartType appartType2 = new AppartType();
     private static AppartType appartType3 = new AppartType();
     private static List<AppartType> appartTypes = new LinkedList<AppartType>();
-    private static List<AppartType> result;
+    private static List<AppartType> result = new LinkedList<>();
 
     @BeforeClass
     public static void initData(){
@@ -66,7 +66,7 @@ public class TestAppartTypeDaoImpl {
 
     @Test
     public void testGetByName(){
-        result = new LinkedList<AppartType>();
+        result.clear();
         for (AppartType x:appartTypes ) {
             AppartType type = appartTypeDao.getByName(x.getName());
             result.add(type);
@@ -94,6 +94,7 @@ public class TestAppartTypeDaoImpl {
 
     @Test
     public void testGetAll(){
+        result.clear();
         result = appartTypeDao.getAll();
         for (int i = 0; i < appartTypes.size(); i++) {
             AppartType testType = appartTypes.get(i);
@@ -109,6 +110,7 @@ public class TestAppartTypeDaoImpl {
 
     @Test
     public void testUpdate(){
+        result.clear();
         result = appartTypeDao.getAll();
         AppartType appartType = new AppartType();
         appartType.setId(result.get(0).getId());
@@ -128,5 +130,13 @@ public class TestAppartTypeDaoImpl {
         result = appartTypeDao.getAll();
         LOG.warn("\nAfter Update:\n"+result.toString());
 
+    }
+
+    @Test
+    public void testDelete(){
+        result.clear();
+        result = appartTypeDao.getAll();
+        appartTypeDao.delete(result.get(0).getId());
+        assertEquals(appartTypes.size()-1, appartTypeDao.count());
     }
 }
