@@ -54,32 +54,32 @@
         <mandatory>1</mandatory>
         <data-type>float</data-type>
       </column>
-      <index id="21" parent="3" name="app_typ_name_s_UNIQUE">
+      <column id="21" parent="3" name="app_typ_sizing_n">
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <index id="22" parent="3" name="app_typ_name_s_UNIQUE">
         <columns>app_typ_name_s</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="22" parent="3" name="app_typ_name_s_UNIQUE">
+      <key id="23" parent="3" name="app_typ_name_s_UNIQUE">
         <columns>app_typ_name_s</columns>
         <underlying-index>app_typ_name_s_UNIQUE</underlying-index>
       </key>
-      <key id="23" parent="3" name="PRIMARY">
+      <key id="24" parent="3" name="PRIMARY">
         <columns>app_typ_id_n</columns>
         <primary>1</primary>
       </key>
-      <column id="24" parent="4" name="appart_id_n">
+      <column id="25" parent="4" name="appart_id_n">
         <mandatory>1</mandatory>
         <data-type>bigint(20)</data-type>
       </column>
-      <column id="25" parent="4" name="appart_room_number_s">
+      <column id="26" parent="4" name="appart_room_number_s">
         <mandatory>1</mandatory>
         <data-type>varchar(10)</data-type>
       </column>
-      <column id="26" parent="4" name="appart_level_number_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;1&apos;</default-expression>
-      </column>
-      <column id="27" parent="4" name="appart_sizing_n">
+      <column id="27" parent="4" name="appart_level_number_n">
         <data-type>int(11)</data-type>
         <default-expression>&apos;1&apos;</default-expression>
       </column>

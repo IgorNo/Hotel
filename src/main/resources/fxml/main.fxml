@@ -25,7 +25,7 @@
                   <MenuItem mnemonicParsing="false" text="%menu.title.print" />
             <MenuItem mnemonicParsing="false" text="%menu.title.preferences" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.exit" />
+            <MenuItem mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.edit">

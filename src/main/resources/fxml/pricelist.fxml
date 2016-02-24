@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import org.controlsfx.control.textfield.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox minHeight="400.0" minWidth="640.0" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.PriceListController">
+<VBox minHeight="432.0" minWidth="715.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.PriceListController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -19,7 +20,7 @@
                   <MenuItem fx:id="mItemPrint" mnemonicParsing="false" onAction="#print" text="%menu.title.print" />
             <MenuItem fx:id="mItemPrefPage" mnemonicParsing="false" onAction="#prefPrint" text="%menu.title.preferences" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="mItemExit" mnemonicParsing="false" onAction="#exit" text="%menu.title.exit" />
+            <MenuItem fx:id="mItemExit" mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.edit">
@@ -27,6 +28,7 @@
             <MenuItem fx:id="mItemAdd" mnemonicParsing="false" onAction="#add" text="%menu.title.add" />
             <MenuItem fx:id="mItemChange" mnemonicParsing="false" onAction="#change" text="%menu.title.change" />
             <MenuItem fx:id="mItemDelete" mnemonicParsing="false" onAction="#delete" text="%menu.title.delete" />
+                  <MenuItem fx:id="mItemCopy" mnemonicParsing="false" onAction="#copyAndEdit" text="%menu.title.copy" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="%menu.title.select.all" />
             <MenuItem mnemonicParsing="false" text="%menu.title.unselect.all" />
@@ -42,15 +44,16 @@
       <AnchorPane prefHeight="45.0" prefWidth="640.0" />
       <AnchorPane prefHeight="65.0" prefWidth="640.0">
          <children>
-            <TextField fx:id="txtFind" layoutX="21.0" layoutY="11.0" prefHeight="25.0" prefWidth="490.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="135.0" />
-            <Button fx:id="btnFind" layoutX="538.0" layoutY="11.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#find" prefWidth="80.0" text="%button.find" AnchorPane.rightAnchor="20.0" />
+            <CustomTextField fx:id="txtFind" layoutX="26.0" layoutY="11.0" prefHeight="25.0" prefWidth="554.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="135.0" />
+            <Button fx:id="btnFind" layoutX="538.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#find" prefHeight="25.0" prefWidth="80.0" text="%button.find" AnchorPane.rightAnchor="20.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="228.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <AnchorPane prefHeight="220.0" prefWidth="670.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView fx:id="tableAppartType" layoutX="2.0" prefHeight="230.0" prefWidth="600.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="columnRoomType" minWidth="200.0" prefWidth="200.0" text="%table.column.room.type" />
+                  <TableColumn fx:id="columnSizing" prefWidth="75.0" text="%table.column.sizing" />
                 <TableColumn fx:id="columnPrice1" prefWidth="75.0" text="%table.column.price1" />
                   <TableColumn fx:id="columnPrice2" prefWidth="75.0" text="%table.column.price2" />
                   <TableColumn fx:id="columnPrice3" prefWidth="75.0" text="%table.column.price3" />
@@ -63,13 +66,15 @@
       </AnchorPane>
       <AnchorPane prefHeight="49.0" prefWidth="640.0">
          <children>
-            <Button fx:id="btnAdd" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefWidth="80.0" text="%menu.title.add" AnchorPane.leftAnchor="20.0" />
-            <Button fx:id="btnChange" layoutX="237.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change" prefWidth="80.0" text="%menu.title.change" AnchorPane.leftAnchor="120.0" />
-            <Button fx:id="btnDelete" layoutX="349.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefWidth="80.0" text="%menu.title.delete" AnchorPane.leftAnchor="220.0" />
-            <Button fx:id="btnExit" layoutX="538.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exit" prefWidth="80.0" text="%menu.title.exit" AnchorPane.rightAnchor="20.0" />
+            <Button fx:id="btnAdd" layoutX="14.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="80.0" text="%menu.title.add" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="btnChange" layoutX="237.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change" prefHeight="25.0" prefWidth="80.0" text="%menu.title.change" AnchorPane.leftAnchor="120.0" />
+            <Button fx:id="btnDelete" layoutX="349.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="80.0" text="%menu.title.delete" AnchorPane.leftAnchor="220.0" />
+            <Button fx:id="btnExit" cancelButton="true" layoutX="538.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionClose" prefHeight="25.0" prefWidth="80.0" text="%button.cancel" AnchorPane.rightAnchor="20.0" />
+            <Button fx:id="btnCopy" layoutX="314.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copyAndEdit" prefHeight="25.0" prefWidth="80.0" text="%menu.title.copy" AnchorPane.leftAnchor="320.0" />
+            <Button fx:id="btnSelect" defaultButton="true" layoutX="520.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#select" prefHeight="25.0" prefWidth="80.0" text="%button.select" AnchorPane.rightAnchor="115.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="46.0" prefWidth="640.0">
+      <AnchorPane prefHeight="28.0" prefWidth="643.0">
          <children>
             <Label fx:id="labelCount" layoutX="21.0" layoutY="4.0" text="%label.records" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="20.0" />
          </children>

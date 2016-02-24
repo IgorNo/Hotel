@@ -30,13 +30,14 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
 
     @Override
     public void insert(AppartType appartType) {
-        String sql = "INSERT INTO appart_types (app_typ_name_s, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n) " +
-                "VALUES (:name, :price1, :price2, :price3)";
+        String sql = "INSERT INTO appart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n) " +
+                "VALUES (:name, :sizing, :price1, :price2, :price3)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", appartType.getName());
+        params.addValue("sizing", appartType.getSizing());
         params.addValue("price1", appartType.getPrice1());
         params.addValue("price2", appartType.getPrice2());
         params.addValue("price3", appartType.getPrice3());
@@ -75,12 +76,14 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
 
     @Override
     public void update(AppartType appartType) {
-        String sql = "UPDATE appart_types SET app_typ_name_s= :name, app_typ_price1_n=  :price1, app_typ_price2_n = :price2, app_typ_price3_n= :price3 " +
+        String sql = "UPDATE appart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
+                "app_typ_price1_n=  :price1, app_typ_price2_n = :price2, app_typ_price3_n= :price3 " +
                 "WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", appartType.getId());
         params.addValue("name", appartType.getName());
+        params.addValue("sizing", appartType.getSizing());
         params.addValue("price1", appartType.getPrice1());
         params.addValue("price2", appartType.getPrice2());
         params.addValue("price3", appartType.getPrice3());
@@ -118,6 +121,7 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
             AppartType appartType = new AppartType();
             appartType.setId(rs.getInt("app_typ_id_n"));
             appartType.setName(rs.getString("app_typ_name_s"));
+            appartType.setSizing(rs.getInt("app_typ_sizing_n"));
             appartType.setPrice1(rs.getFloat("app_typ_price1_n"));
             appartType.setPrice2(rs.getFloat("app_typ_price2_n"));
             appartType.setPrice3(rs.getFloat("app_typ_price3_n"));

@@ -1,11 +1,13 @@
 package com.nov.hotel.entities;
 
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class AppartType {
     private int id;
     private SimpleStringProperty name = new SimpleStringProperty();
+    private SimpleIntegerProperty sizing = new SimpleIntegerProperty();
     private SimpleFloatProperty price1 = new SimpleFloatProperty();
     private SimpleFloatProperty price2 = new SimpleFloatProperty();
     private SimpleFloatProperty price3 = new SimpleFloatProperty();
@@ -17,6 +19,7 @@ public class AppartType {
     public AppartType(AppartType appartType){
         setId(appartType.getId());
         setName(appartType.getName());
+        setSizing(appartType.getSizing());
         setPrice1(appartType.getPrice1());
         setPrice2(appartType.getPrice2());
         setPrice3(appartType.getPrice3());
@@ -25,6 +28,7 @@ public class AppartType {
     public void assign(AppartType appartType){
         setId(appartType.getId());
         setName(appartType.getName());
+        setSizing(appartType.getSizing());
         setPrice1(appartType.getPrice1());
         setPrice2(appartType.getPrice2());
         setPrice3(appartType.getPrice3());
@@ -44,6 +48,18 @@ public class AppartType {
 
     public void setName(String name) {
         this.name.set(name);
+    }
+
+    public int getSizing() {
+        return sizing.get();
+    }
+
+    public SimpleIntegerProperty sizingProperty() {
+        return sizing;
+    }
+
+    public void setSizing(int sizing) {
+        this.sizing.set(sizing);
     }
 
     public float getPrice1() {
@@ -80,12 +96,13 @@ public class AppartType {
 
     @Override
     public String toString() {
-        return "\nAppartType{" +
+        return "AppartType{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name=" + name +
+                ", sizing=" + sizing +
                 ", price1=" + price1 +
                 ", price2=" + price2 +
                 ", price3=" + price3 +
-                "}";
+                '}';
     }
 }

@@ -4,6 +4,8 @@ package com.nov.hotel.gui.controllers;
 import com.nov.hotel.gui.windows.*;
 import com.nov.hotel.gui.windows.properties.*;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 public class MainController extends AbstractController{
 
@@ -37,6 +39,10 @@ public class MainController extends AbstractController{
     public void editAppartmentStatus(ActionEvent actionEvent) {
         apartStatusWindow = initModalityWindow(apartStatusWindow, new ApartStatusWindow());
         apartStatusWindow.showAndWait();
+    }
+
+    public void actionClose(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
 }

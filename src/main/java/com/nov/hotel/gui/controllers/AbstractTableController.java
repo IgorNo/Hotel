@@ -3,6 +3,7 @@ package com.nov.hotel.gui.controllers;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.WindowInit;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -13,9 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.CustomTextField;
+import org.controlsfx.control.textfield.TextFields;
 
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,11 +36,22 @@ abstract class AbstractTableController <E> extends AbstractController implements
 
     private ResourceBundle rBundle;
 
+    private E selectedElem;
+
+    @FXML
+    public CustomTextField txtFind;
+    @FXML
+    public Label labelCount;
+
+    private boolean isFind = true;
+
     abstract protected void initData();
 
     abstract protected TableView getTable();
 
     abstract protected boolean isElemFound(E elem);
+
+ //   abstract protected Label getLabelCount();
 
     @FXML
     // Pattern Template Method
@@ -44,6 +60,18 @@ abstract class AbstractTableController <E> extends AbstractController implements
         initData();
         edController = window.getLoader().getController();
         fillData();
+        setupClearButtonField(txtFind);
+        initListeners();
+    }
+
+    private void setupClearButtonField(CustomTextField customTextField) {
+        try {
+            Method m = TextFields.class.getDeclaredMethod("setupClearButtonField", TextField.class, ObjectProperty.class);
+            m.setAccessible(true);
+            m.invoke(null, customTextField, customTextField.rightProperty());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void actionClose(ActionEvent actionEvent) {
@@ -52,12 +80,12 @@ abstract class AbstractTableController <E> extends AbstractController implements
         stage.hide();
     }
 
-    protected void initListeners(Label label) {
+    protected void initListeners() {
 
         collection.getList().addListener(new ListChangeListener<E>() {
             @Override
             public void onChanged(Change<? extends E> c) {
-                updateCountLabel(label);
+                updateCountLabel();
             }
         });
 
@@ -77,9 +105,6 @@ abstract class AbstractTableController <E> extends AbstractController implements
 
     public void prefPrint(ActionEvent actionEvent) {
 
-    }
-
-    public void exit(ActionEvent actionEvent) {
     }
 
     public void change(ActionEvent actionEvent) {
@@ -107,13 +132,27 @@ abstract class AbstractTableController <E> extends AbstractController implements
     }
 
     public void find(ActionEvent actionEvent) {
+        if (isFind){
+            backupList.clear();
+            backupList.addAll(collection.getList());
+            isFind = false;
+        }
+
         collection.getList().clear();
 
-        for (E elem : backupList) {
-            if (isElemFound(elem)) {
-                collection.getList().add(elem);
+        if (!txtFind.getText().isEmpty()) {
+            for (E elem : backupList) {
+                if (isElemFound(elem)) {
+                    collection.getList().add(elem);
+                }
             }
+        } else {
+            collection.getList().addAll(backupList);
+            isFind = true;
         }
+    }
+    public void select(ActionEvent actionEvent) {
+        selectedElem = (E) getTable().getSelectionModel().getSelectedItem();
     }
 
     public void help(ActionEvent actionEvent) {
@@ -144,9 +183,10 @@ abstract class AbstractTableController <E> extends AbstractController implements
 
     private void fillData() {
         collection.fillData();
-        backupList.addAll(collection.getList());
+
         getTable().setItems(collection.getList());
     }
+
 
     private boolean elemIsSelected(E elem) {
         if(elem == null){
@@ -160,8 +200,8 @@ abstract class AbstractTableController <E> extends AbstractController implements
         window.showAndWait(); // wait close
     }
 
-    private void updateCountLabel(Label label) {
-        label.setText(rBundle.getString("label.records") + ": " + collection.getList().size());
+    private void updateCountLabel() {
+        labelCount.setText(rBundle.getString("label.records") + ": " + collection.getList().size());
     }
 
 }

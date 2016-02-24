@@ -14,13 +14,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class PriceListController extends AbstractTableController<AppartType> {
 
     @FXML
-    public Label labelCount;
-
-    @FXML
     public TableView tableAppartType;
 
     @FXML
     public TableColumn<AppartType, String> columnRoomType;
+    @FXML
+    public TableColumn<AppartType, Integer> columnSizing;
     @FXML
     public TableColumn<AppartType, Float> columnPrice1;
     @FXML
@@ -28,7 +27,6 @@ public class PriceListController extends AbstractTableController<AppartType> {
     @FXML
     public TableColumn<AppartType, Float> columnPrice3;
 
-    public TextField txtFind;
 
 
     @Override
@@ -36,10 +34,15 @@ public class PriceListController extends AbstractTableController<AppartType> {
         setWindow(initModalityWindow(null, new PriceListEditWindow()));
         setCollection(new ApartTypeCollecImpl());
         columnRoomType.setCellValueFactory(new PropertyValueFactory<AppartType, String>("name"));
+        columnSizing.setCellValueFactory(new PropertyValueFactory<AppartType, Integer>("sizing"));
         columnPrice1.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price1"));
         columnPrice2.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price2"));
         columnPrice3.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price3"));
     }
+
+//    protected Label getLabelCount() {
+//        return labelCount;
+//    }
 
     @Override
     protected TableView getTable() {
@@ -54,6 +57,10 @@ public class PriceListController extends AbstractTableController<AppartType> {
 
     public void add(ActionEvent actionEvent) {
         addAbst(new AppartType());
+    }
+
+    public void copyAndEdit(ActionEvent actionEvent) {
+        addAbst(new AppartType((AppartType) getTable().getSelectionModel().getSelectedItem()));
     }
 
 }
