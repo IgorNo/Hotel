@@ -1,6 +1,7 @@
-package com.nov.hotel.gui.controllers;
+package com.nov.hotel.gui.controllers.impl;
 
 import com.nov.hotel.entities.ApartType;
+import com.nov.hotel.gui.controllers.abstr.AbstractEditDialogController;
 import javafx.scene.control.TextField;
 
 public class PriceListEditController extends AbstractEditDialogController<ApartType> {

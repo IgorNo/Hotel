@@ -1,8 +1,8 @@
-package com.nov.hotel.gui.controllers;
+package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.gui.windows.DialogManager;
-import com.nov.hotel.gui.windows.WindowInit;
+import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -24,11 +24,11 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-abstract class AbstractTableController <E> extends AbstractController implements Initializable {
+abstract public class AbstractTableController <E> extends AbstractController implements Initializable {
 
     private ObservaableCollection<E> collection;
 
-    private WindowInit window;
+    private AbstractWindow editWindow;
 
     private AbstractEditDialogController edController;
 
@@ -51,14 +51,12 @@ abstract class AbstractTableController <E> extends AbstractController implements
 
     abstract protected boolean isElemFound(E elem);
 
- //   abstract protected Label getLabelCount();
-
     @FXML
     // Pattern Template Method
     public void initialize(URL location, ResourceBundle resources) {
         this.rBundle = resources;
         initData();
-        edController = window.getLoader().getController();
+        edController = editWindow.getLoader().getController();
         fillData();
         setupClearButtonField(txtFind);
         initListeners();
@@ -178,8 +176,8 @@ abstract class AbstractTableController <E> extends AbstractController implements
         return;
     }
 
-    protected void setWindow(WindowInit window) {
-        this.window = window;
+    protected void setEditWindow(AbstractWindow editWindow) {
+        this.editWindow = editWindow;
     }
 
     protected void setCollection(ObservaableCollection<E> collection) {
@@ -202,7 +200,7 @@ abstract class AbstractTableController <E> extends AbstractController implements
     }
 
     private void showDialog() {
-        window.showAndWait(); // wait close
+        editWindow.showAndWait(); // wait close
     }
 
     private void updateCountLabel() {

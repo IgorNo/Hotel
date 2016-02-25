@@ -1,4 +1,4 @@
-package com.nov.hotel.gui.controllers;
+package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.gui.windows.DialogManager;
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-abstract class AbstractEditDialogController<E>  extends AbstractController implements Initializable {
+abstract public class AbstractEditDialogController<E>  extends AbstractController implements Initializable {
 
     private E elem;
 

@@ -1,43 +1,47 @@
 package com.nov.hotel.gui.controllers;
 
 
-import com.nov.hotel.gui.windows.*;
-import com.nov.hotel.gui.windows.properties.*;
+import com.nov.hotel.gui.controllers.abstr.AbstractController;
+import com.nov.hotel.gui.windows.impl.AbstractWindow;
+import com.nov.hotel.gui.windows.impl.*;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.stage.Stage;
 
-public class MainController extends AbstractController{
+public class MainController extends AbstractController {
 
-    WindowInit settlingWindow;
-    WindowInit priceListWindow;
-    WindowInit apartmentsWindow;
-    WindowInit servicesWindow;
-    WindowInit apartStatusWindow;
+    AbstractWindow settlingWindow;
+    AbstractWindow priceListWindow;
+    AbstractWindow apartmentsWindow;
+    AbstractWindow servicesWindow;
+    AbstractWindow apartStatusWindow;
     
 
     public void hotelSettling(ActionEvent actionEvent) {
-        settlingWindow = initModalityWindow(settlingWindow, new SettlingWindow());
+        settlingWindow = SettlingWindow.getInstance();
+        settlingWindow.initModality(MainWindow.getInstance().getStage());
         settlingWindow.showAndWait();
     }
 
     public void editPriceList(ActionEvent actionEvent) {
-        priceListWindow = initModalityWindow(priceListWindow, new PriceListWindow());
+        priceListWindow = PriceListWindow.getInstance();
+        priceListWindow.initModality(MainWindow.getInstance().getStage());
         priceListWindow.showAndWait();
     }
 
     public void editAppartments(ActionEvent actionEvent) {
-        apartmentsWindow = initModalityWindow(apartmentsWindow, new ApartmentsWindow());
+        apartmentsWindow = ApartmentsWindow.getInstance();
+        apartmentsWindow.initModality(MainWindow.getInstance().getStage());
         apartmentsWindow.showAndWait();
     }
 
     public void editServices(ActionEvent actionEvent) {
-        servicesWindow = initModalityWindow(servicesWindow, new ServicesWindow());
+        servicesWindow = ServicesWindow.getInstance();
+        servicesWindow.initModality(MainWindow.getInstance().getStage());
         servicesWindow.showAndWait();
     }
 
     public void editAppartmentStatus(ActionEvent actionEvent) {
-        apartStatusWindow = initModalityWindow(apartStatusWindow, new ApartStatusWindow());
+        apartStatusWindow = ApartStatusWindow.getInstance();
+        apartStatusWindow.initModality(MainWindow.getInstance().getStage());
         apartStatusWindow.showAndWait();
     }
 

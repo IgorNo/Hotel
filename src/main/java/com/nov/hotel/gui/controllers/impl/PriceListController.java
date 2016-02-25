@@ -1,8 +1,10 @@
-package com.nov.hotel.gui.controllers;
+package com.nov.hotel.gui.controllers.impl;
 
 import com.nov.hotel.collections.impl.ApartTypeCollecImpl;
 import com.nov.hotel.entities.ApartType;
-import com.nov.hotel.gui.windows.properties.PriceListEditWindow;
+import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
+import com.nov.hotel.gui.windows.impl.AbstractWindow;
+import com.nov.hotel.gui.windows.impl.PriceListEditWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -29,7 +31,9 @@ public class PriceListController extends AbstractTableController<ApartType> {
 
     @Override
     protected void initData() {
-        setWindow(initModalityWindow(null, new PriceListEditWindow()));
+        AbstractWindow editWindow = PriceListEditWindow.getInstance();
+        editWindow.initModality(getOwnerStage());
+        setEditWindow(editWindow);
         setCollection(new ApartTypeCollecImpl());
         columnRoomType.setCellValueFactory(new PropertyValueFactory<ApartType, String>("name"));
         columnSizing.setCellValueFactory(new PropertyValueFactory<ApartType, Integer>("sizing"));
