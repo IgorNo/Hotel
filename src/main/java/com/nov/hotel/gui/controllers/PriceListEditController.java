@@ -1,14 +1,9 @@
 package com.nov.hotel.gui.controllers;
 
-import com.nov.hotel.entities.AppartType;
-import com.nov.hotel.gui.windows.DialogManager;
-import javafx.fxml.Initializable;
+import com.nov.hotel.entities.ApartType;
 import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class PriceListEditController extends AbstractEditDialogController<AppartType> {
+public class PriceListEditController extends AbstractEditDialogController<ApartType> {
 
     public TextField txtName;
     public TextField txtPrice1;
@@ -45,12 +40,12 @@ public class PriceListEditController extends AbstractEditDialogController<Appart
     }
 
     @Override
-    protected AppartType copyElem(AppartType elem) {
-        return new AppartType(elem);
+    protected ApartType copyElem(ApartType elem) {
+        return new ApartType(elem);
     }
 
     @Override
-    protected void assign(AppartType leftValue, AppartType rightValue) {
+    protected void assign(ApartType leftValue, ApartType rightValue) {
         leftValue.assign(rightValue);
     }
 }

@@ -1,7 +1,7 @@
 package com.nov.hotel.services.impl;
 
 import com.nov.hotel.dao.interfaces.AppartTypeDao;
-import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.services.interfaces.ApartTypeService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -23,9 +23,9 @@ public class ApartTypeServiceImpl implements ApartTypeService {
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
-    public ApartTypeService insert(AppartType appartType) {
+    public ApartTypeService insert(ApartType apartType) {
         try {
-            appartTypeDao.insert(appartType);
+            appartTypeDao.insert(apartType);
         } catch (DataAccessException e) {
             return null;
         }
@@ -34,7 +34,7 @@ public class ApartTypeServiceImpl implements ApartTypeService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public AppartType getById(int id) {
+    public ApartType getById(int id) {
         try {
             return appartTypeDao.getById(id);
         } catch (DataAccessException e) {
@@ -44,7 +44,7 @@ public class ApartTypeServiceImpl implements ApartTypeService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public AppartType getByName(String name) {
+    public ApartType getByName(String name) {
         try {
             return appartTypeDao.getByName(name);
         } catch (DataAccessException e) {
@@ -54,7 +54,7 @@ public class ApartTypeServiceImpl implements ApartTypeService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public List<AppartType> getAll(){
+    public List<ApartType> getAll(){
         try {
             return appartTypeDao.getAll();
         } catch (DataAccessException e) {
@@ -64,9 +64,9 @@ public class ApartTypeServiceImpl implements ApartTypeService {
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
-    public ApartTypeService update(AppartType appartType) {
+    public ApartTypeService update(ApartType apartType) {
         try {
-            appartTypeDao.update(appartType);
+            appartTypeDao.update(apartType);
         } catch (DataAccessException e) {
             return null;
         }

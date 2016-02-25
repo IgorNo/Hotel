@@ -1,7 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.AppartTypeDao;
-import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.entities.ApartType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -19,38 +19,38 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring/app-context.xml"})
-public class TestAppartTypeDaoImpl {
+public class TestApartTypeDaoImpl {
 
-    private static Logger LOG = Logger.getLogger(TestAppartTypeDaoImpl.class);
+    private static Logger LOG = Logger.getLogger(TestApartTypeDaoImpl.class);
     @Autowired
     private AppartTypeDao appartTypeDao;
 
-    private static AppartType appartType1 = new AppartType();
-    private static AppartType appartType2 = new AppartType();
-    private static AppartType appartType3 = new AppartType();
-    private static List<AppartType> testData = new LinkedList<AppartType>();
-    private static List<AppartType> result = new LinkedList<>();
+    private static ApartType apartType1 = new ApartType();
+    private static ApartType apartType2 = new ApartType();
+    private static ApartType apartType3 = new ApartType();
+    private static List<ApartType> testData = new LinkedList<ApartType>();
+    private static List<ApartType> result = new LinkedList<>();
 
     @BeforeClass
     public static void initData(){
-        appartType1.setName("Одномісний номер");
-        appartType1.setSizing(1);
-        appartType1.setPrice1(100.00f);
-        appartType1.setPrice2(110.00f);
-        appartType1.setPrice3(111.00f);
-        appartType2.setName("Двомісний номер");
-        appartType2.setSizing(2);
-        appartType2.setPrice1(200.00f);
-        appartType2.setPrice2(220.00f);
-        appartType2.setPrice3(222.00f);
-        appartType3.setName("Тримісний номер");
-        appartType3.setSizing(3);
-        appartType3.setPrice1(300.00f);
-        appartType3.setPrice2(330.00f);
-        appartType3.setPrice3(333.00f);
-        testData.add(appartType1);
-        testData.add(appartType2);
-        testData.add(appartType3);
+        apartType1.setName("Одномісний номер");
+        apartType1.setSizing(1);
+        apartType1.setPrice1(100.00f);
+        apartType1.setPrice2(110.00f);
+        apartType1.setPrice3(111.00f);
+        apartType2.setName("Двомісний номер");
+        apartType2.setSizing(2);
+        apartType2.setPrice1(200.00f);
+        apartType2.setPrice2(220.00f);
+        apartType2.setPrice3(222.00f);
+        apartType3.setName("Тримісний номер");
+        apartType3.setSizing(3);
+        apartType3.setPrice1(300.00f);
+        apartType3.setPrice2(330.00f);
+        apartType3.setPrice3(333.00f);
+        testData.add(apartType1);
+        testData.add(apartType2);
+        testData.add(apartType3);
      }
 
     @Before
@@ -58,7 +58,7 @@ public class TestAppartTypeDaoImpl {
         appartTypeDao.deleteAll();
         assertEquals(0, appartTypeDao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());
-        for (AppartType x: testData) {
+        for (ApartType x: testData) {
             appartTypeDao.insert(x);
         }
         assertEquals(testData.size(), appartTypeDao.count());
@@ -68,8 +68,8 @@ public class TestAppartTypeDaoImpl {
     @Test
     public void testGetByName(){
         result.clear();
-        for (AppartType x: testData) {
-            AppartType type = appartTypeDao.getByName(x.getName());
+        for (ApartType x: testData) {
+            ApartType type = appartTypeDao.getByName(x.getName());
             result.add(type);
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getSizing(),result.get(result.size()-1).getSizing());
@@ -83,8 +83,8 @@ public class TestAppartTypeDaoImpl {
     @Test
     public void testGetById(){
         testGetByName();
-        for (AppartType x:result ) {
-            AppartType type = appartTypeDao.getById(x.getId());
+        for (ApartType x:result ) {
+            ApartType type = appartTypeDao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getSizing(),type.getSizing());
@@ -100,8 +100,8 @@ public class TestAppartTypeDaoImpl {
         result.clear();
         result = appartTypeDao.getAll();
         for (int i = 0; i < testData.size(); i++) {
-            AppartType testType = testData.get(i);
-            AppartType resultType = result.get(i);
+            ApartType testType = testData.get(i);
+            ApartType resultType = result.get(i);
             assertEquals(testType.getName(),resultType.getName());
             assertEquals(testType.getSizing(),resultType.getSizing());
             assertEquals(testType.getPrice1(),resultType.getPrice1(),0.001f);
@@ -116,23 +116,23 @@ public class TestAppartTypeDaoImpl {
     public void testUpdate(){
         result.clear();
         result = appartTypeDao.getAll();
-        AppartType appartType = new AppartType();
-        appartType.setId(result.get(0).getId());
-        appartType.setName("Одномісний номер люкс");
-        appartType.setSizing(1);
-        appartType.setPrice1(500.00f);
-        appartType.setPrice2(550.00f);
-        appartType.setPrice3(555.00f);
-        appartTypeDao.update(appartType);
-        AppartType type = appartTypeDao.getById(appartType.getId());
-        assertEquals(appartType.getId(),type.getId());
-        assertEquals(appartType.getName(),type.getName());
-        assertEquals(appartType.getSizing(),type.getSizing());
-        assertEquals(appartType.getPrice1(),type.getPrice1(),0.001f);
-        assertEquals(appartType.getPrice2(),type.getPrice2(),0.001f);
-        assertEquals(appartType.getPrice3(),type.getPrice3(),0.001f);
+        ApartType apartType = new ApartType();
+        apartType.setId(result.get(0).getId());
+        apartType.setName("Одномісний номер люкс");
+        apartType.setSizing(1);
+        apartType.setPrice1(500.00f);
+        apartType.setPrice2(550.00f);
+        apartType.setPrice3(555.00f);
+        appartTypeDao.update(apartType);
+        ApartType type = appartTypeDao.getById(apartType.getId());
+        assertEquals(apartType.getId(),type.getId());
+        assertEquals(apartType.getName(),type.getName());
+        assertEquals(apartType.getSizing(),type.getSizing());
+        assertEquals(apartType.getPrice1(),type.getPrice1(),0.001f);
+        assertEquals(apartType.getPrice2(),type.getPrice2(),0.001f);
+        assertEquals(apartType.getPrice3(),type.getPrice3(),0.001f);
         LOG.warn("\nBefor Update:\n"+result.toString());
-        LOG.warn("\nUpdate Data:\n"+appartType.toString());
+        LOG.warn("\nUpdate Data:\n"+ apartType.toString());
         result = appartTypeDao.getAll();
         LOG.warn("\nAfter Update:\n"+result.toString());
 

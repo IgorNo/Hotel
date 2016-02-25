@@ -8,7 +8,7 @@ public class Reservation {
     private LocalDate startDate;
     private LocalDate endDate;
     private String note;
-    private Appartment appartment;
+    private Apartment apartment;
     private Client client;
 
     public long getId() {
@@ -51,12 +51,12 @@ public class Reservation {
         this.note = note;
     }
 
-    public Appartment getAppartment() {
-        return appartment;
+    public Apartment getApartment() {
+        return apartment;
     }
 
-    public void setAppartment(Appartment appartment) {
-        this.appartment = appartment;
+    public void setApartment(Apartment apartment) {
+        this.apartment = apartment;
     }
 
     public Client getClient() {

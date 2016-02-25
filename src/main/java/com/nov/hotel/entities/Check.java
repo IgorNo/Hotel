@@ -8,7 +8,7 @@ public class Check {
     private LocalDate startDate;
     private LocalDate endDate;
     private float price;
-    private Appartment appartment;
+    private Apartment apartment;
     private Reservation reservation;
 
     public long getId() {
@@ -51,12 +51,12 @@ public class Check {
         this.price = price;
     }
 
-    public Appartment getAppartment() {
-        return appartment;
+    public Apartment getApartment() {
+        return apartment;
     }
 
-    public void setAppartment(Appartment appartment) {
-        this.appartment = appartment;
+    public void setApartment(Apartment apartment) {
+        this.apartment = apartment;
     }
 
     public Reservation getReservation() {

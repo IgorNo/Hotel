@@ -1,24 +1,24 @@
 package com.nov.hotel.services.interfaces;
 
-import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.entities.ApartType;
 
 import java.util.List;
 
 public interface ApartTypeService {
     //Create
-    ApartTypeService insert(AppartType appartType);
+    ApartTypeService insert(ApartType apartType);
 
     //Read
-    AppartType getById(int id);
+    ApartType getById(int id);
 
     //Read
-    AppartType getByName(String name);
+    ApartType getByName(String name);
 
     //Read All
-    List<AppartType> getAll();
+    List<ApartType> getAll();
 
     //Update
-    ApartTypeService update(AppartType appartType);
+    ApartTypeService update(ApartType apartType);
 
     //Delete
     ApartTypeService delete(int id);

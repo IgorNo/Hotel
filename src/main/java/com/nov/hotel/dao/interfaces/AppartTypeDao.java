@@ -1,24 +1,24 @@
 package com.nov.hotel.dao.interfaces;
 
-import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.entities.ApartType;
 
 import java.util.List;
 
 public interface AppartTypeDao {
     //Create
-    void insert(AppartType appartType);
+    void insert(ApartType apartType);
 
     //Read
-    AppartType getById(int id);
+    ApartType getById(int id);
 
     //Read
-    AppartType getByName(String name);
+    ApartType getByName(String name);
 
     //Read All
-    List<AppartType> getAll();
+    List<ApartType> getAll();
 
     //Update
-    void update(AppartType appartType);
+    void update(ApartType apartType);
 
     //Delete
     void delete(int id);

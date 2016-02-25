@@ -52,7 +52,7 @@
                 <MenuItem fx:id="menuPriceList" mnemonicParsing="false" onAction="#editPriceList" text="%menu.item.price.list" />
                   <MenuItem fx:id="menuAppartments" mnemonicParsing="false" onAction="#editAppartments" text="%menu.item.appartments" />
                   <MenuItem fx:id="menuServices" mnemonicParsing="false" onAction="#editServices" text="%menu.item.services" />
-                  <MenuItem fx:id="menuAppartmentStatus" mnemonicParsing="false" onAction="#editAppartmentStatus" text="%menu.item.appartment.status" />
+                  <MenuItem fx:id="menuAppartmentStatus" mnemonicParsing="false" onAction="#editAppartmentStatus" text="%menu.item.apartment.status" />
               </items>
             </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.help">

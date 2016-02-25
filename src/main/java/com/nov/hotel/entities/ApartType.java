@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class AppartType {
+public class ApartType {
     private int id;
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleIntegerProperty sizing = new SimpleIntegerProperty();
@@ -12,26 +12,26 @@ public class AppartType {
     private SimpleFloatProperty price2 = new SimpleFloatProperty();
     private SimpleFloatProperty price3 = new SimpleFloatProperty();
 
-    public AppartType() {
+    public ApartType() {
 
     }
 
-    public AppartType(AppartType appartType){
-        setId(appartType.getId());
-        setName(appartType.getName());
-        setSizing(appartType.getSizing());
-        setPrice1(appartType.getPrice1());
-        setPrice2(appartType.getPrice2());
-        setPrice3(appartType.getPrice3());
+    public ApartType(ApartType apartType){
+        setId(apartType.getId());
+        setName(apartType.getName());
+        setSizing(apartType.getSizing());
+        setPrice1(apartType.getPrice1());
+        setPrice2(apartType.getPrice2());
+        setPrice3(apartType.getPrice3());
     }
 
-    public void assign(AppartType appartType){
-        setId(appartType.getId());
-        setName(appartType.getName());
-        setSizing(appartType.getSizing());
-        setPrice1(appartType.getPrice1());
-        setPrice2(appartType.getPrice2());
-        setPrice3(appartType.getPrice3());
+    public void assign(ApartType apartType){
+        setId(apartType.getId());
+        setName(apartType.getName());
+        setSizing(apartType.getSizing());
+        setPrice1(apartType.getPrice1());
+        setPrice2(apartType.getPrice2());
+        setPrice3(apartType.getPrice3());
     }
 
     public int getId() {
@@ -96,7 +96,7 @@ public class AppartType {
 
     @Override
     public String toString() {
-        return "AppartType{" +
+        return "ApartType{" +
                 "id=" + id +
                 ", name=" + name +
                 ", sizing=" + sizing +

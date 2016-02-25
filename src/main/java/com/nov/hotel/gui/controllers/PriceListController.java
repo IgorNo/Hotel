@@ -1,31 +1,29 @@
 package com.nov.hotel.gui.controllers;
 
 import com.nov.hotel.collections.impl.ApartTypeCollecImpl;
-import com.nov.hotel.entities.AppartType;
+import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.gui.windows.properties.PriceListEditWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class PriceListController extends AbstractTableController<AppartType> {
+public class PriceListController extends AbstractTableController<ApartType> {
 
     @FXML
     public TableView tableAppartType;
 
     @FXML
-    public TableColumn<AppartType, String> columnRoomType;
+    public TableColumn<ApartType, String> columnRoomType;
     @FXML
-    public TableColumn<AppartType, Integer> columnSizing;
+    public TableColumn<ApartType, Integer> columnSizing;
     @FXML
-    public TableColumn<AppartType, Float> columnPrice1;
+    public TableColumn<ApartType, Float> columnPrice1;
     @FXML
-    public TableColumn<AppartType, Float> columnPrice2;
+    public TableColumn<ApartType, Float> columnPrice2;
     @FXML
-    public TableColumn<AppartType, Float> columnPrice3;
+    public TableColumn<ApartType, Float> columnPrice3;
 
 
 
@@ -33,11 +31,11 @@ public class PriceListController extends AbstractTableController<AppartType> {
     protected void initData() {
         setWindow(initModalityWindow(null, new PriceListEditWindow()));
         setCollection(new ApartTypeCollecImpl());
-        columnRoomType.setCellValueFactory(new PropertyValueFactory<AppartType, String>("name"));
-        columnSizing.setCellValueFactory(new PropertyValueFactory<AppartType, Integer>("sizing"));
-        columnPrice1.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price1"));
-        columnPrice2.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price2"));
-        columnPrice3.setCellValueFactory(new PropertyValueFactory<AppartType, Float>("price3"));
+        columnRoomType.setCellValueFactory(new PropertyValueFactory<ApartType, String>("name"));
+        columnSizing.setCellValueFactory(new PropertyValueFactory<ApartType, Integer>("sizing"));
+        columnPrice1.setCellValueFactory(new PropertyValueFactory<ApartType, Float>("price1"));
+        columnPrice2.setCellValueFactory(new PropertyValueFactory<ApartType, Float>("price2"));
+        columnPrice3.setCellValueFactory(new PropertyValueFactory<ApartType, Float>("price3"));
     }
 
 //    protected Label getLabelCount() {
@@ -50,17 +48,17 @@ public class PriceListController extends AbstractTableController<AppartType> {
     }
 
     @Override
-    protected boolean isElemFound(AppartType elem) {
+    protected boolean isElemFound(ApartType elem) {
 
         return elem.getName().toLowerCase().contains(txtFind.getText().toLowerCase());
     }
 
     public void add(ActionEvent actionEvent) {
-        addAbst(new AppartType());
+        addAbst(new ApartType());
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new AppartType((AppartType) getTable().getSelectionModel().getSelectedItem()));
+        addAbst(new ApartType((ApartType) getTable().getSelectionModel().getSelectedItem()));
     }
 
 }

@@ -1,12 +1,12 @@
 package com.nov.hotel.entities;
 
-public class Appartment {
+public class Apartment {
     private long id;
     private String roomNumber;
     private int levelNumber;
     private int sizing;
     private ApartStatus status;
-    private AppartType type;
+    private ApartType type;
 
     public long getId() {
         return id;
@@ -48,11 +48,11 @@ public class Appartment {
         this.status = status;
     }
 
-    public AppartType getType() {
+    public ApartType getType() {
         return type;
     }
 
-    public void setType(AppartType type) {
+    public void setType(ApartType type) {
         this.type = type;
     }
 }

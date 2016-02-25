@@ -153,6 +153,11 @@ abstract class AbstractTableController <E> extends AbstractController implements
     }
     public void select(ActionEvent actionEvent) {
         selectedElem = (E) getTable().getSelectionModel().getSelectedItem();
+        if(selectedElem == null){
+            DialogManager.showInfoDialog(rBundle.getString("message.error"), rBundle.getString("message.select.element"));
+            return;
+        }
+        actionClose(actionEvent);
     }
 
     public void help(ActionEvent actionEvent) {

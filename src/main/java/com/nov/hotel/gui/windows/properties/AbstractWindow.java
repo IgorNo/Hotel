@@ -47,4 +47,6 @@ public abstract class AbstractWindow {
         this.properties = properties;
         return this;
     }
+
+
 }
