@@ -7,17 +7,13 @@ import java.util.Locale;
 
 public class Start {
 
-	private static final Locale DEFAULT_LOCALE = new Locale("uk");
+	public static Locale locale = new Locale("uk");
 
 	public static final ApplicationContext APPLICATION_CONTEXT = new ClassPathXmlApplicationContext("/spring/app-context.xml");
 
 	public static void main(String[] args) {
 
-		Locale.setDefault(DEFAULT_LOCALE);
-
-//		AppartTypeDao sqLiteDAO = (AppartTypeDao) APPLICATION_CONTEXT.getBean("appartTypeDao");
-//
-//		System.out.println(sqLiteDAO.getAll());
+		Locale.setDefault(locale);
 
 	}
 }

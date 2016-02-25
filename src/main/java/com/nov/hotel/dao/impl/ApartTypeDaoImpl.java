@@ -28,7 +28,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public void insert(ApartType apartType) {
-        String sql = "INSERT INTO appart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n) " +
+        String sql = "INSERT INTO apart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n) " +
                 "VALUES (:name, :sizing, :price1, :price2, :price3)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -47,7 +47,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public ApartType getById(int id) {
-        String sql = "SELECT * FROM appart_types WHERE app_typ_id_n = :id";
+        String sql = "SELECT * FROM apart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
@@ -58,7 +58,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
     @Override
     public List<ApartType> getByName(String name) {
 
-        String sql = "SELECT * FROM appart_types WHERE app_typ_name_s = :name";
+        String sql = "SELECT * FROM apart_types WHERE app_typ_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", name);
@@ -68,13 +68,13 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public List<ApartType> getAll(){
-        String sql = "SELECT * FROM appart_types";
+        String sql = "SELECT * FROM apart_types";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public void update(ApartType apartType) {
-        String sql = "UPDATE appart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
+        String sql = "UPDATE apart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
                 "app_typ_price1_n=  :price1, app_typ_price2_n = :price2, app_typ_price3_n= :price3 " +
                 "WHERE app_typ_id_n = :id";
 
@@ -92,7 +92,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public void delete(ApartType elem) {
-        String sql = "DELETE FROM appart_types WHERE app_typ_id_n = :id";
+        String sql = "DELETE FROM apart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", elem.getId());
@@ -102,13 +102,13 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM appart_types";
+        String sql = "DELETE FROM apart_types";
         jdbcTemplate.update(sql, new MapSqlParameterSource());
     }
 
     @Override
     public int count() {
-        String sql = "select count(*) from appart_types";
+        String sql = "select count(*) from apart_types";
         return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
     }
 

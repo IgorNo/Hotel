@@ -67,7 +67,7 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
 
         loader = new FXMLLoader();
         loader.setLocation(AbstractWindow.class.getResource(properties.fxmlFile));
-        loader.setResources(ResourceBundle.getBundle("Locale"));
+        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
         stage.setTitle(loader.getResources().getString(properties.header));
         stage.setResizable(properties.isResize);
         if (properties.isResize){

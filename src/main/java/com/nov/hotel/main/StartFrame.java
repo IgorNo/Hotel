@@ -34,7 +34,7 @@ public class StartFrame extends JFrame{
     private static void initFX(JFrame frame, JFXPanel panel) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(StartFrame.class.getResource("/fxml/author.fxml"));
-        loader.setResources(ResourceBundle.getBundle("Locale"));
+        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
         try{
             Parent parent = loader.load();
             Scene scene = new Scene(parent);

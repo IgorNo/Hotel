@@ -30,7 +30,7 @@ public class AuthorWindow {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(AuthorWindow.class.getResource(FXML_FILE));
-        loader.setResources(ResourceBundle.getBundle("Locale"));
+        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
 
         try{
             Parent parent = loader.load();
