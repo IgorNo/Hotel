@@ -45,6 +45,8 @@ abstract public class AbstractTableController <E> extends AbstractController imp
 
     private boolean isFind = true;
 
+    private boolean isEdit;
+
     abstract protected void initData();
 
     abstract protected TableView getTable();

@@ -1,6 +1,6 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.AppartTypeDao;
+import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("appartTypeDao")
-public class ApartTypeDaoImpl implements AppartTypeDao{
+public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -56,14 +56,14 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
     }
 
     @Override
-    public ApartType getByName(String name) {
+    public List<ApartType> getByName(String name) {
 
         String sql = "SELECT * FROM appart_types WHERE app_typ_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", name);
 
-        return jdbcTemplate.queryForObject(sql, params, rowMapper);
+        return jdbcTemplate.query(sql, params, rowMapper);
     }
 
     @Override
@@ -91,11 +91,11 @@ public class ApartTypeDaoImpl implements AppartTypeDao{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(ApartType elem) {
         String sql = "DELETE FROM appart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
+        params.addValue("id", elem.getId());
 
         jdbcTemplate.update(sql, params);
     }

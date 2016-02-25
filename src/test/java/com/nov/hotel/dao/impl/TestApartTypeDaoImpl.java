@@ -1,6 +1,6 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.AppartTypeDao;
+import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class TestApartTypeDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartTypeDaoImpl.class);
     @Autowired
-    private AppartTypeDao appartTypeDao;
+    private CrudDao<ApartType> appartTypeDao;
 
     private static ApartType apartType1 = new ApartType();
     private static ApartType apartType2 = new ApartType();
@@ -69,8 +69,8 @@ public class TestApartTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartType x: testData) {
-            ApartType type = appartTypeDao.getByName(x.getName());
-            result.add(type);
+            List<ApartType> type = appartTypeDao.getByName(x.getName());
+            result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getSizing(),result.get(result.size()-1).getSizing());
             assertEquals(x.getPrice1(),result.get(result.size()-1).getPrice1(),0.001f);
@@ -142,7 +142,7 @@ public class TestApartTypeDaoImpl {
     public void testDelete(){
         result.clear();
         result = appartTypeDao.getAll();
-        appartTypeDao.delete(result.get(0).getId());
+        appartTypeDao.delete(result.get(0));
         assertEquals(testData.size()-1, appartTypeDao.count());
     }
 }

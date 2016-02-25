@@ -3,14 +3,15 @@ package com.nov.hotel.collections.impl;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.main.Start;
-import com.nov.hotel.services.interfaces.ApartTypeService;
+import com.nov.hotel.services.impl.ApartTypeServiceImpl;
+import com.nov.hotel.services.interfaces.ServiceCrudDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 public class ApartTypeCollecImpl implements ObservaableCollection<ApartType> {
 
-    private ApartTypeService service = (ApartTypeService) Start.APPLICATION_CONTEXT.getBean("appartTypeService");
+    private ServiceCrudDao<ApartType> service = (ServiceCrudDao<ApartType>) Start.APPLICATION_CONTEXT.getBean("appartTypeService");
 
     private ObservableList<ApartType> list = FXCollections.observableArrayList();;
 
@@ -38,7 +39,7 @@ public class ApartTypeCollecImpl implements ObservaableCollection<ApartType> {
 
     @Override
     public ObservaableCollection<ApartType> delete(ApartType element) {
-        if (service.delete(element.getId()) == null){
+        if (service.delete(element) == null){
             return null;
         }
         list.remove(element);

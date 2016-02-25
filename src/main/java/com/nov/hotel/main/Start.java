@@ -1,6 +1,5 @@
 package com.nov.hotel.main;
 
-import com.nov.hotel.dao.interfaces.AppartTypeDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

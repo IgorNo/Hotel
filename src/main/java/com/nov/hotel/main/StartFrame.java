@@ -1,15 +1,11 @@
 package com.nov.hotel.main;
 
-import com.nov.hotel.dao.interfaces.AppartTypeDao;
 import com.nov.hotel.gui.windows.AuthorWindow;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 
 import javax.swing.*;
 import java.util.ResourceBundle;
