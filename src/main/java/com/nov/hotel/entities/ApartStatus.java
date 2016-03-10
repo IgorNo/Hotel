@@ -1,9 +1,26 @@
 package com.nov.hotel.entities;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class ApartStatus {
     private int id;
-    private String name;
-    private int nColor;
+    private SimpleStringProperty name = new SimpleStringProperty();
+    private SimpleStringProperty color = new SimpleStringProperty();
+
+    public ApartStatus() {    }
+
+    public ApartStatus(ApartStatus apartType){
+        setId(apartType.getId());
+        setName(apartType.getName());
+        setColor(apartType.getColor());
+    }
+
+    public void assign(ApartStatus apartType){
+        setId(apartType.getId());
+        setName(apartType.getName());
+        setColor(apartType.getColor());
+    }
 
     public int getId() {
         return id;
@@ -14,18 +31,26 @@ public class ApartStatus {
     }
 
     public String getName() {
+        return name.get();
+    }
+
+    public SimpleStringProperty nameProperty() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
-    public int getnColor() {
-        return nColor;
+    public String getColor() {
+        return color.get();
     }
 
-    public void setnColor(int nColor) {
-        this.nColor = nColor;
+    public SimpleStringProperty colorProperty() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color.set(color);
     }
 }

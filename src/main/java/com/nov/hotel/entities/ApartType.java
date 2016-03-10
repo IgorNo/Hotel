@@ -1,10 +1,11 @@
 package com.nov.hotel.entities;
 
+import com.nov.hotel.entities.interfaces.Validate;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ApartType {
+public class ApartType implements Validate{
     private int id;
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleIntegerProperty sizing = new SimpleIntegerProperty();
@@ -12,9 +13,7 @@ public class ApartType {
     private SimpleFloatProperty price2 = new SimpleFloatProperty();
     private SimpleFloatProperty price3 = new SimpleFloatProperty();
 
-    public ApartType() {
-
-    }
+    public ApartType() { }
 
     public ApartType(ApartType apartType){
         setId(apartType.getId());
@@ -32,6 +31,11 @@ public class ApartType {
         setPrice1(apartType.getPrice1());
         setPrice2(apartType.getPrice2());
         setPrice3(apartType.getPrice3());
+    }
+
+    @Override
+    public boolean validate() {
+        return false;
     }
 
     public int getId() {
@@ -105,4 +109,5 @@ public class ApartType {
                 ", price3=" + price3 +
                 '}';
     }
+
 }

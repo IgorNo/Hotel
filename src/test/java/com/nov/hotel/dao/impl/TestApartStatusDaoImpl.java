@@ -34,13 +34,13 @@ public class TestApartStatusDaoImpl {
     @BeforeClass
     public static void initData(){
         apartStatus1.setName("Вільний номер");
-        apartStatus1.setnColor(1);
+        apartStatus1.setColor("1");
         apartStatus2.setName("Бронь");
-        apartStatus2.setnColor(2);
+        apartStatus2.setColor("2");
         apartStatus3.setName("Зайнятий");
-        apartStatus3.setnColor(3);
+        apartStatus3.setColor("3");
         apartStatus4.setName("Ремонт");
-        apartStatus4.setnColor(4);
+        apartStatus4.setColor("4");
         testData.add(apartStatus1);
         testData.add(apartStatus2);
         testData.add(apartStatus3);
@@ -66,7 +66,7 @@ public class TestApartStatusDaoImpl {
             List<ApartStatus> type = apartStatusDao.getByName(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
-            assertEquals(x.getnColor(),result.get(result.size()-1).getnColor());
+            assertEquals(x.getColor(),result.get(result.size()-1).getColor());
         }
         LOG.warn("\ngetByName Data:\n"+result.toString());
     }
@@ -78,7 +78,7 @@ public class TestApartStatusDaoImpl {
             ApartStatus type = apartStatusDao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
-            assertEquals(x.getnColor(),type.getnColor());
+            assertEquals(x.getColor(),type.getColor());
         }
         LOG.warn("\ngetById Data:\n"+result.toString());
     }
@@ -91,7 +91,7 @@ public class TestApartStatusDaoImpl {
             ApartStatus testType = testData.get(i);
             ApartStatus resultType = result.get(i);
             assertEquals(testType.getName(),resultType.getName());
-            assertEquals(testType.getnColor(),resultType.getnColor());
+            assertEquals(testType.getColor(),resultType.getColor());
         }
         LOG.warn("\ngetAll Data:\n"+result.toString());
     }
@@ -103,12 +103,12 @@ public class TestApartStatusDaoImpl {
         ApartStatus apartType = new ApartStatus();
         apartType.setId(result.get(0).getId());
         apartType.setName("Одномісний номер люкс");
-        apartType.setnColor(1);
+        apartType.setColor("1");
         apartStatusDao.update(apartType);
         ApartStatus type = apartStatusDao.getById(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
-        assertEquals(apartType.getnColor(),type.getnColor());
+        assertEquals(apartType.getColor(),type.getColor());
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ apartType.toString());
         result = apartStatusDao.getAll();

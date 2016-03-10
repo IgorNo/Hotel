@@ -46,7 +46,6 @@ public class ApartTypeCollecImpl implements ObservaableCollection<ApartType> {
         return this;
     }
 
-    @Override
     public ObservableList<ApartType> getList() {
         return list;
     }

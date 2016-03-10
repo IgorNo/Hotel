@@ -22,38 +22,14 @@ public class StartFrame extends JFrame{
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
- //               initFX(frame, panel);
                AuthorWindow.create(frame, panel);
             }
         });
     }
-
-    private static void initFX(JFrame frame, JFXPanel panel) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(StartFrame.class.getResource("/fxml/author.fxml"));
-        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
-        try{
-            Parent parent = loader.load();
-            Scene scene = new Scene(parent);
-            scene.getStylesheets().add("/styles/styles.css");
-            panel.setScene(scene);
-        } catch (Exception e) {
-
-        }
-
-    }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                show();
-//            }
-//        });
-//    }
 
 }
 

@@ -7,8 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.apache.log4j.Logger;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -85,7 +87,6 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         stage.setScene(scene);
         Controller controller = loader.getController();
         controller.setOwnerStage(getStage());
-
     }
 
     public void initModality(Stage ownerStage){

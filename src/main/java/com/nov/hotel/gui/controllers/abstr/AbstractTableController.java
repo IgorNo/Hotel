@@ -107,6 +107,7 @@ abstract public class AbstractTableController <E> extends AbstractController imp
 
     }
 
+
     public void change(ActionEvent actionEvent) {
         E elem = (E) getTable().getSelectionModel().getSelectedItem();
         if (!elemIsSelected(elem)) {

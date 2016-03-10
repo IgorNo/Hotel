@@ -28,14 +28,14 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
 
     @Override
     public void insert(ApartStatus apartStatus) {
-        String sql = "INSERT INTO apart_status (app_stat_name_s, app_stat_color_n) " +
+        String sql = "INSERT INTO apart_status (app_stat_name_s, app_stat_color_s) " +
                 "VALUES (:name, :color)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", apartStatus.getName());
-        params.addValue("color", apartStatus.getnColor());
+        params.addValue("color", apartStatus.getColor());
 
         jdbcTemplate.update(sql, params, keyHolder);
 
@@ -71,13 +71,13 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
 
     @Override
     public void update(ApartStatus apartStatus) {
-        String sql = "UPDATE apart_status SET app_stat_name_s= :name, app_stat_color_n= :color " +
+        String sql = "UPDATE apart_status SET app_stat_name_s= :name, app_stat_color_s= :color " +
                 "WHERE app_stat_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", apartStatus.getId());
         params.addValue("name", apartStatus.getName());
-        params.addValue("color", apartStatus.getnColor());
+        params.addValue("color", apartStatus.getColor());
 
         jdbcTemplate.update(sql, params);
 
@@ -112,7 +112,7 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
             ApartStatus apartStatus = new ApartStatus();
             apartStatus.setId(rs.getInt("app_stat_id_n"));
             apartStatus.setName(rs.getString("app_stat_name_s"));
-            apartStatus.setnColor(rs.getInt("app_stat_color_n"));
+            apartStatus.setColor(rs.getString("app_stat_color_s"));
             return apartStatus;
         }
     };
