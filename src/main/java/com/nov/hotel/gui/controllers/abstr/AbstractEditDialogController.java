@@ -57,23 +57,20 @@ abstract public class AbstractEditDialogController<E>  extends AbstractControlle
     public void actionClose(ActionEvent actionEvent) {
         isSaveAction = false;
         assign(elem,backupElem);
-//        saveField();
         closeWindow(actionEvent);
     }
 
 
 // Pattern Template Method
    public void actionSave(ActionEvent actionEvent) {
-        if (isFieldsNotEmpty()){
-            try {
-                saveField();
-                isSaveAction = true;
-                closeWindow(actionEvent);
-            } catch (NumberFormatException e){
-                DialogManager.showInfoDialog(resourceBundle.getString("message.error"), resourceBundle.getString("message.fill.field"));
-                return;
-            }
-        }
+    try {
+        saveField();
+        isSaveAction = true;
+        closeWindow(actionEvent);
+    } catch (NumberFormatException e){
+        DialogManager.showInfoDialog(resourceBundle.getString("message.error"), resourceBundle.getString("message.fill.field"));
+        return;
+    }
     }
 
     private void closeWindow(ActionEvent actionEvent){

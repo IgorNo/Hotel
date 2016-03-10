@@ -6,29 +6,34 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-public class AddTransaction<E> implements Transaction {
+import java.util.List;
 
-    E elem;
+public class GetAllTransaction<E> implements Transaction {
+
+    List<E> eList;
     CrudDao<E> dao;
     String exceptionMessage;
 
-
-    public AddTransaction(CrudDao<E> dao, E elem) {
-        this.elem = elem;
+    public GetAllTransaction(CrudDao<E> dao) {
         this.dao = dao;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     public void execute() {
     try {
-        dao.insert(elem);
+        eList = dao.getAll();
     } catch (DataAccessException e) {
         exceptionMessage = e.getLocalizedMessage();
     }
     }
 
+    public List<E> geteList() {
+        return eList;
+    }
+
+    @Override
     public String getExceptionMessage() {
-        return exceptionMessage;
+        return null;
     }
 }

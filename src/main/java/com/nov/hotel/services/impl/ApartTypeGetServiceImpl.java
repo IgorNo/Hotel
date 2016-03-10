@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service("appartTypeService")
-public class ApartTypeServiceImpl extends ServiceCrudDaoAbstract<ApartType> {
+public class ApartTypeGetServiceImpl extends GetServiceAbstract<ApartType> {
 
     private CrudDao<ApartType> appartTypeDao;
 

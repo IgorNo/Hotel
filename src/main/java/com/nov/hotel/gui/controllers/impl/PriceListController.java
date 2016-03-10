@@ -1,6 +1,6 @@
 package com.nov.hotel.gui.controllers.impl;
 
-import com.nov.hotel.collections.impl.ApartTypeCollecImpl;
+import com.nov.hotel.collections.impl.ApartTypeCollection;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
@@ -34,7 +34,7 @@ public class PriceListController extends AbstractTableController<ApartType> {
         AbstractWindow editWindow = PriceListEditWindow.getInstance();
         editWindow.initModality(getOwnerStage());
         setEditWindow(editWindow);
-        setCollection(new ApartTypeCollecImpl());
+        setCollection(new ApartTypeCollection());
         columnRoomType.setCellValueFactory(new PropertyValueFactory<ApartType, String>("name"));
         columnSizing.setCellValueFactory(new PropertyValueFactory<ApartType, Integer>("sizing"));
         columnPrice1.setCellValueFactory(new PropertyValueFactory<ApartType, Float>("price1"));

@@ -6,14 +6,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-public class AddTransaction<E> implements Transaction {
-
+public class UpdateTransaction<E> implements Transaction{
     E elem;
     CrudDao<E> dao;
     String exceptionMessage;
 
-
-    public AddTransaction(CrudDao<E> dao, E elem) {
+    public UpdateTransaction(CrudDao<E> dao, E elem) {
         this.elem = elem;
         this.dao = dao;
     }
@@ -21,13 +19,14 @@ public class AddTransaction<E> implements Transaction {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     public void execute() {
-    try {
-        dao.insert(elem);
-    } catch (DataAccessException e) {
-        exceptionMessage = e.getLocalizedMessage();
-    }
+        try {
+            dao.update(elem);
+        } catch (DataAccessException e) {
+            exceptionMessage = e.getLocalizedMessage();
+        }
     }
 
+    @Override
     public String getExceptionMessage() {
         return exceptionMessage;
     }

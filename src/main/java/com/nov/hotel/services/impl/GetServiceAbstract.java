@@ -1,27 +1,17 @@
 package com.nov.hotel.services.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.services.interfaces.ServiceCrudDao;
+import com.nov.hotel.services.interfaces.GetService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-abstract class ServiceCrudDaoAbstract<E> implements ServiceCrudDao<E>{
+abstract class GetServiceAbstract<E> implements GetService<E> {
 
     abstract CrudDao<E> getDao();
 
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
-    @Override
-    public ServiceCrudDao<E> insert(E elem) {
-        try {
-            getDao().insert(elem);
-        } catch (DataAccessException e) {
-            return null;
-        }
-        return this;
-    }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @Override
@@ -51,28 +41,6 @@ abstract class ServiceCrudDaoAbstract<E> implements ServiceCrudDao<E>{
         } catch (DataAccessException e) {
             return null;
         }
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
-    @Override
-    public ServiceCrudDao<E> update(E elem) {
-        try {
-            getDao().update(elem);
-        } catch (DataAccessException e) {
-            return null;
-        }
-        return this;
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    @Override
-    public ServiceCrudDao<E> delete(E elem) {
-        try {
-            getDao().delete(elem);
-        } catch (DataAccessException e) {
-            return null;
-        }
-        return this;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)

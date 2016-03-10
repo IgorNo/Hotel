@@ -5,5 +5,5 @@ public interface Transaction {
 
     void execute();
 
-    public String getExceptionMessage();
+    String getExceptionMessage();
 }
