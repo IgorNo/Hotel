@@ -14,7 +14,7 @@ abstract public class ObservaableCollectionAbstract<E extends Validate> implemen
 
     private ObservableList<E> list = FXCollections.observableArrayList();
 
-    private TransactionsEngine engine = new TransactionsEngine();
+    private TransactionsEngine transactions = new TransactionsEngine();
 
     protected abstract CrudDao getDao();
 
@@ -23,7 +23,7 @@ abstract public class ObservaableCollectionAbstract<E extends Validate> implemen
         if (!element.validate()){
             return null;
         }
-        engine.addTransaction(new AddTransaction<>(getDao(),element));
+        transactions.addTransaction(new AddTransaction<>(getDao(),element));
         list.add(element);
         return this;
     }
@@ -34,7 +34,7 @@ abstract public class ObservaableCollectionAbstract<E extends Validate> implemen
         if (!element.validate()){
             return null;
         }
-        engine.addTransaction(new UpdateTransaction<>(getDao(),element));
+        transactions.addTransaction(new UpdateTransaction<>(getDao(),element));
         return this;
     }
 
@@ -43,7 +43,7 @@ abstract public class ObservaableCollectionAbstract<E extends Validate> implemen
         if (!element.validate()){
             return null;
         }
-        engine.addTransaction(new UpdateTransaction<>(getDao(),element));
+        transactions.addTransaction(new UpdateTransaction<>(getDao(),element));
         list.remove(element);
         return this;
     }
@@ -51,6 +51,10 @@ abstract public class ObservaableCollectionAbstract<E extends Validate> implemen
     @Override
     public ObservableList<E> getList() {
         return list;
+    }
+
+    public TransactionsEngine getTransactions() {
+        return transactions;
     }
 
     @Override

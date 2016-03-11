@@ -35,7 +35,8 @@ public class ApartType implements Validate{
 
     @Override
     public boolean validate() {
-        return false;
+        return  name != null && getName() != "" && sizing != null && getSizing() > 0
+                && price1 != null && price2 != null && price3 != null;
     }
 
     public int getId() {

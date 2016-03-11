@@ -25,8 +25,6 @@ abstract public class AbstractEditDialogController<E>  extends AbstractControlle
 
     abstract protected void saveField();
 
-    abstract protected boolean isFieldsNotEmpty();
-
     abstract protected E copyElem(E elem);
 
     abstract protected void assign(E leftValue, E rightValue);
@@ -68,14 +66,9 @@ abstract public class AbstractEditDialogController<E>  extends AbstractControlle
         isSaveAction = true;
         closeWindow(actionEvent);
     } catch (NumberFormatException e){
-        DialogManager.showInfoDialog(resourceBundle.getString("message.error"), resourceBundle.getString("message.fill.field"));
+        DialogManager.showInfoDialog(resourceBundle.getString("message.error"), resourceBundle.getString("message.invalid.data"));
         return;
     }
     }
 
-    private void closeWindow(ActionEvent actionEvent){
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.hide();
-    }
 }

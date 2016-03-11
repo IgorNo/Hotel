@@ -1,5 +1,6 @@
 package com.nov.hotel.gui.controllers.impl;
 
+import com.nov.hotel.entities.interfaces.Validate;
 import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +23,13 @@ public class ApartStatusController extends AbstractTableController {
     }
 
     @Override
-    protected TableView getTable() {
-        return null;
+    protected boolean isElemFound(Validate elem) {
+        return false;
     }
 
     @Override
-    protected boolean isElemFound(Object elem) {
-        return false;
+    protected TableView getTable() {
+        return null;
     }
 
     public void add(ActionEvent actionEvent) {

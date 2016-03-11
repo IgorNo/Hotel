@@ -22,8 +22,10 @@ public class MainController extends AbstractController {
     }
 
     public void editPriceList(ActionEvent actionEvent) {
-        priceListWindow = PriceListWindow.getInstance();
-        priceListWindow.initModality(MainWindow.getInstance().getStage());
+        if (priceListWindow == null) {
+            priceListWindow = PriceListWindow.getInstance();
+            priceListWindow.initModality(MainWindow.getInstance().getStage());
+        }
         priceListWindow.showAndWait();
     }
 

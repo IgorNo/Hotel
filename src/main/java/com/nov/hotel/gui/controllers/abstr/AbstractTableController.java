@@ -1,6 +1,8 @@
 package com.nov.hotel.gui.controllers.abstr;
 
+import com.nov.hotel.collections.abstr.ObservaableCollectionAbstract;
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
+import com.nov.hotel.entities.interfaces.Validate;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import javafx.beans.property.ObjectProperty;
@@ -12,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,11 +25,12 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-abstract public class AbstractTableController <E> extends AbstractController implements Initializable {
+abstract public class AbstractTableController <E extends Validate> extends AbstractController implements Initializable {
 
-    private ObservaableCollection<E> collection;
+    private ObservaableCollectionAbstract<E> collection;
 
     private AbstractWindow editWindow;
 
@@ -64,6 +68,10 @@ abstract public class AbstractTableController <E> extends AbstractController imp
         initListeners();
     }
 
+    public E getSelectedElem() {
+        return selectedElem;
+    }
+
     private void setupClearButtonField(CustomTextField customTextField) {
         try {
             Method m = TextFields.class.getDeclaredMethod("setupClearButtonField", TextField.class, ObjectProperty.class);
@@ -75,9 +83,29 @@ abstract public class AbstractTableController <E> extends AbstractController imp
     }
 
     public void actionClose(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.hide();
+        if (!collection.getTransactions().isEmpty()) {
+            Optional<ButtonType> result = DialogManager.showConfirmDialog(rBundle.getString("message.alert"), rBundle.getString("message.save.data"));
+            if (result.get() == ButtonType.OK){
+                save(actionEvent);
+            }
+        }
+        closeWindow(actionEvent);
+        return;
+    }
+
+    public void save(ActionEvent actionEvent) {
+        collection.getTransactions().run();
+        if (collection.getTransactions().getExceptMess().size() > 0){
+            String errMsg = "";
+            for (int i = 0; i < collection.getTransactions().getExceptMess().size(); i++) {
+                errMsg += collection.getTransactions().getExceptMess().get(i);
+            }
+            DialogManager.showErrorDialog(rBundle.getString("message.error"), errMsg);
+        } else {
+            DialogManager.showInfoDialog(rBundle.getString("message.information"), rBundle.getString("message.save"));
+            collection.getTransactions().getExceptMess().clear();
+        }
+
     }
 
     protected void initListeners() {
@@ -116,7 +144,7 @@ abstract public class AbstractTableController <E> extends AbstractController imp
         edController.setElem(elem);
         showDialog();
         if (edController.isSaveAction() && collection.update((E) edController.getElem()) == null) {
-            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.error.database"));
+            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.invalid.data"));
             showDialog();
         }
     }
@@ -127,7 +155,7 @@ abstract public class AbstractTableController <E> extends AbstractController imp
             return;
         }
         if (collection.delete(elem) == null) {
-            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.error.database"));
+            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.invalid.data"));
             delete(actionEvent);
         }
     }
@@ -168,7 +196,7 @@ abstract public class AbstractTableController <E> extends AbstractController imp
     protected void addAbst(E elem) {
         editElem(elem);
         if (edController.isSaveAction() && collection.add((E) edController.getElem()) == null) {
-            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.error.database"));
+            DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.invalid.data"));
             addAbst(elem);
         }
     }
@@ -183,7 +211,7 @@ abstract public class AbstractTableController <E> extends AbstractController imp
         this.editWindow = editWindow;
     }
 
-    protected void setCollection(ObservaableCollection<E> collection) {
+    protected void setCollection(ObservaableCollectionAbstract<E> collection) {
         this.collection = collection;
     }
 

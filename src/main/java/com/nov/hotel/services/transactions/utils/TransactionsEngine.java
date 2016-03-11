@@ -7,20 +7,31 @@ import java.util.List;
 
 public class TransactionsEngine {
 
-    LinkedList<Transaction> itsTransactions = new LinkedList<>();
-    List<String> itsExceptionMessages = new LinkedList<>();
+    LinkedList<Transaction> transactions = new LinkedList<>();
+
+    public List<String> getExceptMess() {
+        return exceptMess;
+    }
+
+    List<String> exceptMess = new LinkedList<>();
 
     public void addTransaction(Transaction transaction){
-        itsTransactions.add(transaction);
+        transactions.add(transaction);
     }
 
     public void run(){
-        while (!itsTransactions.isEmpty()) {
-            Transaction t = itsTransactions.getFirst();
-            itsTransactions.removeFirst();
+        while (!transactions.isEmpty()) {
+            Transaction t = transactions.getFirst();
             t.execute();
-            if (t.getExceptionMessage() !=null)
-                itsExceptionMessages.add(t.getExceptionMessage());
+            if (t.getExceptionMessage() != null)
+                exceptMess.add(t.getExceptionMessage());
+            else
+                transactions.removeFirst();
         }
     }
+
+    public boolean isEmpty() {
+        return transactions.size() == 0;
+    }
+
 }

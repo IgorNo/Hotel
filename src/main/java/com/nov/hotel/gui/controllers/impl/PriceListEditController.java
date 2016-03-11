@@ -32,15 +32,6 @@ public class PriceListEditController extends AbstractEditDialogController<ApartT
     }
 
     @Override
-    protected boolean isFieldsNotEmpty() {
-        if (txtName.getText().trim().length() == 0 || txtPrice1.getText().trim().length() == 0
-                || txtPrice2.getText().trim().length() == 0 || txtPrice3.getText().trim().length() == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     protected ApartType copyElem(ApartType elem) {
         return new ApartType(elem);
     }
