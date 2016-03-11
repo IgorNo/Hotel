@@ -33,7 +33,7 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
 
     private Stage stage = new Stage();
     private Scene scene;
-    private FXMLLoader loader;
+    private FXMLLoader loader = new FXMLLoader();
 
     public Stage getStage() {
         return stage;
@@ -67,7 +67,6 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
 
     protected void init()  {
 
-        loader = new FXMLLoader();
         loader.setLocation(AbstractWindow.class.getResource(properties.fxmlFile));
         loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
         stage.setTitle(loader.getResources().getString(properties.header));
@@ -78,6 +77,8 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         }
         try {
             Parent parent = loader.load();
+            Controller controller = loader.getController();
+            controller.setOwnerStage(stage);
             scene = new Scene(parent);
         } catch (IOException e) {
             LOG.error("Can't load resource", e);
@@ -85,8 +86,6 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         }
         scene.getStylesheets().add(properties.style);
         stage.setScene(scene);
-        Controller controller = loader.getController();
-        controller.setOwnerStage(getStage());
     }
 
     public void initModality(Stage ownerStage){

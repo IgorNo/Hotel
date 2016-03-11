@@ -1,7 +1,6 @@
 package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.collections.abstr.ObservaableCollectionAbstract;
-import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.entities.interfaces.Validate;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
@@ -13,13 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -83,10 +80,12 @@ abstract public class AbstractTableController <E extends Validate> extends Abstr
     }
 
     public void actionClose(ActionEvent actionEvent) {
-        if (!collection.getTransactions().isEmpty()) {
+        if (!collection.getTransactionsEngine().isEmpty()) {
             Optional<ButtonType> result = DialogManager.showConfirmDialog(rBundle.getString("message.alert"), rBundle.getString("message.save.data"));
             if (result.get() == ButtonType.OK){
                 save(actionEvent);
+            } else {
+                collection.getTransactionsEngine().clear();
             }
         }
         closeWindow(actionEvent);
@@ -94,16 +93,16 @@ abstract public class AbstractTableController <E extends Validate> extends Abstr
     }
 
     public void save(ActionEvent actionEvent) {
-        collection.getTransactions().run();
-        if (collection.getTransactions().getExceptMess().size() > 0){
+        collection.getTransactionsEngine().run();
+        if (collection.getTransactionsEngine().getExceptMess().size() > 0){
             String errMsg = "";
-            for (int i = 0; i < collection.getTransactions().getExceptMess().size(); i++) {
-                errMsg += collection.getTransactions().getExceptMess().get(i);
+            for (int i = 0; i < collection.getTransactionsEngine().getExceptMess().size(); i++) {
+                errMsg += collection.getTransactionsEngine().getExceptMess().get(i);
             }
             DialogManager.showErrorDialog(rBundle.getString("message.error"), errMsg);
         } else {
             DialogManager.showInfoDialog(rBundle.getString("message.information"), rBundle.getString("message.save"));
-            collection.getTransactions().getExceptMess().clear();
+            collection.getTransactionsEngine().getExceptMess().clear();
         }
 
     }
@@ -231,6 +230,9 @@ abstract public class AbstractTableController <E extends Validate> extends Abstr
     }
 
     private void showDialog() {
+        if (editWindow.getStage().getOwner() == null) {
+            editWindow.initModality(getOwnerStage());
+        }
         editWindow.showAndWait(); // wait close
     }
 

@@ -8,12 +8,11 @@ import java.util.List;
 public class TransactionsEngine {
 
     LinkedList<Transaction> transactions = new LinkedList<>();
+    List<String> exceptMess = new LinkedList<>();
 
     public List<String> getExceptMess() {
         return exceptMess;
     }
-
-    List<String> exceptMess = new LinkedList<>();
 
     public void addTransaction(Transaction transaction){
         transactions.add(transaction);
@@ -34,4 +33,7 @@ public class TransactionsEngine {
         return transactions.size() == 0;
     }
 
+    public void clear() {
+        transactions.clear();
+    }
 }
