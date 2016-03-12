@@ -1,6 +1,6 @@
 package com.nov.hotel.gui.windows.interfaces;
 
-public interface Singelton<Window> {
+public interface Singelton<E> {
 
     public static Object getInstance(){
         return null;

@@ -2,7 +2,7 @@ package com.nov.hotel.collections.abstr;
 
 import com.nov.hotel.collections.interfaces.ObservaableCollection;
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.entities.interfaces.Validate;
+import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.services.transactions.impl.AddTransaction;
 import com.nov.hotel.services.transactions.impl.GetAllTransaction;
 import com.nov.hotel.services.transactions.impl.UpdateTransaction;
@@ -10,7 +10,7 @@ import com.nov.hotel.services.transactions.utils.TransactionsEngine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-abstract public class ObservaableCollectionAbstract<E extends Validate> implements ObservaableCollection<E> {
+abstract public class ObservaableCollectionAbstract<E extends Entity> implements ObservaableCollection<E> {
 
     private ObservableList<E> list = FXCollections.observableArrayList();
 

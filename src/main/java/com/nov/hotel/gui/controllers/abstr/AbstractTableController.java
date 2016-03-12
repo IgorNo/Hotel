@@ -1,7 +1,7 @@
 package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.collections.abstr.ObservaableCollectionAbstract;
-import com.nov.hotel.entities.interfaces.Validate;
+import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import javafx.beans.property.ObjectProperty;
@@ -25,7 +25,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-abstract public class AbstractTableController <E extends Validate> extends AbstractController implements Initializable {
+abstract public class AbstractTableController <E extends Entity> extends AbstractController implements Initializable {
 
     private ObservaableCollectionAbstract<E> collection;
 
@@ -88,7 +88,7 @@ abstract public class AbstractTableController <E extends Validate> extends Abstr
                 collection.getTransactionsEngine().clear();
             }
         }
-        closeWindow(actionEvent);
+        closeWindow();
         return;
     }
 

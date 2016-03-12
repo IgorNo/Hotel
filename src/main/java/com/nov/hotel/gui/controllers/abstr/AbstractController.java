@@ -18,10 +18,8 @@ public abstract class AbstractController implements Controller {
         this.ownerStage = ownerStage;
     }
 
-    protected void closeWindow(ActionEvent actionEvent){
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.hide();
+    protected void closeWindow(){
+        ownerStage.hide();
     }
 
 }

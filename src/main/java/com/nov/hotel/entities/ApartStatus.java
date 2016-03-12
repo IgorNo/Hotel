@@ -1,9 +1,9 @@
 package com.nov.hotel.entities;
 
-import javafx.beans.property.SimpleIntegerProperty;
+import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ApartStatus {
+public class ApartStatus implements Entity<ApartStatus>{
     private int id;
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty color = new SimpleStringProperty();
@@ -53,4 +53,10 @@ public class ApartStatus {
     public void setColor(String color) {
         this.color.set(color);
     }
+
+    @Override
+    public boolean validate() {
+        return getName() != "" && getColor() != "";
+    }
+
 }

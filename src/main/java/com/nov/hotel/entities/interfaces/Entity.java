@@ -1,7 +1,6 @@
 package com.nov.hotel.entities.interfaces;
 
-// Transaction pattern
-public interface Validate {
-
+public interface Entity<E> {
     boolean validate();
+    void assign(E elem);
 }

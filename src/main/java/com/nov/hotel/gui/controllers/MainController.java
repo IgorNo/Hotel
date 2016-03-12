@@ -2,9 +2,12 @@ package com.nov.hotel.gui.controllers;
 
 
 import com.nov.hotel.gui.controllers.abstr.AbstractController;
+import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import com.nov.hotel.gui.windows.impl.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 
 public class MainController extends AbstractController {
 
@@ -24,7 +27,7 @@ public class MainController extends AbstractController {
     public void editPriceList(ActionEvent actionEvent) {
         if (priceListWindow == null) {
             priceListWindow = PriceListWindow.getInstance();
-            priceListWindow.initModality(MainWindow.getInstance().getStage());
+            initWindow(priceListWindow);
         }
         priceListWindow.showAndWait();
     }
@@ -42,13 +45,26 @@ public class MainController extends AbstractController {
     }
 
     public void editAppartmentStatus(ActionEvent actionEvent) {
-        apartStatusWindow = ApartStatusWindow.getInstance();
-        apartStatusWindow.initModality(MainWindow.getInstance().getStage());
+        if (apartStatusWindow == null) {
+            apartStatusWindow = ApartStatusWindow.getInstance();
+            initWindow(apartStatusWindow);
+        }
         apartStatusWindow.showAndWait();
     }
 
     public void actionClose(ActionEvent actionEvent) {
         System.exit(0);
+    }
+
+    private static void initWindow(final AbstractWindow window) {
+        window.initModality(MainWindow.getInstance().getStage());
+        window.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                AbstractTableController c = window.getLoader().getController();
+                c.actionClose(null);
+            }
+        });
     }
 
 }

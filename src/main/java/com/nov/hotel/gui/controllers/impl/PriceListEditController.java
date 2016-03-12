@@ -34,10 +34,5 @@ public class PriceListEditController extends AbstractEditDialogController<ApartT
     @Override
     protected ApartType copyElem(ApartType elem) {
         return new ApartType(elem);
-    }
-
-    @Override
-    protected void assign(ApartType leftValue, ApartType rightValue) {
-        leftValue.assign(rightValue);
-    }
+     }
 }

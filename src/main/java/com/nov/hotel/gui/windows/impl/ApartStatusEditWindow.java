@@ -1,12 +1,12 @@
 package com.nov.hotel.gui.windows.impl;
 
-public class ApartStatusWindow extends AbstractWindow {
+public class ApartStatusEditWindow extends AbstractWindow {
 
-    private static AbstractWindow uniqueWindow;
+    private static ApartStatusEditWindow uniqueWindow;
 
-    private ApartStatusWindow() {
-        properties.fxmlFile = "/fxml/apart_status.fxml";
-        properties.header = "header.appart.status";
+    private ApartStatusEditWindow() {
+        properties.fxmlFile = "/fxml/apart_status-edit.fxml";
+        properties.header = "header.edit.appart.status";
         properties.style = "/styles/styles.css";
         properties.isResize = true;
         properties.minWidth = 715;
@@ -16,7 +16,7 @@ public class ApartStatusWindow extends AbstractWindow {
 
     public static AbstractWindow getInstance() {
         if (uniqueWindow == null){
-            uniqueWindow = new ApartStatusWindow();
+            uniqueWindow = new ApartStatusEditWindow();
         }
         return uniqueWindow;
     }
@@ -25,5 +25,6 @@ public class ApartStatusWindow extends AbstractWindow {
         super.close();
         uniqueWindow = null;
     }
+
 
 }

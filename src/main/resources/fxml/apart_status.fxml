@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox minHeight="432.0" minWidth="715.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.impl.ApartStatusController">
+<VBox minHeight="432.0" minWidth="715.0" prefHeight="432.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.impl.ApartStatusController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -20,7 +20,8 @@
                   <MenuItem fx:id="mItemPrint" mnemonicParsing="false" onAction="#print" text="%menu.title.print" />
             <MenuItem fx:id="mItemPrefPage" mnemonicParsing="false" onAction="#prefPrint" text="%menu.title.preferences" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="mItemExit" mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
+            <MenuItem fx:id="mItemExit" mnemonicParsing="false" onAction="#save" text="%menu.title.save" />
+                  <MenuItem fx:id="mItemExit1" mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.edit">
@@ -48,16 +49,16 @@
             <Button fx:id="btnFind" layoutX="538.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#find" prefHeight="25.0" prefWidth="80.0" text="%button.find" AnchorPane.rightAnchor="20.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="220.0" prefWidth="670.0" VBox.vgrow="ALWAYS">
+      <AnchorPane prefHeight="220.0" prefWidth="650.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="tableAppartType" layoutX="2.0" prefHeight="230.0" prefWidth="600.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn fx:id="columnRoomType" minWidth="200.0" prefWidth="200.0" text="%table.column.status" />
-                  <TableColumn fx:id="columnSizing" prefWidth="75.0" text="%table.column.color" />
-              </columns>
+            <TableView fx:id="tableAppartStatus" layoutX="2.0" prefHeight="230.0" prefWidth="600.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="columnName" minWidth="200.0" prefWidth="200.0" text="%table.column.status" />
+                  <TableColumn fx:id="columnColor" prefWidth="75.0" text="%table.column.color" />
+               </columns>
             </TableView>
          </children>
       </AnchorPane>
@@ -68,7 +69,8 @@
             <Button fx:id="btnDelete" layoutX="349.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="80.0" text="%menu.title.delete" AnchorPane.leftAnchor="220.0" />
             <Button fx:id="btnExit" cancelButton="true" layoutX="538.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionClose" prefHeight="25.0" prefWidth="80.0" text="%button.cancel" AnchorPane.rightAnchor="20.0" />
             <Button fx:id="btnCopy" layoutX="314.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copyAndEdit" prefHeight="25.0" prefWidth="80.0" text="%menu.title.copy" AnchorPane.leftAnchor="320.0" />
-            <Button fx:id="btnSelect" defaultButton="true" layoutX="520.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#select" prefHeight="25.0" prefWidth="80.0" text="%button.select" AnchorPane.rightAnchor="115.0" />
+            <Button fx:id="btnSelect" defaultButton="true" layoutX="461.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#select" prefHeight="25.0" prefWidth="80.0" text="%button.select" AnchorPane.rightAnchor="220.0" />
+            <Button fx:id="btnSave" defaultButton="true" layoutX="583.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="80.0" text="%menu.title.save" AnchorPane.rightAnchor="120.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="28.0" prefWidth="643.0">
