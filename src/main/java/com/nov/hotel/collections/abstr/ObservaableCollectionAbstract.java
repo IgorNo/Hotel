@@ -16,6 +16,7 @@ abstract public class ObservaableCollectionAbstract<E extends Entity> implements
 
     private TransactionsEngine transactionsEngine = new TransactionsEngine();
 
+    // Factory Method
     protected abstract CrudDao getDao();
 
     @Override

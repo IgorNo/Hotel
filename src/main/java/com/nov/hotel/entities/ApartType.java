@@ -17,12 +17,8 @@ public class ApartType implements Entity<ApartType> {
     public ApartType() { }
 
     public ApartType(ApartType apartType){
-        setId(apartType.getId());
-        setName(apartType.getName());
-        setSizing(apartType.getSizing());
-        setPrice1(apartType.getPrice1());
-        setPrice2(apartType.getPrice2());
-        setPrice3(apartType.getPrice3());
+        this();
+        assign(apartType);
     }
 
     public void assign(ApartType apartType){

@@ -11,9 +11,8 @@ public class ApartStatus implements Entity<ApartStatus>{
     public ApartStatus() {    }
 
     public ApartStatus(ApartStatus apartType){
-        setId(apartType.getId());
-        setName(apartType.getName());
-        setColor(apartType.getColor());
+        this();
+        assign(apartType);
     }
 
     public void assign(ApartStatus apartType){

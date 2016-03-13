@@ -33,8 +33,10 @@ public class MainController extends AbstractController {
     }
 
     public void editAppartments(ActionEvent actionEvent) {
-        apartmentsWindow = ApartmentsWindow.getInstance();
-        apartmentsWindow.initModality(MainWindow.getInstance().getStage());
+        if (apartmentsWindow == null) {
+            apartmentsWindow = ApartmentsWindow.getInstance();
+            initWindow(apartmentsWindow);
+        }
         apartmentsWindow.showAndWait();
     }
 

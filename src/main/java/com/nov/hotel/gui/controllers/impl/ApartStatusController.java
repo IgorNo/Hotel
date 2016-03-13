@@ -14,7 +14,6 @@ import javafx.scene.layout.Background;
 
 public class ApartStatusController extends AbstractTableController<ApartStatus> {
 
-
     @FXML
     public TableView tableAppartStatus;
     @FXML
