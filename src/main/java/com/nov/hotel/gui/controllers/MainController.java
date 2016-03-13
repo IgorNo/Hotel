@@ -16,6 +16,7 @@ public class MainController extends AbstractController {
     AbstractWindow apartmentsWindow;
     AbstractWindow servicesWindow;
     AbstractWindow apartStatusWindow;
+    AbstractWindow blocksWindow;
     
 
     public void hotelSettling(ActionEvent actionEvent) {
@@ -52,6 +53,14 @@ public class MainController extends AbstractController {
             initWindow(apartStatusWindow);
         }
         apartStatusWindow.showAndWait();
+    }
+
+    public void editBlocks(ActionEvent actionEvent) {
+        if (blocksWindow == null) {
+            blocksWindow = BlockWindow.getInstance();
+            initWindow(blocksWindow);
+        }
+        blocksWindow.showAndWait();
     }
 
     public void actionClose(ActionEvent actionEvent) {

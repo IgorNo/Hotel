@@ -1,12 +1,12 @@
 package com.nov.hotel.gui.windows.impl;
 
-public class ApartmentEditWindow extends AbstractWindow {
+public class BlockEditWindow extends AbstractWindow {
 
     private static AbstractWindow uniqueWindow;
 
-    private ApartmentEditWindow() {
-        properties.fxmlFile = "/fxml/apartment-edit.fxml";
-        properties.header = "header.edit.appartment";
+    private BlockEditWindow() {
+        properties.fxmlFile = "/fxml/block-edit.fxml";
+        properties.header = "header.edit.block";
         properties.style = "/styles/styles.css";
         properties.isResize = false;
         init();
@@ -14,7 +14,7 @@ public class ApartmentEditWindow extends AbstractWindow {
 
     public static AbstractWindow getInstance() {
         if (uniqueWindow == null){
-            uniqueWindow = new ApartmentEditWindow();
+            uniqueWindow = new BlockEditWindow();
         }
         return uniqueWindow;
     }
@@ -23,5 +23,6 @@ public class ApartmentEditWindow extends AbstractWindow {
         super.close();
         uniqueWindow = null;
     }
+
 
 }

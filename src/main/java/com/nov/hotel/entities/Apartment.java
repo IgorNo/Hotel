@@ -11,7 +11,7 @@ public class Apartment implements Entity<Apartment> {
     private SimpleStringProperty roomNumber = new SimpleStringProperty();
     private SimpleIntegerProperty nAdditionalSlot = new SimpleIntegerProperty();
     private SimpleIntegerProperty levelNumber = new SimpleIntegerProperty();
-    private SimpleStringProperty block = new SimpleStringProperty();
+    private Block block;
     private SimpleBooleanProperty status = new SimpleBooleanProperty();
     private ApartType type;
 
@@ -77,16 +77,12 @@ public class Apartment implements Entity<Apartment> {
         this.levelNumber.set(levelNumber);
     }
 
-    public String getBlock() {
-        return block.get();
-    }
-
-    public SimpleStringProperty blockProperty() {
+    public Block getBlock() {
         return block;
     }
 
-    public void setBlock(String block) {
-        this.block.set(block);
+    public void setBlock(Block block) {
+        this.block = block;
     }
 
     public boolean getStatus() {

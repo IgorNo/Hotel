@@ -9,7 +9,6 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-
 <VBox prefHeight="600.0" prefWidth="900.0" styleClass="main-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
@@ -57,8 +56,10 @@
             </Menu>
             <Menu mnemonicParsing="false" text="%menu.title.thesauri">
               <items>
-                <MenuItem fx:id="menuPriceList" mnemonicParsing="false" onAction="#editPriceList" text="%menu.item.price.list" />
                   <MenuItem fx:id="menuAppartments" mnemonicParsing="false" onAction="#editAppartments" text="%menu.item.appartments" />
+                <MenuItem fx:id="menuPriceList" mnemonicParsing="false" onAction="#editPriceList" text="%menu.item.price.list" />
+                  <MenuItem fx:id="menuAppartmentStatus1" mnemonicParsing="false" onAction="#editBlocks" text="%menu.item.blocks" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuServices" mnemonicParsing="false" onAction="#editServices" text="%menu.item.services" />
                   <MenuItem fx:id="menuAppartmentStatus" mnemonicParsing="false" onAction="#editAppartmentStatus" text="%menu.item.apartment.status" />
               </items>
