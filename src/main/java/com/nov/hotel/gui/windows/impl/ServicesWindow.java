@@ -1,5 +1,7 @@
 package com.nov.hotel.gui.windows.impl;
 
+import javafx.stage.Modality;
+
 public class ServicesWindow extends AbstractWindow {
 
     private static AbstractWindow uniqueWindow;
@@ -11,6 +13,7 @@ public class ServicesWindow extends AbstractWindow {
         properties.isResize = true;
         properties.minWidth = 715;
         properties.minHeight = 432;
+        properties.modality = Modality.WINDOW_MODAL;
         init();
     }
 

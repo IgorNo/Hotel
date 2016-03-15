@@ -22,4 +22,6 @@ public abstract class AbstractController implements Controller {
         ownerStage.hide();
     }
 
+    abstract public void actionClose(ActionEvent actionEvent);
+
 }

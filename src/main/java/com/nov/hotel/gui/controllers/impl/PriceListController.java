@@ -32,7 +32,7 @@ public class PriceListController extends AbstractTableController<ApartType> {
     @Override
     protected void initData() {
         setEditWindow(PriceListEditWindow.getInstance());
-        setCollection(new ApartTypeCollection());
+        setCollection(ApartTypeCollection.getInstance());
         columnRoomType.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnSizing.setCellValueFactory(new PropertyValueFactory<>("sizing"));
         columnPrice1.setCellValueFactory(new PropertyValueFactory<>("price1"));

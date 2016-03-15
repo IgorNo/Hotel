@@ -10,51 +10,130 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="126.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.impl.ApartmentEditController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="518.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.impl.ApartmentEditController">
    <left>
-      <VBox prefHeight="215.0" prefWidth="123.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="162.0" prefWidth="132.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="31.0" prefWidth="108.0" text="%table.column.status">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="15.0" layoutY="55.0" prefHeight="30.0" prefWidth="125.0" text="%table.column.block">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="15.0" layoutY="15.0" prefHeight="31.0" prefWidth="133.0" text="%table.column.room.type">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="133.0" text="%label.room.number">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="95.0" prefHeight="31.0" prefWidth="123.0" text="%label.additional.slots">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="5.0" left="5.0" top="5.0" />
          </BorderPane.margin>
       </VBox>
    </left>
    <center>
-      <VBox minWidth="200.0" prefHeight="86.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+      <VBox minWidth="200.0" prefHeight="252.0" prefWidth="324.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtName" prefHeight="30.0" prefWidth="208.0">
+            <HBox>
+               <children>
+                  <ComboBox fx:id="choicebBlock" layoutX="15.0" layoutY="55.0" prefHeight="30.0" prefWidth="229.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Button fx:id="btnBlock" mnemonicParsing="false" onAction="#selectBlock" prefHeight="30.0" prefWidth="30.0" text="Button">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <ComboBox fx:id="choicebType" prefHeight="30.0" prefWidth="230.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Button fx:id="btnType" mnemonicParsing="false" onAction="#selectType" prefHeight="30.0" prefWidth="30.0" text="Button">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TextField fx:id="txtRoomNumber" prefHeight="30.0" prefWidth="208.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
+            <HBox>
+               <children>
+                  <TextField fx:id="txtnAdditionalSlot" layoutX="15.0" layoutY="95.0" prefHeight="30.0" prefWidth="65.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="230.0" top="5.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="47.0" text="%table.column.level">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtLevel" layoutX="15.0" layoutY="15.0" prefHeight="30.0" prefWidth="65.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <CheckBox fx:id="chekbStatus" mnemonicParsing="false" prefHeight="30.0" text="%table.column.repair">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </CheckBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="184.0" prefWidth="123.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="242.0" prefWidth="74.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnOk" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionSave" prefHeight="25.0" prefWidth="80.0" text="%menu.title.save">
                <VBox.margin>
-                  <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="btnCancel" cancelButton="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionClose" prefHeight="25.0" prefWidth="80.0" text="%button.cancel">
                <VBox.margin>
-                  <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
       </VBox>
    </right>

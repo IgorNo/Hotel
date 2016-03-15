@@ -54,7 +54,6 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
 
     @Override
     public List<ApartStatus> getByName(String name) {
-
         String sql = "SELECT * FROM apart_status WHERE app_stat_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -80,7 +79,6 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
         params.addValue("color", apartStatus.getColor());
 
         jdbcTemplate.update(sql, params);
-
     }
 
     @Override
@@ -106,7 +104,6 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
     }
 
     private static final RowMapper<ApartStatus> rowMapper = new RowMapper<ApartStatus>() {
-
         @Override
         public ApartStatus mapRow(ResultSet rs, int rowNum) throws SQLException {
             ApartStatus apartStatus = new ApartStatus();

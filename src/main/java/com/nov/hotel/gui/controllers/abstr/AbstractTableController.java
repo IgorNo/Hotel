@@ -1,6 +1,6 @@
 package com.nov.hotel.gui.controllers.abstr;
 
-import com.nov.hotel.collections.abstr.ObservaableCollectionAbstract;
+import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
 import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 abstract public class AbstractTableController <E extends Entity> extends AbstractController implements Initializable {
 
-    private ObservaableCollectionAbstract<E> collection;
+    private ObservableCollectionAbstract<E> collection;
 
     private AbstractWindow editWindow;
 
@@ -210,7 +210,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
         this.editWindow = editWindow;
     }
 
-    protected void setCollection(ObservaableCollectionAbstract<E> collection) {
+    protected void setCollection(ObservableCollectionAbstract<E> collection) {
         this.collection = collection;
     }
 
@@ -231,7 +231,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
 
     private void showDialog() {
         if (editWindow.getStage().getOwner() == null) {
-            editWindow.initModality(getOwnerStage());
+            editWindow.initOwner(getOwnerStage());
         }
         editWindow.showAndWait(); // wait close
     }

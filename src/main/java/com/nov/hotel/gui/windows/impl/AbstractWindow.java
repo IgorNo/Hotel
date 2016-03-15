@@ -1,5 +1,6 @@
 package com.nov.hotel.gui.windows.impl;
 
+import com.nov.hotel.gui.controllers.abstr.AbstractController;
 import com.nov.hotel.gui.controllers.interfaces.Controller;
 import com.nov.hotel.gui.windows.interfaces.Singelton;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +26,7 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         protected Boolean isResize;
         protected int minHeight;
         protected int minWidth;
-//        protected Modality modality = Modality.NONE;
-//        protected Stage ownerStage;
+        protected Modality modality = Modality.NONE;
     }
 
     protected AbstractWindow.Properties properties = new Properties();
@@ -71,14 +71,13 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
         stage.setTitle(loader.getResources().getString(properties.header));
         stage.setResizable(properties.isResize);
+        stage.initModality(Modality.WINDOW_MODAL);
         if (properties.isResize){
             stage.setMinHeight(properties.minHeight);
             stage.setMinWidth(properties.minWidth);
         }
         try {
             Parent parent = loader.load();
-            Controller controller = loader.getController();
-            controller.setOwnerStage(stage);
             scene = new Scene(parent);
         } catch (IOException e) {
             LOG.error("Can't load resource", e);
@@ -86,10 +85,18 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         }
         scene.getStylesheets().add(properties.style);
         stage.setScene(scene);
+        AbstractController controller = loader.getController();
+        controller.setOwnerStage(stage);
+        stage.setOnCloseRequest(new javafx.event.EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                controller.actionClose(null);
+            }
+        });
     }
 
-    public void initModality(Stage ownerStage){
-        stage.initModality(Modality.WINDOW_MODAL);
+    public void initOwner(Stage ownerStage){
         stage.initOwner(ownerStage);
     }
+
 }

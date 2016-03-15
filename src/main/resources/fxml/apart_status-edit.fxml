@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import jfxtras.scene.control.*?>
-<?import org.controlsfx.glyphfont.*?>
-<?import jfxtras.labs.scene.control.grid.cell.*?>
-<?import jfxtras.labs.scene.control.*?>
-<?import jfxtras.labs.scene.control.window.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>

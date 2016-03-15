@@ -20,7 +20,7 @@ public class BlockController extends AbstractTableController<Block> {
     @Override
     protected void initData() {
         setEditWindow(BlockEditWindow.getInstance());
-        setCollection(new BlockCollection());
+        setCollection(BlockCollection.getInstance());
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
     }
 

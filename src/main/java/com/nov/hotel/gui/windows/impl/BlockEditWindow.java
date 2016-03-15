@@ -1,5 +1,7 @@
 package com.nov.hotel.gui.windows.impl;
 
+import javafx.stage.Modality;
+
 public class BlockEditWindow extends AbstractWindow {
 
     private static AbstractWindow uniqueWindow;
@@ -9,6 +11,7 @@ public class BlockEditWindow extends AbstractWindow {
         properties.header = "header.edit.block";
         properties.style = "/styles/styles.css";
         properties.isResize = false;
+        properties.modality = Modality.WINDOW_MODAL;
         init();
     }
 

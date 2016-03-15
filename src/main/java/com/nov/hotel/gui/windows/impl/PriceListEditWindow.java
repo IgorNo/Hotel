@@ -1,5 +1,7 @@
 package com.nov.hotel.gui.windows.impl;
 
+import javafx.stage.Modality;
+
 public class PriceListEditWindow extends AbstractWindow {
 
     private static AbstractWindow uniqueWindow;
@@ -9,6 +11,7 @@ public class PriceListEditWindow extends AbstractWindow {
         properties.header = "header.edit.price.list";
         properties.style = "/styles/styles.css";
         properties.isResize = false;
+        properties.modality = Modality.WINDOW_MODAL;
         init();
     }
 

@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ApartmentController extends AbstractTableController<Apartment> {
 
@@ -39,7 +40,17 @@ public class ApartmentController extends AbstractTableController<Apartment> {
     @Override
     protected void initData() {
         setEditWindow(ApartmentEditWindow.getInstance());
-        setCollection(new ApartmentCollection());
+        setCollection(ApartmentCollection.getInstance());
+        columnBlock.setCellValueFactory(new PropertyValueFactory<>("block.name"));
+        columnLevel.setCellValueFactory(new PropertyValueFactory<>("level"));
+        columnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        columnSizing.setCellValueFactory(new PropertyValueFactory<>("type.sizing"));
+        columnRoomType.setCellValueFactory(new PropertyValueFactory<>("type.name"));
+        columnSlots.setCellValueFactory(new PropertyValueFactory<>("nAdditionalSlot"));
+        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("type.price1"));
+        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("type.price2"));
+        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("type.price3"));
+        columnSlots.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     @Override
