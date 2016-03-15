@@ -1,8 +1,9 @@
 package com.nov.hotel.collections.abstr;
 
-import com.nov.hotel.collections.interfaces.ObservaableCollection;
+import com.nov.hotel.collections.interfaces.ObservableCollection;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.interfaces.Entity;
+import com.nov.hotel.gui.windows.interfaces.Singelton;
 import com.nov.hotel.services.transactions.impl.AddTransaction;
 import com.nov.hotel.services.transactions.impl.GetAllTransaction;
 import com.nov.hotel.services.transactions.impl.UpdateTransaction;
@@ -10,7 +11,7 @@ import com.nov.hotel.services.transactions.utils.TransactionsEngine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-abstract public class ObservaableCollectionAbstract<E extends Entity> implements ObservaableCollection<E> {
+abstract public class ObservableCollectionAbstract<E extends Entity> implements ObservableCollection<E>{
 
     private ObservableList<E> list = FXCollections.observableArrayList();
 
@@ -20,7 +21,7 @@ abstract public class ObservaableCollectionAbstract<E extends Entity> implements
     protected abstract CrudDao getDao();
 
     @Override
-    public ObservaableCollection<E> add(E element) {
+    public ObservableCollection<E> add(E element) {
         if (!element.validate()){
             return null;
         }
@@ -31,7 +32,7 @@ abstract public class ObservaableCollectionAbstract<E extends Entity> implements
 
 
     @Override
-    public ObservaableCollection<E> update(E element) {
+    public ObservableCollection<E> update(E element) {
         if (!element.validate()){
             return null;
         }
@@ -40,7 +41,7 @@ abstract public class ObservaableCollectionAbstract<E extends Entity> implements
     }
 
     @Override
-    public ObservaableCollection<E> delete(E element) {
+    public ObservableCollection<E> delete(E element) {
         if (!element.validate()){
             return null;
         }
@@ -60,6 +61,7 @@ abstract public class ObservaableCollectionAbstract<E extends Entity> implements
 
     @Override
     public void fillData() {
+        list.clear();
         GetAllTransaction<E> t = new GetAllTransaction(getDao());
         t.execute();
         list.addAll(t.geteList());

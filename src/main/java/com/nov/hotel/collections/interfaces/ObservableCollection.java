@@ -2,15 +2,15 @@ package com.nov.hotel.collections.interfaces;
 
 import javafx.collections.ObservableList;
 
-public interface ObservaableCollection<E> {
+public interface ObservableCollection<E> {
     // add records
-    ObservaableCollection<E> add(E element);
+    ObservableCollection<E> add(E element);
 
     // update records
-    ObservaableCollection<E> update(E element);
+    ObservableCollection<E> update(E element);
 
     // delete records
-    ObservaableCollection<E> delete(E element);
+    ObservableCollection<E> delete(E element);
 
     public ObservableList<E> getList();
 
