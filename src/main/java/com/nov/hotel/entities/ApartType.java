@@ -1,18 +1,19 @@
 package com.nov.hotel.entities;
 
 import com.nov.hotel.entities.interfaces.Entity;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class ApartType implements Entity<ApartType> {
 
     private int id;
-    private SimpleStringProperty name = new SimpleStringProperty();
-    private SimpleIntegerProperty sizing = new SimpleIntegerProperty();
-    private SimpleFloatProperty price1 = new SimpleFloatProperty();
-    private SimpleFloatProperty price2 = new SimpleFloatProperty();
-    private SimpleFloatProperty price3 = new SimpleFloatProperty();
+    private StringProperty name = new SimpleStringProperty();
+    private IntegerProperty size = new SimpleIntegerProperty();
+    private FloatProperty priceDay = new SimpleFloatProperty();
+    private FloatProperty priceHour = new SimpleFloatProperty();
+    private IntegerProperty nSlots = new SimpleIntegerProperty();
+    private FloatProperty priceSlot = new SimpleFloatProperty();
+    private StringProperty description = new SimpleStringProperty();
+
 
     public ApartType() { }
 
@@ -24,15 +25,22 @@ public class ApartType implements Entity<ApartType> {
     public void assign(ApartType apartType){
         setId(apartType.getId());
         setName(apartType.getName());
-        setSizing(apartType.getSizing());
-        setPrice1(apartType.getPrice1());
-        setPrice2(apartType.getPrice2());
-        setPrice3(apartType.getPrice3());
+        setSize(apartType.getSize());
+        setPriceDay(apartType.getPriceDay());
+        setPriceHour(apartType.getPriceHour());
+        setPriceSlot(apartType.getPriceSlot());
+        setnSlots(apartType.getnSlots());
+        setDescription(apartType.getDescription());
     }
 
     @Override
     public boolean validate() {
-        return getName() != "" && getSizing() > 0 && getPrice1() > 0 && getPrice2() > 0 && getPrice3() > 0;
+        return getName() != "" && getSize() > 0;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     public int getId() {
@@ -47,64 +55,84 @@ public class ApartType implements Entity<ApartType> {
         return name.get();
     }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name.set(name);
     }
 
-    public int getSizing() {
-        return sizing.get();
+    public int getSize() {
+        return size.get();
     }
 
-    public SimpleIntegerProperty sizingProperty() {
-        return sizing;
+    public IntegerProperty sizeProperty() {
+        return size;
     }
 
-    public void setSizing(int sizing) {
-        this.sizing.set(sizing);
+    public void setSize(int size) {
+        this.size.set(size);
     }
 
-    public float getPrice1() {
-        return price1.get();
+    public float getPriceDay() {
+        return priceDay.get();
     }
 
-    public void setPrice1(float price) {
-        this.price1.set(price);
+    public FloatProperty priceDayProperty() {
+        return priceDay;
     }
 
-    public float getPrice2() {
-        return price2.get();
+    public void setPriceDay(float priceDay) {
+        this.priceDay.set(priceDay);
     }
 
-    public void setPrice2(float price) {
-        this.price2.set(price);
+    public float getPriceHour() {
+        return priceHour.get();
     }
 
-    public float getPrice3() {
-        return price3.get();
+    public FloatProperty priceHourProperty() {
+        return priceHour;
     }
 
-    public void setPrice3(float price) {
-        this.price3.set(price);
+    public void setPriceHour(float priceHour) {
+        this.priceHour.set(priceHour);
     }
 
-    public SimpleStringProperty nameProperty(){ return name; }
+    public int getnSlots() {
+        return nSlots.get();
+    }
 
-    public SimpleFloatProperty price1Property(){ return price1; }
+    public IntegerProperty nSlotsProperty() {
+        return nSlots;
+    }
 
-    public SimpleFloatProperty price2Property(){ return price2; }
+    public void setnSlots(int nSlots) {
+        this.nSlots.set(nSlots);
+    }
 
-    public SimpleFloatProperty price3Property(){ return price3; }
+    public float getPriceSlot() {
+        return priceSlot.get();
+    }
 
-    @Override
-    public String toString() {
-        return "ApartType{" +
-                "id=" + id +
-                ", name=" + name +
-                ", sizing=" + sizing +
-                ", price1=" + price1 +
-                ", price2=" + price2 +
-                ", price3=" + price3 +
-                '}';
+    public FloatProperty priceSlotProperty() {
+        return priceSlot;
+    }
+
+    public void setPriceSlot(float priceSlot) {
+        this.priceSlot.set(priceSlot);
+    }
+
+    public String getDescription() {
+        return description.get();
+    }
+
+    public StringProperty descriptionProperty() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description.set(description);
     }
 
 }

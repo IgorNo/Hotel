@@ -3,15 +3,14 @@ package com.nov.hotel.gui.controllers.impl;
 import com.nov.hotel.collections.impl.ApartTypeCollection;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
-import com.nov.hotel.gui.windows.impl.AbstractWindow;
-import com.nov.hotel.gui.windows.impl.PriceListEditWindow;
+import com.nov.hotel.gui.windows.impl.ApartTypeEditWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class PriceListController extends AbstractTableController<ApartType> {
+public class ApartTypeController extends AbstractTableController<ApartType> {
 
     @FXML
     public TableView tableAppartType;
@@ -26,18 +25,19 @@ public class PriceListController extends AbstractTableController<ApartType> {
     public TableColumn<ApartType, Float> columnPrice2;
     @FXML
     public TableColumn<ApartType, Float> columnPrice3;
-
+    public TableColumn columnSlots;
 
 
     @Override
     protected void initData() {
-        setEditWindow(PriceListEditWindow.getInstance());
+        setEditWindow(ApartTypeEditWindow.getInstance());
         setCollection(ApartTypeCollection.getInstance());
         columnRoomType.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnSizing.setCellValueFactory(new PropertyValueFactory<>("sizing"));
-        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("price1"));
-        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("price2"));
-        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("price3"));
+        columnSizing.setCellValueFactory(new PropertyValueFactory<>("size"));
+        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("priceDay"));
+        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("priceHour"));
+        columnSlots.setCellValueFactory(new PropertyValueFactory<>("nSlots"));
+        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("priceSlot"));
     }
 
     @Override

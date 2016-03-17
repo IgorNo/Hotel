@@ -60,10 +60,11 @@ abstract public class ObservableCollectionAbstract<E extends Entity> implements 
     }
 
     @Override
-    public void fillData() {
+    public ObservableCollection<E> fillData() {
         list.clear();
         GetAllTransaction<E> t = new GetAllTransaction(getDao());
         t.execute();
         list.addAll(t.geteList());
+        return this;
     }
 }

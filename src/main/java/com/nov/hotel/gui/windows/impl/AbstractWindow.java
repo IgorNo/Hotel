@@ -1,7 +1,6 @@
 package com.nov.hotel.gui.windows.impl;
 
 import com.nov.hotel.gui.controllers.abstr.AbstractController;
-import com.nov.hotel.gui.controllers.interfaces.Controller;
 import com.nov.hotel.gui.windows.interfaces.Singelton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.apache.log4j.Logger;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -34,6 +32,7 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
     private Stage stage = new Stage();
     private Scene scene;
     private FXMLLoader loader = new FXMLLoader();
+    private AbstractController controller;
 
     public Stage getStage() {
         return stage;
@@ -64,11 +63,12 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         stage = null;
         scene = null;
     }
+    protected void init() {
+        initScene();
+        initStage();
+    }
+    protected void initStage()  {
 
-    protected void init()  {
-
-        loader.setLocation(AbstractWindow.class.getResource(properties.fxmlFile));
-        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
         stage.setTitle(loader.getResources().getString(properties.header));
         stage.setResizable(properties.isResize);
         stage.initModality(Modality.WINDOW_MODAL);
@@ -76,17 +76,9 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
             stage.setMinHeight(properties.minHeight);
             stage.setMinWidth(properties.minWidth);
         }
-        try {
-            Parent parent = loader.load();
-            scene = new Scene(parent);
-        } catch (IOException e) {
-            LOG.error("Can't load resource", e);
-            throw new RuntimeException(e);
-        }
-        scene.getStylesheets().add(properties.style);
         stage.setScene(scene);
-        AbstractController controller = loader.getController();
-        controller.setOwnerStage(stage);
+        controller = loader.getController();
+        controller.setItsStage(stage);
         stage.setOnCloseRequest(new javafx.event.EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -95,7 +87,26 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
         });
     }
 
+    protected void initScene()  {
+
+        loader.setLocation(AbstractWindow.class.getResource(properties.fxmlFile));
+        loader.setResources(ResourceBundle.getBundle("bundles.Locale"));
+        try {
+            Parent parent = loader.load();
+            scene = new Scene(parent);
+        } catch (IOException e) {
+            LOG.error("Can't load resource", e);
+            throw new RuntimeException(e);
+        }
+        scene.getStylesheets().add(properties.style);
+    }
+
     public void initOwner(Stage ownerStage){
+        if (stage.getOwner() != null){
+            stage.close();
+            stage = new Stage();
+            initStage();
+        }
         stage.initOwner(ownerStage);
     }
 

@@ -57,7 +57,7 @@
                   <TableColumn fx:id="columnBlock" minWidth="-1.0" prefWidth="-1.0" text="%table.column.block" />
                   <TableColumn fx:id="columnLevel" minWidth="-1.0" prefWidth="-1.0" text="%table.column.level" />
                 <TableColumn fx:id="columnRoomNumber" minWidth="-1.0" prefWidth="-1.0" text="%table.column.room.number" />
-                  <TableColumn fx:id="columnSizing" minWidth="-1.0" prefWidth="-1.0" text="%table.column.sizing" />
+                  <TableColumn fx:id="columnSizing" minWidth="-1.0" prefWidth="-1.0" text="%table.column.size" />
                   <TableColumn fx:id="columnRoomType" minWidth="150.0" prefWidth="299.0" text="%table.column.room.type" />
                   <TableColumn fx:id="columnSlots" minWidth="-1.0" prefWidth="-1.0" text="%table.column.slots" />
                 <TableColumn fx:id="columnPrice1" minWidth="20.0" text="%table.column.price1" />

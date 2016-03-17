@@ -28,17 +28,19 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
 
     @Override
     public void insert(ApartType apartType) {
-        String sql = "INSERT INTO apart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n) " +
-                "VALUES (:name, :sizing, :price1, :price2, :price3)";
+        String sql = "INSERT INTO apart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n, app_typ_slot_n, app_typ_description_s) " +
+                "VALUES (:name, :sizing, :price1, :price2, :price3, :nSlots, :description)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", apartType.getName());
-        params.addValue("sizing", apartType.getSizing());
-        params.addValue("price1", apartType.getPrice1());
-        params.addValue("price2", apartType.getPrice2());
-        params.addValue("price3", apartType.getPrice3());
+        params.addValue("sizing", apartType.getSize());
+        params.addValue("price1", apartType.getPriceDay());
+        params.addValue("price2", apartType.getPriceHour());
+        params.addValue("price3", apartType.getPriceSlot());
+        params.addValue("nSlots", apartType.getnSlots());
+        params.addValue("description", apartType.getDescription());
 
         jdbcTemplate.update(sql, params, keyHolder);
 
@@ -75,16 +77,19 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
     @Override
     public void update(ApartType apartType) {
         String sql = "UPDATE apart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
-                "app_typ_price1_n=  :price1, app_typ_price2_n = :price2, app_typ_price3_n= :price3 " +
+                "app_typ_price1_n=  :price1, app_typ_price2_n= :price2, app_typ_price3_n= :price3, " +
+                "app_typ_slot_n= :nSlots, app_typ_description_s= :description " +
                 "WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", apartType.getId());
         params.addValue("name", apartType.getName());
-        params.addValue("sizing", apartType.getSizing());
-        params.addValue("price1", apartType.getPrice1());
-        params.addValue("price2", apartType.getPrice2());
-        params.addValue("price3", apartType.getPrice3());
+        params.addValue("sizing", apartType.getSize());
+        params.addValue("price1", apartType.getPriceDay());
+        params.addValue("price2", apartType.getPriceHour());
+        params.addValue("price3", apartType.getPriceSlot());
+        params.addValue("nSlots", apartType.getnSlots());
+        params.addValue("description", apartType.getDescription());
 
         jdbcTemplate.update(sql, params);
 
@@ -119,10 +124,12 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
             ApartType apartType = new ApartType();
             apartType.setId(rs.getInt("app_typ_id_n"));
             apartType.setName(rs.getString("app_typ_name_s"));
-            apartType.setSizing(rs.getInt("app_typ_sizing_n"));
-            apartType.setPrice1(rs.getFloat("app_typ_price1_n"));
-            apartType.setPrice2(rs.getFloat("app_typ_price2_n"));
-            apartType.setPrice3(rs.getFloat("app_typ_price3_n"));
+            apartType.setSize(rs.getInt("app_typ_sizing_n"));
+            apartType.setPriceDay(rs.getFloat("app_typ_price1_n"));
+            apartType.setPriceHour(rs.getFloat("app_typ_price2_n"));
+            apartType.setPriceSlot(rs.getFloat("app_typ_price3_n"));
+            apartType.setnSlots(rs.getInt("app_typ_slot_n"));
+            apartType.setDescription(rs.getString("app_typ_description_s"));
             return apartType;
         }
     };

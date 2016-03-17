@@ -47,4 +47,9 @@ public class Block implements Entity<Block> {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

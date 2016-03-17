@@ -14,6 +14,6 @@ public interface ObservableCollection<E> {
 
     public ObservableList<E> getList();
 
-    public void fillData();
+    public ObservableCollection<E> fillData();
 
 }

@@ -2,12 +2,9 @@ package com.nov.hotel.gui.controllers;
 
 
 import com.nov.hotel.gui.controllers.abstr.AbstractController;
-import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import com.nov.hotel.gui.windows.impl.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
 
 public class MainController extends AbstractController {
 
@@ -26,7 +23,7 @@ public class MainController extends AbstractController {
     }
 
     public void editPriceList(ActionEvent actionEvent) {
-        priceListWindow = PriceListWindow.getInstance();
+        priceListWindow = ApartTypeWindow.getInstance();
         priceListWindow.initOwner(MainWindow.getInstance().getStage());
         priceListWindow.showAndWait();
     }

@@ -1,7 +1,9 @@
 package com.nov.hotel.gui.controllers.impl;
 
 import com.nov.hotel.collections.impl.ApartmentCollection;
+import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.entities.Apartment;
+import com.nov.hotel.entities.Block;
 import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import com.nov.hotel.gui.windows.impl.ApartmentEditWindow;
@@ -17,7 +19,7 @@ public class ApartmentController extends AbstractTableController<Apartment> {
     @FXML
     public TableView tableAppartments;
     @FXML
-    public TableColumn columnBlock;
+    public TableColumn<Apartment, Block> columnBlock;
     @FXML
     public TableColumn columnLevel;
     @FXML
@@ -39,18 +41,19 @@ public class ApartmentController extends AbstractTableController<Apartment> {
 
     @Override
     protected void initData() {
+
         setEditWindow(ApartmentEditWindow.getInstance());
         setCollection(ApartmentCollection.getInstance());
-        columnBlock.setCellValueFactory(new PropertyValueFactory<>("block.name"));
-        columnLevel.setCellValueFactory(new PropertyValueFactory<>("level"));
+        columnBlock.setCellValueFactory(new PropertyValueFactory<>("block"));
+        columnLevel.setCellValueFactory(new PropertyValueFactory<>("levelNumber"));
         columnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        columnSizing.setCellValueFactory(new PropertyValueFactory<>("type.sizing"));
-        columnRoomType.setCellValueFactory(new PropertyValueFactory<>("type.name"));
+//        columnSizing.setCellValueFactory(new PropertyValueFactory<>("type.sizing"));
+        columnRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
         columnSlots.setCellValueFactory(new PropertyValueFactory<>("nAdditionalSlot"));
-        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("type.price1"));
-        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("type.price2"));
-        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("type.price3"));
-        columnSlots.setCellValueFactory(new PropertyValueFactory<>("status"));
+//        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("type.price1"));
+//        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("type.price2"));
+//        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("type.price3"));
+        columnRepair.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     @Override
@@ -64,7 +67,8 @@ public class ApartmentController extends AbstractTableController<Apartment> {
     }
 
     public void add(ActionEvent actionEvent) {
-        addAbst(new Apartment());
+
+        addAbst(new Apartment(new ApartType(), new Block()));
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {

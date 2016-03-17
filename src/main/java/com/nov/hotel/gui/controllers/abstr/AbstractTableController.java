@@ -69,6 +69,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
         return selectedElem;
     }
 
+
     private void setupClearButtonField(CustomTextField customTextField) {
         try {
             Method m = TextFields.class.getDeclaredMethod("setupClearButtonField", TextField.class, ObjectProperty.class);
@@ -231,7 +232,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
 
     private void showDialog() {
         if (editWindow.getStage().getOwner() == null) {
-            editWindow.initOwner(getOwnerStage());
+            editWindow.initOwner(getItsStage());
         }
         editWindow.showAndWait(); // wait close
     }

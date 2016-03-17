@@ -5,8 +5,8 @@ import javafx.stage.Stage;
 
 public interface Controller {
 
-    public Stage getOwnerStage() ;
+    public Stage getItsStage() ;
 
-    public void setOwnerStage(Stage ownerStage) ;
+    public void setItsStage(Stage ownerStage) ;
 
 }

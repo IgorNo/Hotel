@@ -3,19 +3,24 @@ package com.nov.hotel.entities;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Apartment implements Entity<Apartment> {
 
     private long id;
     private SimpleStringProperty roomNumber = new SimpleStringProperty();
-    private SimpleIntegerProperty nAdditionalSlot = new SimpleIntegerProperty();
     private SimpleIntegerProperty levelNumber = new SimpleIntegerProperty();
-    private Block block;
+    private SimpleObjectProperty<Block> block = new SimpleObjectProperty<>();
     private SimpleBooleanProperty status = new SimpleBooleanProperty();
-    private ApartType type;
+    private SimpleObjectProperty<ApartType> type = new SimpleObjectProperty<>();
 
     public Apartment() {  }
+
+    public Apartment(ApartType type, Block block) {
+        setType(type);
+        setBlock(block);
+    }
 
     public Apartment(Apartment apartment) {
         this();
@@ -26,11 +31,10 @@ public class Apartment implements Entity<Apartment> {
     public void assign(Apartment apartment) {
         setId(apartment.getId());
         setRoomNumber(apartment.getRoomNumber());
-        setnAdditionalSlot(apartment.getnAdditionalSlot());
         setLevelNumber(apartment.getLevelNumber());
         setBlock(apartment.getBlock());
         setStatus(apartment.getStatus());
-        type = new ApartType(apartment.getType());
+        setType(apartment.getType());
     }
 
     public long getId() {
@@ -53,18 +57,6 @@ public class Apartment implements Entity<Apartment> {
         this.roomNumber.set(roomNumber);
     }
 
-    public int getnAdditionalSlot() {
-        return nAdditionalSlot.get();
-    }
-
-    public SimpleIntegerProperty nAdditionalSlotProperty() {
-        return nAdditionalSlot;
-    }
-
-    public void setnAdditionalSlot(int nAdditionalSlot) {
-        this.nAdditionalSlot.set(nAdditionalSlot);
-    }
-
     public int getLevelNumber() {
         return levelNumber.get();
     }
@@ -75,14 +67,6 @@ public class Apartment implements Entity<Apartment> {
 
     public void setLevelNumber(int levelNumber) {
         this.levelNumber.set(levelNumber);
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
     }
 
     public boolean getStatus() {
@@ -97,17 +81,33 @@ public class Apartment implements Entity<Apartment> {
         this.status.set(status);
     }
 
+    public Block getBlock() {
+        return block.get();
+    }
+
+    public SimpleObjectProperty<Block> blockProperty() {
+        return block;
+    }
+
+    public void setBlock(Block block) {
+        this.block.set(block);
+    }
+
     public ApartType getType() {
+        return type.get();
+    }
+
+    public SimpleObjectProperty<ApartType> typeProperty() {
         return type;
     }
 
     public void setType(ApartType type) {
-        this.type = type;
+        this.type.set(type);
     }
 
     @Override
     public boolean validate() {
-        return false;
+        return !getRoomNumber().isEmpty() && block != null && type != null;
     }
 
 }
