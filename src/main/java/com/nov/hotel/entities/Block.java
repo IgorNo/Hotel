@@ -18,7 +18,7 @@ public class Block implements Entity<Block> {
 
     @Override
     public boolean validate() {
-        return true;
+        return getName() != null;
     }
 
     @Override

@@ -107,7 +107,11 @@ public class Apartment implements Entity<Apartment> {
 
     @Override
     public boolean validate() {
-        return !getRoomNumber().isEmpty() && block != null && type != null;
+        return getRoomNumber() != null && !getRoomNumber().isEmpty() && getBlock() != null && getType() != null;
     }
 
+    @Override
+    public String toString() {
+        return getRoomNumber();
+    }
 }

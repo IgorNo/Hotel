@@ -35,7 +35,7 @@ public class ApartTypeEditController extends AbstractEditDialogController<ApartT
         getElem().setPriceHour(Float.parseFloat(txtPrice2.getText()));
         getElem().setSize(Integer.parseInt(txtnAdditionalSlot.getText()));
         getElem().setPriceSlot(Float.parseFloat(txtPrice3.getText()));
-        getElem().setName(txtarDescription.getText());
+        getElem().setDescription(txtarDescription.getText());
     }
 
     @Override

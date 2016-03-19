@@ -23,7 +23,7 @@ public class ApartStatusCollection extends ObservableCollectionAbstract<ApartSta
 
     @Override
     protected CrudDao getDao() {
-        return null;
+        return dao;
     }
 
 }

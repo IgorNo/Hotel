@@ -29,7 +29,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="95.0" prefHeight="31.0" prefWidth="123.0" text="%label.additional.slots">
+            <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="133.0" text="%table.column.level">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -84,22 +84,9 @@
             </TextField>
             <HBox>
                <children>
-                  <TextField fx:id="txtnAdditionalSlot" layoutX="15.0" layoutY="95.0" prefHeight="30.0" prefWidth="65.0">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="230.0" top="5.0" />
-                     </VBox.margin>
+                  <TextField fx:id="txtLevel" layoutX="15.0" layoutY="15.0" prefHeight="30.0" prefWidth="194.0">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="47.0" text="%table.column.level">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="txtLevel" layoutX="15.0" layoutY="15.0" prefHeight="30.0" prefWidth="65.0">
-                     <HBox.margin>
-                        <Insets bottom="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </TextField>
                   <CheckBox fx:id="chekbStatus" mnemonicParsing="false" prefHeight="30.0" text="%table.column.repair">

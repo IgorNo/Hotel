@@ -10,16 +10,19 @@ import com.nov.hotel.gui.windows.impl.ApartmentEditWindow;
 import com.nov.hotel.gui.windows.impl.ApartmentsWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 public class ApartmentController extends AbstractTableController<Apartment> {
 
     @FXML
     public TableView tableAppartments;
     @FXML
-    public TableColumn<Apartment, Block> columnBlock;
+    public TableColumn columnBlock;
     @FXML
     public TableColumn columnLevel;
     @FXML
@@ -47,13 +50,70 @@ public class ApartmentController extends AbstractTableController<Apartment> {
         columnBlock.setCellValueFactory(new PropertyValueFactory<>("block"));
         columnLevel.setCellValueFactory(new PropertyValueFactory<>("levelNumber"));
         columnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-//        columnSizing.setCellValueFactory(new PropertyValueFactory<>("type.sizing"));
         columnRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        columnSlots.setCellValueFactory(new PropertyValueFactory<>("nAdditionalSlot"));
-//        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("type.price1"));
-//        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("type.price2"));
-//        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("type.price3"));
+        columnSizing.setCellValueFactory(new PropertyValueFactory<>("type"));
+        // Custom rendering of the table cell.
+        columnSizing.setCellFactory(column -> {
+            return new TableCell<Apartment, ApartType>(){
+                @Override
+                protected void updateItem(ApartType item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else setText(Integer.toString(item.getSize()));
+                }
+            };
+        });
+        columnSlots.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnSlots.setCellFactory(column -> {
+            return new TableCell<Apartment, ApartType>(){
+                @Override
+                protected void updateItem(ApartType item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else setText(Integer.toString(item.getnSlots()));
+                }
+            };
+        });
+        columnPrice1.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnPrice1.setCellFactory(column -> {
+            return new TableCell<Apartment, ApartType>(){
+                @Override
+                protected void updateItem(ApartType item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else setText(Float.toString(item.getPriceDay()));
+                }
+            };
+        });
+        columnPrice2.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnPrice2.setCellFactory(column -> {
+            return new TableCell<Apartment, ApartType>(){
+                @Override
+                protected void updateItem(ApartType item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else setText(Float.toString(item.getPriceHour()));
+                }
+            };
+        });
+        columnPrice3.setCellValueFactory(new PropertyValueFactory<>("type"));
+        columnPrice3.setCellFactory(column -> {
+            return new TableCell<Apartment, ApartType>(){
+                @Override
+                protected void updateItem(ApartType item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else setText(Float.toString(item.getPriceSlot()));
+                }
+            };
+        });
         columnRepair.setCellValueFactory(new PropertyValueFactory<>("status"));
+        columnRepair.setCellFactory(new Callback<TableColumn<Apartment, Boolean>, TableCell<Apartment, Boolean>>() {
+
+            public TableCell<Apartment, Boolean> call(TableColumn<Apartment, Boolean> p) {
+                return new CheckBoxTableCell<Apartment, Boolean>();
+            }
+        });
     }
 
     @Override

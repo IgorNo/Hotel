@@ -11,8 +11,8 @@ public class ApartmentsWindow extends AbstractWindow {
         properties.header = "header.appartments";
         properties.style = "/styles/styles.css";
         properties.isResize = true;
-        properties.minWidth = 715;
-        properties.minHeight = 432;
+        properties.minWidth = 975;
+        properties.minHeight = 550;
         properties.modality = Modality.WINDOW_MODAL;
         init();
     }

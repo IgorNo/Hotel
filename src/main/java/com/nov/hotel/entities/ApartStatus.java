@@ -55,7 +55,7 @@ public class ApartStatus implements Entity<ApartStatus>{
 
     @Override
     public boolean validate() {
-        return getName() != "" && getColor() != "";
+        return getName() != null && getName() != "" && getColor() != null && getColor() != "";
     }
 
 }

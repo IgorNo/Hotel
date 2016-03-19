@@ -121,8 +121,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    edController.setElem((E) getTable().getSelectionModel().getSelectedItem());
-                    showDialog();
+                    change(null);
                 }
             }
         });

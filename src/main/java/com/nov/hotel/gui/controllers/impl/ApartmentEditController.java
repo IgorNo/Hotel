@@ -53,12 +53,15 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         getElem().setLevelNumber(Integer.parseInt(txtLevel.getText()));
         getElem().setStatus(chekbStatus.isSelected());
         int selectedElement = comboBlock.getSelectionModel().getSelectedIndex();
-        Block block = blocks.getList().get(selectedElement);
-        getElem().setBlock(block);
+        if (selectedElement>=0) {
+            Block block = blocks.getList().get(selectedElement);
+            getElem().setBlock(block);
+        }
         selectedElement = comboType.getSelectionModel().getSelectedIndex();
-        ApartType type = types.getList().get(selectedElement);
-        getElem().setType(type);
-
+        if (selectedElement>=0) {
+            ApartType type = types.getList().get(selectedElement);
+            getElem().setType(type);
+        }
     }
 
     @Override
