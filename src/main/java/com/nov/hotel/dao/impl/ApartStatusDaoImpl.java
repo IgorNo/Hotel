@@ -2,6 +2,7 @@ package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,7 +21,7 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    @Resource(name = "dataSource")
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }

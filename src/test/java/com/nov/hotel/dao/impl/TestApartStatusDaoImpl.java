@@ -33,7 +33,7 @@ public class TestApartStatusDaoImpl {
 
     @BeforeClass
     public static void initData(){
-        apartStatus1.setName("Вільний номер");
+        apartStatus1.setName("номер");
         apartStatus1.setColor("1");
         apartStatus2.setName("Бронь");
         apartStatus2.setColor("2");
@@ -102,7 +102,7 @@ public class TestApartStatusDaoImpl {
         result = apartStatusDao.getAll();
         ApartStatus apartType = new ApartStatus();
         apartType.setId(result.get(0).getId());
-        apartType.setName("Одномісний номер люкс");
+        apartType.setName("Вільний номер");
         apartType.setColor("1");
         apartStatusDao.update(apartType);
         ApartStatus type = apartStatusDao.getById(apartType.getId());

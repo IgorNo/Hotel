@@ -23,7 +23,7 @@ public class TestApartTypeDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartTypeDaoImpl.class);
     @Autowired
-    private CrudDao<ApartType> appartTypeDao;
+    private CrudDao<ApartType> apartTypeDao;
 
     private static ApartType apartType1 = new ApartType();
     private static ApartType apartType2 = new ApartType();
@@ -61,13 +61,13 @@ public class TestApartTypeDaoImpl {
 
     @Before
     public void createData(){
-        appartTypeDao.deleteAll();
-        assertEquals(0, appartTypeDao.count());
+        apartTypeDao.deleteAll();
+        assertEquals(0, apartTypeDao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());
         for (ApartType x: testData) {
-            appartTypeDao.insert(x);
+            apartTypeDao.insert(x);
         }
-        assertEquals(testData.size(), appartTypeDao.count());
+        assertEquals(testData.size(), apartTypeDao.count());
     }
 
 
@@ -75,7 +75,7 @@ public class TestApartTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartType x: testData) {
-            List<ApartType> type = appartTypeDao.getByName(x.getName());
+            List<ApartType> type = apartTypeDao.getByName(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getSize(),result.get(result.size()-1).getSize());
@@ -92,7 +92,7 @@ public class TestApartTypeDaoImpl {
     public void testGetById(){
         testGetByName();
         for (ApartType x:result ) {
-            ApartType type = appartTypeDao.getById(x.getId());
+            ApartType type = apartTypeDao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getSize(),type.getSize());
@@ -108,7 +108,7 @@ public class TestApartTypeDaoImpl {
     @Test
     public void testGetAll(){
         result.clear();
-        result = appartTypeDao.getAll();
+        result = apartTypeDao.getAll();
         for (int i = 0; i < testData.size(); i++) {
             ApartType testType = testData.get(i);
             ApartType type = result.get(i);
@@ -127,7 +127,7 @@ public class TestApartTypeDaoImpl {
     @Test
     public void testUpdate(){
         result.clear();
-        result = appartTypeDao.getAll();
+        result = apartTypeDao.getAll();
         ApartType testType = new ApartType();
         testType.setId(result.get(0).getId());
         testType.setName("Одномісний номер люкс");
@@ -137,8 +137,8 @@ public class TestApartTypeDaoImpl {
         testType.setPriceSlot(555.00f);
         testType.setnSlots(1);
         testType.setDescription("Description luxury");
-        appartTypeDao.update(testType);
-        ApartType type = appartTypeDao.getById(testType.getId());
+        apartTypeDao.update(testType);
+        ApartType type = apartTypeDao.getById(testType.getId());
         assertEquals(testType.getId(),type.getId());
         assertEquals(testType.getName(),type.getName());
         assertEquals(testType.getSize(),type.getSize());
@@ -149,7 +149,7 @@ public class TestApartTypeDaoImpl {
         assertEquals(testType.getDescription(),type.getDescription());
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ testType.toString());
-        result = appartTypeDao.getAll();
+        result = apartTypeDao.getAll();
         LOG.warn("\nAfter Update:\n"+result.toString());
 
     }
@@ -157,8 +157,8 @@ public class TestApartTypeDaoImpl {
     @Test
     public void testDelete(){
         result.clear();
-        result = appartTypeDao.getAll();
-        appartTypeDao.delete(result.get(0));
-        assertEquals(testData.size()-1, appartTypeDao.count());
+        result = apartTypeDao.getAll();
+        apartTypeDao.delete(result.get(0));
+        assertEquals(testData.size()-1, apartTypeDao.count());
     }
 }

@@ -2,6 +2,7 @@ package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Block;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -21,7 +22,7 @@ public class BlockDaoImpl implements CrudDao<Block> {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    @Resource(name = "dataSource")
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
@@ -102,10 +103,10 @@ public class BlockDaoImpl implements CrudDao<Block> {
     private static final RowMapper<Block> rowMapper = new RowMapper<Block>() {
         @Override
         public Block mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Block apartStatus = new Block();
-            apartStatus.setId(rs.getInt("block_id_n"));
-            apartStatus.setName(rs.getString("block_name_s"));
-            return apartStatus;
+            Block block = new Block();
+            block.setId(rs.getInt("block_id_n"));
+            block.setName(rs.getString("block_name_s"));
+            return block;
         }
     };
 
