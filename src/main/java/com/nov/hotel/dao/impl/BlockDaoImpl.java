@@ -42,7 +42,7 @@ public class BlockDaoImpl implements CrudDao<Block> {
     }
 
     @Override
-    public Block getById(int id) {
+    public Block getById(long id) {
         String sql = "SELECT * FROM blocks WHERE block_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

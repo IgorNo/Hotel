@@ -32,7 +32,7 @@ public class TestBlockDaoImpl {
     private static List<Block> result = new LinkedList<>();
 
     @BeforeClass
-    public static void initData(){
+    public static void setUpBeforClass(){
         block1.setName("Корпус 1");
         block2.setName("Корпус 2");
         block3.setName("Корпус 3");
@@ -44,7 +44,7 @@ public class TestBlockDaoImpl {
     }
 
     @Before
-    public void createData(){
+    public void setUp(){
         dao.deleteAll();
         assertEquals(0, dao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());

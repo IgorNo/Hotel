@@ -32,7 +32,7 @@ public class TestApartStatusDaoImpl {
     private static List<ApartStatus> result = new LinkedList<>();
 
     @BeforeClass
-    public static void initData(){
+    public static void setUpBeforClass(){
         apartStatus1.setName("номер");
         apartStatus1.setColor("1");
         apartStatus2.setName("Бронь");
@@ -48,7 +48,7 @@ public class TestApartStatusDaoImpl {
     }
 
     @Before
-    public void createData(){
+    public void setUp(){
         apartStatusDao.deleteAll();
         assertEquals(0, apartStatusDao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());

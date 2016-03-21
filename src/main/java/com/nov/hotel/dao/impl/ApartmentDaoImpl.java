@@ -23,6 +23,10 @@ import java.util.List;
 public class ApartmentDaoImpl implements CrudDao<Apartment>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
+    @Autowired
+    CrudDao<Block> blockDao;
+    @Autowired
+    CrudDao<ApartType> apartTypeDao;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -35,22 +39,30 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
         String sql = "INSERT INTO apartments (apart_room_number_s, apart_level_number_n, apart_status_b, apart_block_fk, apart_type_fk) " +
                 "VALUES (:room, :level, :status, :blockId, :typeId)";
 
+        checkId(elem);
         KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource params = getMapSqlParameterSource(elem);
+        jdbcTemplate.update(sql, params, keyHolder);
+        elem.setId(keyHolder.getKey().intValue());
+    }
 
+    private MapSqlParameterSource getMapSqlParameterSource(Apartment elem) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("room", elem.getRoomNumber());
         params.addValue("level", elem.getLevelNumber());
         params.addValue("status", elem.getStatus());
         params.addValue("blockId", elem.getBlock().getId());
         params.addValue("typeId", elem.getType().getId());
+        return params;
+    }
 
-        jdbcTemplate.update(sql, params, keyHolder);
-
-        elem.setId(keyHolder.getKey().intValue());
+    private void checkId(Apartment elem) {
+        if (elem.getBlock().getId() == 0) blockDao.insert(elem.getBlock());
+        if (elem.getType().getId() == 0) apartTypeDao.insert(elem.getType());
     }
 
     @Override
-    public Apartment getById(int id) {
+    public Apartment getById(long id) {
         String sql = "SELECT * FROM apartments_view WHERE apart_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -80,13 +92,9 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
         String sql = "UPDATE apartments SET apart_room_number_s= :room, apart_level_number_n= :level, apart_status_b= :status, apart_block_fk= :blockId, apart_type_fk= :typeId " +
                 "WHERE apart_id_n = :id";
 
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("room", elem.getRoomNumber());
-        params.addValue("level", elem.getLevelNumber());
-        params.addValue("status", elem.getStatus());
-        params.addValue("blockId", elem.getBlock().getId());
-        params.addValue("typeId", elem.getType().getId());
-
+        checkId(elem);
+        MapSqlParameterSource params = getMapSqlParameterSource(elem);
+        params.addValue("id", elem.getId());
         jdbcTemplate.update(sql, params);
     }
 
@@ -97,7 +105,7 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", elem.getId());
 
-        jdbcTemplate.update(sql, new MapSqlParameterSource());
+        jdbcTemplate.update(sql, params);
     }
 
     @Override

@@ -33,39 +33,26 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
                 "VALUES (:name, :sizing, :price1, :price2, :price3, :nSlots, :description)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", apartType.getName());
-        params.addValue("sizing", apartType.getSize());
-        params.addValue("price1", apartType.getPriceDay());
-        params.addValue("price2", apartType.getPriceHour());
-        params.addValue("price3", apartType.getPriceSlot());
-        params.addValue("nSlots", apartType.getnSlots());
-        params.addValue("description", apartType.getDescription());
-
+        MapSqlParameterSource params = getMapSqlParameterSource(apartType);
         jdbcTemplate.update(sql, params, keyHolder);
-
         apartType.setId(keyHolder.getKey().intValue());
     }
 
     @Override
-    public ApartType getById(int id) {
+    public ApartType getById(long id) {
         String sql = "SELECT * FROM apart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
-
         return jdbcTemplate.queryForObject(sql, params, rowMapper);
     }
 
     @Override
     public List<ApartType> getByName(String name) {
-
         String sql = "SELECT * FROM apart_types WHERE app_typ_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", name);
-
         return jdbcTemplate.query(sql, params, rowMapper);
     }
 
@@ -82,6 +69,12 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
                 "app_typ_slot_n= :nSlots, app_typ_description_s= :description " +
                 "WHERE app_typ_id_n = :id";
 
+        MapSqlParameterSource params = getMapSqlParameterSource(apartType);
+        jdbcTemplate.update(sql, params);
+
+    }
+
+    private MapSqlParameterSource getMapSqlParameterSource(ApartType apartType) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", apartType.getId());
         params.addValue("name", apartType.getName());
@@ -91,9 +84,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
         params.addValue("price3", apartType.getPriceSlot());
         params.addValue("nSlots", apartType.getnSlots());
         params.addValue("description", apartType.getDescription());
-
-        jdbcTemplate.update(sql, params);
-
+        return params;
     }
 
     @Override

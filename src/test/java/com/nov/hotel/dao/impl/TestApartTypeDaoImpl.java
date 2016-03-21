@@ -32,7 +32,7 @@ public class TestApartTypeDaoImpl {
     private static List<ApartType> result = new LinkedList<>();
 
     @BeforeClass
-    public static void initData(){
+    public static void setUpBeforClass(){
         apartType1.setName("Одномісний номер");
         apartType1.setSize(1);
         apartType1.setPriceDay(100.00f);
@@ -60,7 +60,7 @@ public class TestApartTypeDaoImpl {
      }
 
     @Before
-    public void createData(){
+    public void setUp(){
         apartTypeDao.deleteAll();
         assertEquals(0, apartTypeDao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());

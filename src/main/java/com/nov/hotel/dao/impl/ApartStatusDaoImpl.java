@@ -44,7 +44,7 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
     }
 
     @Override
-    public ApartStatus getById(int id) {
+    public ApartStatus getById(long id) {
         String sql = "SELECT * FROM apart_status WHERE app_stat_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

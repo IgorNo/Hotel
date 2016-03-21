@@ -8,7 +8,7 @@ public interface CrudDao<E> {
     void insert(E elem);
 
     //Read
-    E getById(int id);
+    E getById(long id);
 
     //Read
     List<E> getByName(String name);
