@@ -123,7 +123,10 @@ public class ApartmentController extends AbstractTableController<Apartment> {
 
     @Override
     protected boolean isElemFound(Apartment elem) {
-        return false;
+        String strFind = txtFind.getText().toLowerCase();
+        return elem.getRoomNumber().toLowerCase().contains(strFind) ||
+                elem.getBlock().getName().toLowerCase().contains(strFind) ||
+                elem.getType().getName().toLowerCase().contains(strFind);
     }
 
     public void add(ActionEvent actionEvent) {
