@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import org.controlsfx.control.textfield.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -14,36 +15,65 @@
 <VBox minHeight="432.0" minWidth="715.0" prefHeight="486.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nov.hotel.gui.controllers.impl.ApartTypeController">
   <children>
       <MenuBar>
-          <menus>
-              <Menu mnemonicParsing="false" text="%menu.title.file">
-                  <items>
-                      <MenuItem fx:id="mItemPrint" mnemonicParsing="false" onAction="#print" text="%menu.title.print" />
-                      <MenuItem fx:id="mItemPrefPage" mnemonicParsing="false" onAction="#prefPrint" text="%menu.title.preferences" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem fx:id="mItemExit" mnemonicParsing="false" onAction="#save" text="%menu.title.save" />
-                      <MenuItem fx:id="mItemExit1" mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
-                  </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="%menu.title.edit">
-                  <items>
-                      <MenuItem fx:id="mItemAdd" mnemonicParsing="false" onAction="#add" text="%menu.title.add" />
-                      <MenuItem fx:id="mItemChange" mnemonicParsing="false" onAction="#change" text="%menu.title.change" />
-                      <MenuItem fx:id="mItemDelete" mnemonicParsing="false" onAction="#delete" text="%menu.title.delete" />
-                      <MenuItem fx:id="mItemCopy" mnemonicParsing="false" onAction="#copyAndEdit" text="%menu.title.copy" />
-                      <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="%menu.title.select.all" />
-                      <MenuItem mnemonicParsing="false" text="%menu.title.unselect.all" />
-                  </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="%menu.title.help">
-                  <items>
-                      <MenuItem fx:id="mItemHelp" mnemonicParsing="false" onAction="#help" text="%menu.title.help.topics" />
-                  </items>
-              </Menu>
-          </menus>
+         <menus>
+            <Menu mnemonicParsing="false" text="%menu.title.file">
+               <items>
+                  <MenuItem fx:id="mItemPrint1" mnemonicParsing="false" onAction="#print" text="%menu.title.print">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mItemPrefPage1" mnemonicParsing="false" onAction="#prefPrint" text="%menu.title.preferences">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="mItemExit1" mnemonicParsing="false" onAction="#save" text="%menu.title.save">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mItemExit11" mnemonicParsing="false" onAction="#actionClose" text="%menu.title.exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.title.edit">
+               <items>
+                  <MenuItem fx:id="mItemAdd1" mnemonicParsing="false" onAction="#add" text="%menu.title.add">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="INSERT" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mItemChange1" mnemonicParsing="false" onAction="#change" text="%menu.title.change">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mItemDelete1" mnemonicParsing="false" onAction="#delete" text="%menu.title.delete">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mItemCopy1" mnemonicParsing="false" onAction="#copyAndEdit" text="%menu.title.copy">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="C" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.title.help">
+               <items>
+                  <MenuItem fx:id="mItemHelp1" mnemonicParsing="false" onAction="#help" text="%menu.title.help.topics">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <AnchorPane prefHeight="45.0" prefWidth="640.0" />
-      <AnchorPane prefHeight="65.0" prefWidth="640.0" >
+      <AnchorPane prefHeight="65.0" prefWidth="640.0">
           <children>
               <CustomTextField fx:id="txtFind" layoutX="26.0" layoutY="11.0" prefHeight="25.0" prefWidth="554.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="135.0" />
               <Button fx:id="btnFind" layoutX="538.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#find" prefHeight="25.0" prefWidth="80.0" text="%button.find" AnchorPane.rightAnchor="20.0" />
@@ -66,7 +96,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="49.0" prefWidth="766.0" >
+      <AnchorPane prefHeight="49.0" prefWidth="766.0">
           <children>
               <Button fx:id="btnAdd" layoutX="14.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="80.0" text="%menu.title.add" AnchorPane.leftAnchor="20.0" />
               <Button fx:id="btnChange" layoutX="237.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#change" prefHeight="25.0" prefWidth="80.0" text="%menu.title.change" AnchorPane.leftAnchor="120.0" />

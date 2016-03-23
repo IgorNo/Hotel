@@ -57,7 +57,7 @@
             <Menu mnemonicParsing="false" text="%menu.title.thesauri">
               <items>
                   <MenuItem fx:id="menuAppartments" mnemonicParsing="false" onAction="#editAppartments" text="%menu.item.appartments" />
-                <MenuItem fx:id="menuPriceList" mnemonicParsing="false" onAction="#editPriceList" text="%menu.item.price.list" />
+                <MenuItem fx:id="menuPriceList" mnemonicParsing="false" onAction="#editPriceList" text="%menu.item.apartment.type" />
                   <MenuItem fx:id="menuAppartmentStatus1" mnemonicParsing="false" onAction="#editBlocks" text="%menu.item.blocks" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuServices" mnemonicParsing="false" onAction="#editServices" text="%menu.item.services" />

@@ -63,21 +63,21 @@ public class TestApartmentDao {
         apartType1.setPriceDay(100.00f);
         apartType1.setPriceHour(5.00f);
         apartType1.setPriceSlot(50.00f);
-        apartType1.setPriceSlot(1);
+        apartType1.setnSlots(1);
         apartType1.setDescription("Description1");
         apartType2.setName("Двомісний номер");
         apartType2.setSize(2);
         apartType2.setPriceDay(200.00f);
         apartType2.setPriceHour(10.00f);
         apartType2.setPriceSlot(100.00f);
-        apartType2.setPriceSlot(1);
+        apartType2.setnSlots(1);
         apartType2.setDescription("Description2");
         apartType3.setName("Тримісний номер");
         apartType3.setSize(3);
         apartType3.setPriceDay(300.00f);
         apartType3.setPriceHour(15.00f);
         apartType3.setPriceSlot(150.00f);
-        apartType3.setPriceSlot(2);
+        apartType3.setnSlots(2);
         apartType3.setDescription("Description3");
 
         apart1.setRoomNumber("101");

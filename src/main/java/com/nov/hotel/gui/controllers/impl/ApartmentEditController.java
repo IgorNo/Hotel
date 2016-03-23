@@ -34,17 +34,11 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         txtLevel.setText(Integer.toString(getElem().getLevelNumber()));
         chekbStatus.setSelected(getElem().getStatus());
         blocks.fillData();
-        comboBlock.getItems().clear();
-        for (Block s:blocks.getList()) {
-            comboBlock.getItems().add(s.getName());
-        }
-        comboBlock.getSelectionModel().select(getElem().getBlock().getName());
+        comboBlock.setItems(blocks.getList());
+        comboBlock.getSelectionModel().select(getElem().getBlock());
         types.fillData();
-        comboType.getItems().clear();
-        for (ApartType s:types.getList()) {
-            comboType.getItems().add(s.getName());
-        }
-        comboType.getSelectionModel().select(getElem().getType().getName());
+        comboType.setItems(types.getList());
+        comboType.getSelectionModel().select(getElem().getType());
     }
 
     @Override
@@ -52,14 +46,12 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         getElem().setRoomNumber(txtRoomNumber.getText());
         getElem().setLevelNumber(Integer.parseInt(txtLevel.getText()));
         getElem().setStatus(chekbStatus.isSelected());
-        int selectedElement = comboBlock.getSelectionModel().getSelectedIndex();
-        if (selectedElement>=0) {
-            Block block = blocks.getList().get(selectedElement);
+        Block block = (Block) comboBlock.getSelectionModel().getSelectedItem();
+        if (block != null) {
             getElem().setBlock(block);
         }
-        selectedElement = comboType.getSelectionModel().getSelectedIndex();
-        if (selectedElement>=0) {
-            ApartType type = types.getList().get(selectedElement);
+        ApartType type = (ApartType) comboType.getSelectionModel().getSelectedItem();
+        if (type != null) {
             getElem().setType(type);
         }
     }
@@ -74,10 +66,9 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         window.initOwner(ApartmentsWindow.getInstance().getStage());
         window.showAndWait();
         AbstractTableController<Block> controller = window.getLoader().getController();
-        comboBlock.getItems().clear();
-        comboBlock.getItems().addAll(blocks.getList());
+//        comboBlock.setItems(blocks.getList());
         if (controller.getSelectedElem() != null) {
-            comboBlock.getSelectionModel().select(controller.getSelectedElem().getName());
+            comboBlock.getSelectionModel().select(controller.getSelectedElem());
         }
     }
 
@@ -86,10 +77,9 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         window.initOwner(ApartmentsWindow.getInstance().getStage());
         window.showAndWait();
         AbstractTableController<ApartType> controller = window.getLoader().getController();
-        comboType.getItems().clear();
-        comboType.getItems().addAll(types.getList());
+//        comboType.setItems(types.getList());
         if (controller.getSelectedElem() != null) {
-            comboType.getSelectionModel().select(controller.getSelectedElem().getName());
+            comboType.getSelectionModel().select(controller.getSelectedElem());
         }
     }
 }
