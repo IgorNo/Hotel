@@ -4,17 +4,17 @@ import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Block implements Entity<Block> {
+public class DocumType implements Entity<DocumType> {
 
     private int id;
     private StringProperty name = new SimpleStringProperty();
 
-    public Block() {
+    public DocumType() {
     }
 
-    public Block(Block block) {
+    public DocumType(DocumType elem) {
         this();
-        assign(block);
+        assign(elem);
     }
 
     @Override
@@ -23,9 +23,9 @@ public class Block implements Entity<Block> {
     }
 
     @Override
-    public void assign(Block block) {
-        setId(block.getId());
-        setName(block.getName());
+    public void assign(DocumType elem) {
+        setId(elem.getId());
+        setName(elem.getName());
     }
 
     public String getName() {
@@ -41,7 +41,6 @@ public class Block implements Entity<Block> {
     }
 
     public int getId() {
-
         return id;
     }
 

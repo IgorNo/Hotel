@@ -4,6 +4,8 @@ import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
 import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -232,6 +234,14 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
     private void showDialog() {
         if (editWindow.getStage().getOwner() == null) {
             editWindow.initOwner(getItsStage());
+            editWindow.getScene().getRoot().sceneProperty().addListener(new InvalidationListener() {
+                @Override public void invalidated(Observable o) {
+                    if (editWindow.getScene().getRoot().getScene() != null) {
+                        editWindow.getScene().getRoot().getScene().getStylesheets().add(AbstractController.class.getResource("/styles/validation.css").toExternalForm());
+                    }
+                }
+            });
+
         }
         editWindow.showAndWait(); // wait close
     }

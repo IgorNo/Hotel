@@ -37,6 +37,11 @@ public class Apartment implements Entity<Apartment> {
         setType(apartment.getType());
     }
 
+    @Override
+    public boolean validate() {
+        return getRoomNumber() != null && !getRoomNumber().trim().isEmpty() && getBlock() != null && getType() != null;
+    }
+
     public long getId() {
         return id;
     }
@@ -103,11 +108,6 @@ public class Apartment implements Entity<Apartment> {
 
     public void setType(ApartType type) {
         this.type.set(type);
-    }
-
-    @Override
-    public boolean validate() {
-        return getRoomNumber() != null && !getRoomNumber().isEmpty() && getBlock() != null && getType() != null;
     }
 
     @Override

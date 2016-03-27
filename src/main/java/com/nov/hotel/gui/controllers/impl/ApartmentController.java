@@ -8,6 +8,8 @@ import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
 import com.nov.hotel.gui.windows.impl.ApartmentEditWindow;
 import com.nov.hotel.gui.windows.impl.ApartmentsWindow;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -52,6 +54,7 @@ public class ApartmentController extends AbstractTableController<Apartment> {
         columnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         columnRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
         columnSizing.setCellValueFactory(new PropertyValueFactory<>("type"));
+
         // Custom rendering of the table cell.
         columnSizing.setCellFactory(column -> {
             return new TableCell<Apartment, ApartType>(){
@@ -130,7 +133,6 @@ public class ApartmentController extends AbstractTableController<Apartment> {
     }
 
     public void add(ActionEvent actionEvent) {
-
         addAbst(new Apartment(new ApartType(), new Block()));
     }
 

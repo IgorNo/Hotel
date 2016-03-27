@@ -7,6 +7,5 @@ public interface Controller {
 
     public Stage getItsStage() ;
 
-    public void setItsStage(Stage ownerStage) ;
 
 }

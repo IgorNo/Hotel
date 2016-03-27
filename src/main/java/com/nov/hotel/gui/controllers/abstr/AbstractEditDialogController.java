@@ -2,11 +2,15 @@ package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.windows.DialogManager;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.decoration.StyleClassValidationDecoration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +26,8 @@ abstract public class AbstractEditDialogController<E extends Entity>  extends Ab
 
     private boolean isSaveAction = false;
 
+    protected ValidationSupport validationSupport = new ValidationSupport();
+
     abstract protected void  fillField();
 
     abstract protected void saveField();
@@ -31,12 +37,12 @@ abstract public class AbstractEditDialogController<E extends Entity>  extends Ab
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         this.resourceBundle = resources;
+        validationSupport.setValidationDecorator(new StyleClassValidationDecoration());
     }
     // Pattern Template Method
     protected void setElem(E elem) {
         if (elem == null){
             return;
-
         }
         this.elem = elem;
         backupElem = copyElem(elem);

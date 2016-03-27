@@ -1,23 +1,33 @@
 package com.nov.hotel.gui.controllers.abstr;
 
 import com.nov.hotel.gui.controllers.interfaces.Controller;
+import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public abstract class AbstractController implements Controller {
 
-    Stage itsStage;
+    AbstractWindow itsWindow;
 
-    public Stage getItsStage() {
-        return itsStage;
+    public AbstractWindow getItsWindow() {
+        return itsWindow;
     }
 
-    public void setItsStage(Stage itsStage) {
-        this.itsStage = itsStage;
+    public void setItsWindow(AbstractWindow itsWindow) {
+        this.itsWindow = itsWindow;
+    }
+
+    public Stage getItsStage() {
+        return itsWindow.getStage();
+    }
+
+    public Scene getItsScene() {
+        return itsWindow.getScene();
     }
 
     protected void closeWindow(){
-        itsStage.hide();
+        getItsStage().hide();
     }
 
     abstract public void actionClose(ActionEvent actionEvent);

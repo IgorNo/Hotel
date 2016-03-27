@@ -77,8 +77,6 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
             stage.setMinWidth(properties.minWidth);
         }
         stage.setScene(scene);
-        controller = loader.getController();
-        controller.setItsStage(stage);
         stage.setOnCloseRequest(new javafx.event.EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -98,6 +96,8 @@ public abstract class AbstractWindow implements Singelton<AbstractWindow> {
             LOG.error("Can't load resource", e);
             throw new RuntimeException(e);
         }
+        controller = loader.getController();
+        controller.setItsWindow(this);
         scene.getStylesheets().add(properties.style);
     }
 

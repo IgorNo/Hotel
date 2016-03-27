@@ -54,6 +54,11 @@
                 <MenuItem fx:id="menuSettling" mnemonicParsing="false" onAction="#hotelSettling" text="%menu.item.settling" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="%menu.title.clients">
+              <items>
+                <MenuItem fx:id="menuAllClients" mnemonicParsing="false" onAction="#clientAll" text="%menu.item.client.all" />
+              </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="%menu.title.thesauri">
               <items>
                   <MenuItem fx:id="menuAppartments" mnemonicParsing="false" onAction="#editAppartments" text="%menu.item.appartments" />

@@ -35,7 +35,7 @@ public class ApartType implements Entity<ApartType> {
 
     @Override
     public boolean validate() {
-        return getName() != null && getName() != "" && getSize() > 0 && getDescription() != null;
+        return getName() != null && !getName().trim().isEmpty() && getSize() > 0 && getDescription() != null;
     }
 
     @Override
