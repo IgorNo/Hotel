@@ -26,7 +26,7 @@ public class ClientDaoImpl implements CrudDao<Client>{
     }
 
     @Override
-    public Client getById(long id) {
+    public Client getById(Object id) {
         return null;
     }
 

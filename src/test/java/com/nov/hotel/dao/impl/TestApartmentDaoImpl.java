@@ -20,9 +20,9 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring/app-context.xml"})
-public class TestApartmentDao {
+public class TestApartmentDaoImpl {
 
-    private static Logger LOG = Logger.getLogger(TestApartmentDao.class);
+    private static Logger LOG = Logger.getLogger(TestApartmentDaoImpl.class);
     @Autowired
     private CrudDao<ApartType> apartTypeDao;
     @Autowired

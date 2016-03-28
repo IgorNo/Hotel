@@ -1,7 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.entities.ApartStatus;
+import com.nov.hotel.entities.ClientType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,8 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository("apartStatusDao")
-public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
+@Repository("clientTypeDao")
+public class ClientTypeDaoImpl implements CrudDao<ClientType> {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -25,17 +25,16 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-
     @Override
-    public void insert(ApartStatus elem) {
-        String sql = "INSERT INTO apart_status (app_stat_name_s, app_stat_color_s) " +
-                "VALUES (:name, :color)";
+    public void insert(ClientType elem) {
+        String sql = "INSERT INTO client_types (cltyp_name_s, cltyp_color_s, cltyp_discount_n) VALUES (:name, :color, :discount)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", elem.getName());
         params.addValue("color", elem.getColor());
+        params.addValue("discount", elem.getDiscount());
 
         jdbcTemplate.update(sql, params, keyHolder);
 
@@ -43,8 +42,8 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
     }
 
     @Override
-    public ApartStatus getById(Object id) {
-        String sql = "SELECT * FROM apart_status WHERE app_stat_id_n = :id";
+    public ClientType getById(Object id) {
+        String sql = "SELECT * FROM client_types WHERE cltyp_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
@@ -53,8 +52,8 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
     }
 
     @Override
-    public List<ApartStatus> getByName(String name) {
-        String sql = "SELECT * FROM apart_status WHERE app_stat_name_s = :name";
+    public List<ClientType> getByName(String name) {
+        String sql = "SELECT * FROM client_types WHERE cltyp_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", name);
@@ -63,27 +62,27 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
     }
 
     @Override
-    public List<ApartStatus> getAll(){
-        String sql = "SELECT * FROM apart_status";
+    public List<ClientType> getAll() {
+        String sql = "SELECT * FROM client_types";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
-    public void update(ApartStatus elem) {
-        String sql = "UPDATE apart_status SET app_stat_name_s= :name, app_stat_color_s= :color " +
-                "WHERE app_stat_id_n = :id";
+    public void update(ClientType elem) {
+        String sql = "UPDATE client_types SET cltyp_name_s= :name, cltyp_discount_n= :discount, cltyp_color_s= :color  WHERE cltyp_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", elem.getId());
         params.addValue("name", elem.getName());
         params.addValue("color", elem.getColor());
+        params.addValue("discount", elem.getDiscount());
 
         jdbcTemplate.update(sql, params);
     }
 
     @Override
-    public void delete(ApartStatus elem) {
-        String sql = "DELETE FROM apart_status WHERE app_stat_id_n = :id";
+    public void delete(ClientType elem) {
+        String sql = "DELETE FROM client_types WHERE cltyp_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", elem.getId());
@@ -93,24 +92,25 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus> {
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM apart_status";
+        String sql = "DELETE FROM client_types";
         jdbcTemplate.update(sql, new MapSqlParameterSource());
     }
 
     @Override
     public int count() {
-        String sql = "select count(*) from apart_status";
+        String sql = "select count(*) from client_types";
         return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
     }
 
-    private static final RowMapper<ApartStatus> rowMapper = new RowMapper<ApartStatus>() {
+    private static final RowMapper<ClientType> rowMapper = new RowMapper<ClientType>() {
         @Override
-        public ApartStatus mapRow(ResultSet rs, int rowNum) throws SQLException {
-            ApartStatus apartStatus = new ApartStatus();
-            apartStatus.setId(rs.getInt("app_stat_id_n"));
-            apartStatus.setName(rs.getString("app_stat_name_s"));
-            apartStatus.setColor(rs.getString("app_stat_color_s"));
-            return apartStatus;
+        public ClientType mapRow(ResultSet rs, int rowNum) throws SQLException {
+            ClientType elem = new ClientType();
+            elem.setId(rs.getInt("cltyp_id_n"));
+            elem.setDiscount(rs.getFloat("cltyp_discount_n"));
+            elem.setName(rs.getString("cltyp_name_s"));
+            elem.setColor(rs.getString("cltyp_color_s"));
+            return elem;
         }
     };
 

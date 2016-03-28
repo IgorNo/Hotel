@@ -39,7 +39,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
     }
 
     @Override
-    public ApartType getById(long id) {
+    public ApartType getById(Object id) {
         String sql = "SELECT * FROM apart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

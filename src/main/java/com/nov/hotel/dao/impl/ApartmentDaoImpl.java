@@ -62,7 +62,7 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
     }
 
     @Override
-    public Apartment getById(long id) {
+    public Apartment getById(Object id) {
         String sql = "SELECT * FROM apartments_view WHERE apart_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

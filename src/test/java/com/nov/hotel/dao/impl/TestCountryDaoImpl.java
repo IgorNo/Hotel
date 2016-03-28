@@ -1,7 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.entities.Block;
+import com.nov.hotel.entities.Country;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -18,29 +18,40 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring/app-context.xml"})
-public class TestBlockDaoImpl {
-
-    private static Logger LOG = Logger.getLogger(TestBlockDaoImpl.class);
+public class TestCountryDaoImpl {
+    private static Logger LOG = Logger.getLogger(TestCountryDaoImpl.class);
     @Autowired
-    private CrudDao<Block> dao;
+    private CrudDao<Country> dao;
 
-    private static Block elem1 = new Block();
-    private static Block elem2 = new Block();
-    private static Block elem3 = new Block();
-    private static Block elem4 = new Block();
-    private static List<Block> testData = new LinkedList<Block>();
-    private static List<Block> result = new LinkedList<>();
+    private static Country elem1 = new Country();
+    private static Country elem2 = new Country();
+    private static Country elem3 = new Country();
+    private static Country elem4 = new Country();
+    private static Country elem5 = new Country();
+    private static Country elem6 = new Country();
+    private static List<Country> testData = new LinkedList<Country>();
+    private static List<Country> result = new LinkedList<>();
 
     @BeforeClass
     public static void setUpBeforClass(){
-        elem1.setName("Корпус 1");
-        elem2.setName("Корпус 2");
-        elem3.setName("Корпус 3");
-        elem4.setName("Корпус 4");
+        elem1.setId("US");
+        elem1.setName("1");
+        elem2.setId("BG");
+        elem2.setName("Болгарія");
+        elem3.setId("FN");
+        elem3.setName("Фінляндія");
+        elem4.setId("DE");
+        elem4.setName("Германія");
+        elem5.setId("UA");
+        elem5.setName("Україна");
+        elem6.setId("RU");
+        elem6.setName("Російська Федерація");
         testData.add(elem1);
         testData.add(elem2);
         testData.add(elem3);
         testData.add(elem4);
+        testData.add(elem5);
+        testData.add(elem6);
     }
 
     @Before
@@ -48,7 +59,7 @@ public class TestBlockDaoImpl {
         dao.deleteAll();
         assertEquals(0, dao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());
-        for (Block x: testData) {
+        for (Country x: testData) {
             dao.insert(x);
         }
         assertEquals(testData.size(), dao.count());
@@ -58,8 +69,8 @@ public class TestBlockDaoImpl {
     @Test
     public void testGetByName(){
         result.clear();
-        for (Block x: testData) {
-            List<Block> type = dao.getByName(x.getName());
+        for (Country x: testData) {
+            List<Country> type = dao.getByName(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
@@ -69,8 +80,8 @@ public class TestBlockDaoImpl {
     @Test
     public void testGetById(){
         testGetByName();
-        for (Block x:result ) {
-            Block type = dao.getById(x.getId());
+        for (Country x:result ) {
+            Country type = dao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
@@ -81,23 +92,19 @@ public class TestBlockDaoImpl {
     public void testGetAll(){
         result.clear();
         result = dao.getAll();
-        for (int i = 0; i < testData.size(); i++) {
-            Block testType = testData.get(i);
-            Block resultType = result.get(i);
-            assertEquals(testType.getName(),resultType.getName());
-        }
         LOG.warn("\ngetAll Data:\n"+result.toString());
+        assertEquals(testData.size(), result.size());
     }
 
     @Test
     public void testUpdate(){
         result.clear();
         result = dao.getAll();
-        Block apartType = new Block();
-        apartType.setId(result.get(0).getId());
-        apartType.setName("Корпус люкс");
+        Country apartType = new Country();
+        apartType.setId("US");
+        apartType.setName("США");
         dao.update(apartType);
-        Block type = dao.getById(apartType.getId());
+        Country type = dao.getById(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());
@@ -113,5 +120,5 @@ public class TestBlockDaoImpl {
         dao.delete(result.get(0));
         assertEquals(testData.size()-1, dao.count());
     }
-
+    
 }

@@ -22,40 +22,40 @@ public class TestApartStatusDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartStatusDaoImpl.class);
     @Autowired
-    private CrudDao<ApartStatus> apartStatusDao;
+    private CrudDao<ApartStatus> dao;
 
-    private static ApartStatus apartStatus1 = new ApartStatus();
-    private static ApartStatus apartStatus2 = new ApartStatus();
-    private static ApartStatus apartStatus3 = new ApartStatus();
-    private static ApartStatus apartStatus4 = new ApartStatus();
+    private static ApartStatus elem1 = new ApartStatus();
+    private static ApartStatus elem2 = new ApartStatus();
+    private static ApartStatus elem3 = new ApartStatus();
+    private static ApartStatus elem4 = new ApartStatus();
     private static List<ApartStatus> testData = new LinkedList<ApartStatus>();
     private static List<ApartStatus> result = new LinkedList<>();
 
     @BeforeClass
     public static void setUpBeforClass(){
-        apartStatus1.setName("номер");
-        apartStatus1.setColor("1");
-        apartStatus2.setName("Бронь");
-        apartStatus2.setColor("2");
-        apartStatus3.setName("Зайнятий");
-        apartStatus3.setColor("3");
-        apartStatus4.setName("Ремонт");
-        apartStatus4.setColor("4");
-        testData.add(apartStatus1);
-        testData.add(apartStatus2);
-        testData.add(apartStatus3);
-        testData.add(apartStatus4);
+        elem1.setName("номер");
+        elem1.setColor("1");
+        elem2.setName("Бронь");
+        elem2.setColor("0xffff4dff");
+        elem3.setName("Зайнятий");
+        elem3.setColor("0x4d66ccff");
+        elem4.setName("Ремонт");
+        elem4.setColor("0xff6666ff");
+        testData.add(elem1);
+        testData.add(elem2);
+        testData.add(elem3);
+        testData.add(elem4);
     }
 
     @Before
     public void setUp(){
-        apartStatusDao.deleteAll();
-        assertEquals(0, apartStatusDao.count());
+        dao.deleteAll();
+        assertEquals(0, dao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());
         for (ApartStatus x: testData) {
-            apartStatusDao.insert(x);
+            dao.insert(x);
         }
-        assertEquals(testData.size(), apartStatusDao.count());
+        assertEquals(testData.size(), dao.count());
     }
 
 
@@ -63,7 +63,7 @@ public class TestApartStatusDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartStatus x: testData) {
-            List<ApartStatus> type = apartStatusDao.getByName(x.getName());
+            List<ApartStatus> type = dao.getByName(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getColor(),result.get(result.size()-1).getColor());
@@ -75,7 +75,7 @@ public class TestApartStatusDaoImpl {
     public void testGetById(){
         testGetByName();
         for (ApartStatus x:result ) {
-            ApartStatus type = apartStatusDao.getById(x.getId());
+            ApartStatus type = dao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
@@ -86,7 +86,7 @@ public class TestApartStatusDaoImpl {
     @Test
     public void testGetAll(){
         result.clear();
-        result = apartStatusDao.getAll();
+        result = dao.getAll();
         for (int i = 0; i < testData.size(); i++) {
             ApartStatus testType = testData.get(i);
             ApartStatus resultType = result.get(i);
@@ -99,19 +99,19 @@ public class TestApartStatusDaoImpl {
     @Test
     public void testUpdate(){
         result.clear();
-        result = apartStatusDao.getAll();
+        result = dao.getAll();
         ApartStatus apartType = new ApartStatus();
         apartType.setId(result.get(0).getId());
         apartType.setName("Вільний номер");
-        apartType.setColor("1");
-        apartStatusDao.update(apartType);
-        ApartStatus type = apartStatusDao.getById(apartType.getId());
+        apartType.setColor("0xccffffff");
+        dao.update(apartType);
+        ApartStatus type = dao.getById(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         assertEquals(apartType.getColor(),type.getColor());
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ apartType.toString());
-        result = apartStatusDao.getAll();
+        result = dao.getAll();
         LOG.warn("\nAfter Update:\n"+result.toString());
 
     }
@@ -119,8 +119,8 @@ public class TestApartStatusDaoImpl {
     @Test
     public void testDelete(){
         result.clear();
-        result = apartStatusDao.getAll();
-        apartStatusDao.delete(result.get(0));
-        assertEquals(testData.size()-1, apartStatusDao.count());
+        result = dao.getAll();
+        dao.delete(result.get(0));
+        assertEquals(testData.size()-1, dao.count());
     }
 }

@@ -1,7 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.entities.Block;
+import com.nov.hotel.entities.DocumType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -18,29 +18,35 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring/app-context.xml"})
-public class TestBlockDaoImpl {
+public class TestDocumTypeDaoImpl {
 
-    private static Logger LOG = Logger.getLogger(TestBlockDaoImpl.class);
+    private static Logger LOG = Logger.getLogger(TestDocumTypeDaoImpl.class);
     @Autowired
-    private CrudDao<Block> dao;
+    private CrudDao<DocumType> dao;
 
-    private static Block elem1 = new Block();
-    private static Block elem2 = new Block();
-    private static Block elem3 = new Block();
-    private static Block elem4 = new Block();
-    private static List<Block> testData = new LinkedList<Block>();
-    private static List<Block> result = new LinkedList<>();
+    private static DocumType elem1 = new DocumType();
+    private static DocumType elem2 = new DocumType();
+    private static DocumType elem3 = new DocumType();
+    private static DocumType elem4 = new DocumType();
+    private static DocumType elem5 = new DocumType();
+    private static DocumType elem6 = new DocumType();
+    private static List<DocumType> testData = new LinkedList<DocumType>();
+    private static List<DocumType> result = new LinkedList<>();
 
     @BeforeClass
     public static void setUpBeforClass(){
-        elem1.setName("Корпус 1");
-        elem2.setName("Корпус 2");
-        elem3.setName("Корпус 3");
-        elem4.setName("Корпус 4");
+        elem1.setName("1");
+        elem2.setName("Закордонний паспорт");
+        elem3.setName("Посвідчення особи");
+        elem4.setName("Війсковий квиток");
+        elem5.setName("Свідоцтво про народження");
+        elem6.setName("Посвідчення водія");
         testData.add(elem1);
         testData.add(elem2);
         testData.add(elem3);
         testData.add(elem4);
+        testData.add(elem5);
+        testData.add(elem6);
     }
 
     @Before
@@ -48,7 +54,7 @@ public class TestBlockDaoImpl {
         dao.deleteAll();
         assertEquals(0, dao.count());
         LOG.warn("\nTest Data:\n"+ testData.toString());
-        for (Block x: testData) {
+        for (DocumType x: testData) {
             dao.insert(x);
         }
         assertEquals(testData.size(), dao.count());
@@ -58,8 +64,8 @@ public class TestBlockDaoImpl {
     @Test
     public void testGetByName(){
         result.clear();
-        for (Block x: testData) {
-            List<Block> type = dao.getByName(x.getName());
+        for (DocumType x: testData) {
+            List<DocumType> type = dao.getByName(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
@@ -69,8 +75,8 @@ public class TestBlockDaoImpl {
     @Test
     public void testGetById(){
         testGetByName();
-        for (Block x:result ) {
-            Block type = dao.getById(x.getId());
+        for (DocumType x:result ) {
+            DocumType type = dao.getById(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
@@ -82,8 +88,8 @@ public class TestBlockDaoImpl {
         result.clear();
         result = dao.getAll();
         for (int i = 0; i < testData.size(); i++) {
-            Block testType = testData.get(i);
-            Block resultType = result.get(i);
+            DocumType testType = testData.get(i);
+            DocumType resultType = result.get(i);
             assertEquals(testType.getName(),resultType.getName());
         }
         LOG.warn("\ngetAll Data:\n"+result.toString());
@@ -93,11 +99,11 @@ public class TestBlockDaoImpl {
     public void testUpdate(){
         result.clear();
         result = dao.getAll();
-        Block apartType = new Block();
+        DocumType apartType = new DocumType();
         apartType.setId(result.get(0).getId());
-        apartType.setName("Корпус люкс");
+        apartType.setName("Паспорт");
         dao.update(apartType);
-        Block type = dao.getById(apartType.getId());
+        DocumType type = dao.getById(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());
