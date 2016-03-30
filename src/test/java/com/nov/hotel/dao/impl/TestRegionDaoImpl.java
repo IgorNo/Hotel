@@ -36,6 +36,7 @@ public class TestRegionDaoImpl {
     private static Region region5 = new Region();
     private static Region region6 = new Region();
     private static Region region7 = new Region();
+    private static Region region8 = new Region();
     private static List<Region> testData = new LinkedList<>();
     private static List<Region> results = new LinkedList<>();
 
@@ -48,6 +49,7 @@ public class TestRegionDaoImpl {
         region5.setName("м.Полтава");
         region6.setName("м.Дніпропетровськ");
         region7.setName("Полтавська обл.");
+        region8.setName("London");
 
         testData.add(region1);
         testData.add(region2);
@@ -56,6 +58,7 @@ public class TestRegionDaoImpl {
         testData.add(region5);
         testData.add(region6);
         testData.add(region7);
+        testData.add(region8);
     }
 
     private void assertValues(Region x, Region elem) {
@@ -71,6 +74,8 @@ public class TestRegionDaoImpl {
         for (Region x:testData) {
             x.setCountry(country);
         }
+        country = countryDao.getById("GB");
+        testData.get(testData.size()-1).setCountry(country);
         LOG.warn("\nTest Data:\n"+ testData.toString());
         for (Region x: testData) {
             dao.insert(x);

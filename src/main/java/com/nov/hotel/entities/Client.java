@@ -37,9 +37,9 @@ public class Client implements Entity<Client>{
         setSex(true);
     }
 
-    public Client(LocalDate docDate, LocalDate birthday, DocumType docType, ClientType clientType, Country country, Region region) {
+    public Client(DocumType docType, ClientType clientType, Country country, Region region) {
         this();
-        setDocDate(docDate);
+//        setDocDate(docDate);
         setDocType(docType);
         setType(clientType);
         setCitizenship(country);
@@ -58,6 +58,7 @@ public class Client implements Entity<Client>{
         setSurname(elem.getSurname());
         setPatronymic(elem.getPatronymic());
         setSex(elem.getSex());
+        setDocType(elem.getDocType());
         setDocSeries(elem.getDocSeries());
         setDocNumber(elem.getDocNumber());
         setDocDate(elem.getDocDate());
@@ -65,7 +66,6 @@ public class Client implements Entity<Client>{
         setBirthday(elem.getBirthday());
         setDiscount(elem.getDiscount());
         setAddress(elem.getAddress());
-        setDocType(elem.getDocType());
         setType(elem.getType());
         setCitizenship(elem.getCitizenship());
         setRegionAddress(elem.getRegionAddress());
@@ -73,11 +73,12 @@ public class Client implements Entity<Client>{
 
     @Override
     public boolean validate() {
-        return getSurname() != null && !getSurname().trim().isEmpty() && getName() != null && !getName().trim().isEmpty() &&
-                getDocSeries() != null && !getDocSeries().trim().isEmpty() && getDocNumber() != null && getDocNumber().trim().isEmpty() &&
-                getDocIssue() != null && getDocIssue().trim().isEmpty() && getAddress() != null && getAddress().trim().isEmpty() &&
-                getDocDate() != null && getDocDate().isBefore(LocalDate.now()) && getBirthday() != null && getBirthday().isBefore(LocalDate.now()) &&
-                getDiscount() > 0 && getDiscount() <= 1;
+        return true;
+//                getSurname() != null && !getSurname().trim().isEmpty() && getName() != null && !getName().trim().isEmpty() &&
+//                getDocSeries() != null && !getDocSeries().trim().isEmpty() && getDocNumber() != null && getDocNumber().trim().isEmpty() &&
+//                getDocIssue() != null && getDocIssue().trim().isEmpty() && getAddress() != null && getAddress().trim().isEmpty() &&
+//                getDocDate() != null && getDocDate().isBefore(LocalDate.now()) && getBirthday() != null && getBirthday().isBefore(LocalDate.now()) &&
+//                getDiscount() > 0 && getDiscount() <= 1;
     }
 
     public boolean getSex() {
@@ -102,6 +103,10 @@ public class Client implements Entity<Client>{
 
     public LocalDate getRegDate() {
         return regDate.get();
+    }
+
+    public void setRegDate(LocalDate regDate) {
+        this.regDate.set(regDate);
     }
 
     public ObjectProperty<LocalDate> regDateProperty() {

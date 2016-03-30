@@ -46,21 +46,6 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
         elem.setId(keyHolder.getKey().intValue());
     }
 
-    private MapSqlParameterSource getMapSqlParameterSource(Apartment elem) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("room", elem.getRoomNumber());
-        params.addValue("level", elem.getLevelNumber());
-        params.addValue("status", elem.getStatus());
-        params.addValue("blockId", elem.getBlock().getId());
-        params.addValue("typeId", elem.getType().getId());
-        return params;
-    }
-
-    private void checkId(Apartment elem) {
-        if (elem.getBlock().getId() == 0) blockDao.insert(elem.getBlock());
-        if (elem.getType().getId() == 0) apartTypeDao.insert(elem.getType());
-    }
-
     @Override
     public Apartment getById(Object id) {
         String sql = "SELECT * FROM apartments_view WHERE apart_id_n = :id";
@@ -148,5 +133,19 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
             return apartment;
         }
     };
+    private MapSqlParameterSource getMapSqlParameterSource(Apartment elem) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("room", elem.getRoomNumber());
+        params.addValue("level", elem.getLevelNumber());
+        params.addValue("status", elem.getStatus());
+        params.addValue("blockId", elem.getBlock().getId());
+        params.addValue("typeId", elem.getType().getId());
+        return params;
+    }
+
+    private void checkId(Apartment elem) {
+        if (elem.getBlock().getId() == 0) blockDao.insert(elem.getBlock());
+        if (elem.getType().getId() == 0) apartTypeDao.insert(elem.getType());
+    }
 
 }

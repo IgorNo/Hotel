@@ -1,14 +1,26 @@
 package com.nov.hotel.gui.controllers.impl;
 
-import com.nov.hotel.entities.Client;
+import com.nov.hotel.collections.impl.ClientTypeCollection;
+import com.nov.hotel.collections.impl.CountryCollection;
+import com.nov.hotel.collections.impl.DocumTypeCollection;
+import com.nov.hotel.collections.impl.RegionCollection;
+import com.nov.hotel.collections.interfaces.ObservableCollection;
+import com.nov.hotel.entities.*;
 import com.nov.hotel.gui.controllers.abstr.AbstractController;
 import com.nov.hotel.gui.controllers.abstr.AbstractEditDialogController;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public class ClientEditController extends AbstractEditDialogController<Client> {
 
@@ -42,6 +54,13 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
     public TextField txtDiscount;
 
 
+    ObservableCollection<Country> countries = CountryCollection.getInstance().fillData();
+    ObservableCollection<DocumType> docTypes = DocumTypeCollection.getInstance().fillData();
+    ObservableCollection<Region> regionsAll = RegionCollection.getInstance().fillData();
+    ObservableCollection<ClientType> types = ClientTypeCollection.getInstance().fillData();
+
+    ObservableList<Region> regionsCountry;
+
     @Override
     protected void fillField() {
         txtSurname.setText(getElem().getSurname());
@@ -66,6 +85,41 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
         validationSupport.registerValidator(txtAddress, Validator.createEmptyValidator(resourceBundle.getString("prompt.text")));
 
         txtDiscount.setText(Float.toString(getElem().getDiscount()));
+
+//        countries.fillData();
+        comboCitizenship.setItems(countries.getList());
+        comboCitizenship.getSelectionModel().select(getElem().getCitizenship());
+        comboCountry.setItems(countries.getList());
+        comboCountry.getSelectionModel().select(getElem().getRegionAddress().getCountry());
+        comboCountry.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    Country currCountry = (Country) comboCountry.getValue();
+                    regionsCountry = regionsAll.getList().filtered((a) -> a.getCountry().getId().equals(currCountry.getId()));
+                comboRegion.setItems(regionsCountry);
+                if ( !regionsCountry.isEmpty() )
+                    comboRegion.getSelectionModel().select(getElem().getRegionAddress());
+                else
+                    comboRegion.getSelectionModel().select(null);
+            }
+        });
+
+//        docTypes.fillData();
+        comboDocType.setItems(docTypes.getList());
+        comboDocType.getSelectionModel().select(getElem().getDocType());
+
+//        types.fillData();
+        comboType.setItems(types.getList());
+        comboType.getSelectionModel().select(getElem().getType());
+
+//        regionsAll.fillData();
+
+//        if (getElem().getRegionAddress().getCountry() != null){
+//            Country currCountry = getElem().getRegionAddress().getCountry();
+//            regionsCountry = regionsAll.getList().filtered((a) -> a.equals(currCountry));
+//        }
+//        comboRegion.setItems(regionsCountry);
+//        comboRegion.getSelectionModel().select(getElem().getRegionAddress());
+
     }
 
     @Override
@@ -77,7 +131,7 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
 
         getElem().setSex(rbtnMan.isSelected());
 
-        getElem().setDocSeries(txtDocSeries.getText());
+        getElem().setDocSeries(txtDocSeries.getText()+" ");
         getElem().setDocNumber(txtDocNumber.getText());
         getElem().setDocIssue(txtDocIssue.getText());
         getElem().setDocDate(dateDocDate.getValue());
@@ -85,6 +139,24 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
         getElem().setAddress(txtDocIssue.getText());
 
         getElem().setDiscount(Float.parseFloat(txtDiscount.getText()));
+
+        Country country = (Country) comboCitizenship.getSelectionModel().getSelectedItem();
+        if (country != null) {
+            getElem().setCitizenship(country);
+        }
+        DocumType documType = (DocumType) comboDocType.getSelectionModel().getSelectedItem();
+        if (documType != null) {
+            getElem().setDocType(documType);
+        }
+        ClientType clientType = (ClientType) comboType.getSelectionModel().getSelectedItem();
+        if (clientType != null) {
+            getElem().setType(clientType);
+        }
+        Region region = (Region) comboRegion.getSelectionModel().getSelectedItem();
+        if (region != null) {
+            getElem().setRegionAddress(region);
+        }
+
     }
 
     @Override

@@ -29,6 +29,7 @@ public class TestCountryDaoImpl {
     private static Country elem4 = new Country();
     private static Country elem5 = new Country();
     private static Country elem6 = new Country();
+    private static Country elem7 = new Country();
     private static List<Country> testData = new LinkedList<Country>();
     private static List<Country> result = new LinkedList<>();
 
@@ -46,12 +47,15 @@ public class TestCountryDaoImpl {
         elem5.setName("Україна");
         elem6.setId("RU");
         elem6.setName("Російська Федерація");
+        elem7.setId("GB");
+        elem7.setName("Великобританія");
         testData.add(elem1);
         testData.add(elem2);
         testData.add(elem3);
         testData.add(elem4);
         testData.add(elem5);
         testData.add(elem6);
+        testData.add(elem7);
     }
 
     @Before

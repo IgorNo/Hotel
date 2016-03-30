@@ -37,15 +37,24 @@ public class ClientController extends AbstractTableController<Client> {
         columnName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
 
         columnSex.setCellValueFactory(new PropertyValueFactory<>("sex"));
-        columnSex.setCellFactory(new Callback<TableColumn<Client, Boolean>, TableCell<Client, Boolean>>() {
-            public TableCell<Client, Boolean> call(TableColumn<Client, Boolean> p) {
-                return new CheckBoxTableCell<Client, Boolean>();
-            }
+        // Custom rendering of the table cell.
+        columnSex.setCellFactory(column -> {
+            return new TableCell<Client, Boolean>(){
+                @Override
+                protected void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) setText(null);
+                    else {
+                        if (item) setText("  "+rBundle.getString("radio.button.man"));
+                        else setText("  "+rBundle.getString("radio.button.woman"));
+                    }
+                }
+            };
         });
 
         columnBirthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         columnPassport.setCellValueFactory(new PropertyValueFactory<>("passport"));
-        columnCountry.setCellValueFactory(new PropertyValueFactory<>("citizen"));
+        columnCountry.setCellValueFactory(new PropertyValueFactory<>("citizenship"));
         columnLastStay.setCellValueFactory(new PropertyValueFactory<>("lastStay"));
         columnNumberStay.setCellValueFactory(new PropertyValueFactory<>("numberStay"));
     }
@@ -61,7 +70,7 @@ public class ClientController extends AbstractTableController<Client> {
     }
 
     public void add(ActionEvent actionEvent) {
-        addAbst(new Client(LocalDate.now(), LocalDate.now(), new DocumType(), new ClientType(), new Country(), new Region()));
+        addAbst(new Client(new DocumType(), new ClientType(), new Country(), new Region()));
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {

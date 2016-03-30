@@ -37,7 +37,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
 
     private ObservableList<E> backupList = FXCollections.observableArrayList();
 
-    private ResourceBundle rBundle;
+    protected ResourceBundle rBundle;
 
     private E selectedElem;
 
@@ -123,7 +123,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    change(null);
+                    select(null);
                 }
             }
         });

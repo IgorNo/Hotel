@@ -46,7 +46,7 @@ public class RegionDaoImpl implements CrudDao<Region> {
     
     @Override
     public Region getById(Object id) {
-        String sql = "SELECT * FROM regions LEFT JOIN countries ON region_country_fk = country_id_iso_s WHERE region_id_n = :id";
+        String sql = "SELECT * FROM regions_view WHERE region_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
@@ -56,7 +56,7 @@ public class RegionDaoImpl implements CrudDao<Region> {
 
     @Override
     public List<Region> getByName(String name) {
-        String sql = "SELECT * FROM regions LEFT JOIN  countries ON region_country_fk = country_id_iso_s WHERE region_name_s = :name";
+        String sql = "SELECT * FROM regions_view WHERE region_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("name", name);
@@ -66,7 +66,7 @@ public class RegionDaoImpl implements CrudDao<Region> {
 
     @Override
     public List<Region> getAll() {
-        String sql = "SELECT * FROM regions LEFT JOIN  countries ON region_country_fk = country_id_iso_s";
+        String sql = "SELECT * FROM regions_view";
         return jdbcTemplate.query(sql, rowMapper);
     }
 

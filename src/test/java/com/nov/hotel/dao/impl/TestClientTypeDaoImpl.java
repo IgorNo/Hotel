@@ -109,7 +109,7 @@ public class TestClientTypeDaoImpl {
         result = dao.getAll();
         ClientType elem = new ClientType();
         elem.setId(result.get(0).getId());
-        elem.setName("Вільний номер");
+        elem.setName("Звичайний");
         elem.setColor("0xccffffff");
         elem.setDiscount(1.0f);
         dao.update(elem);
