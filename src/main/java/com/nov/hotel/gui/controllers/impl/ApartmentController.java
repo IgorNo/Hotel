@@ -19,7 +19,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class ApartmentController extends AbstractTableController<Apartment, String> {
+public class ApartmentController extends AbstractTableController<Apartment> {
 
     @FXML
     public TableView tableAppartments;

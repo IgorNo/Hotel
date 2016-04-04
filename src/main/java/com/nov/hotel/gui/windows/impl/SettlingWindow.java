@@ -8,12 +8,12 @@ public class SettlingWindow extends AbstractWindow {
     private static AbstractWindow uniqueWindow;
 
     private SettlingWindow() {
-        properties.fxmlFile = "/fxml/settling.fxml";
+        properties.fxmlFile = "/fxml/invoice-edit.fxml";
         properties.header = "header.settling";
         properties.style = "/styles/styles.css";
         properties.isResize = true;
-        properties.minWidth = 715;
-        properties.minHeight = 432;
+        properties.minWidth = 950;
+        properties.minHeight = 620;
         properties.modality = Modality.WINDOW_MODAL;
         init();
     }
