@@ -49,9 +49,9 @@ public class TestClientDaoImpl {
     private static List<Client> testData = new LinkedList<>();
     private static List<Client> result = new LinkedList<>();
 
-    ObservableCollection<ClientType> clientTypes = ClientTypeCollection.getInstance().fillAllData();
-    ObservableCollection<DocumType> documTypes = DocumTypeCollection.getInstance().fillAllData();
-    ObservableCollection<Region> regions = RegionCollection.getInstance().fillAllData();
+    ObservableCollection<ClientType> clientTypes = ClientTypeCollection.getInstance().fillData();
+    ObservableCollection<DocumType> documTypes = DocumTypeCollection.getInstance().fillData();
+    ObservableCollection<Region> regions = RegionCollection.getInstance().fillData();
 
     @BeforeClass
     public static void setUpBeforClass(){

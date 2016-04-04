@@ -27,9 +27,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-abstract public class AbstractTableController <E extends Entity, K> extends AbstractController implements Initializable {
+abstract public class AbstractTableController <E extends Entity> extends AbstractController implements Initializable {
 
-    private ObservableCollection<E,K> collection;
+    private ObservableCollection<E> collection;
 
     private AbstractWindow editWindow;
 
@@ -212,7 +212,7 @@ abstract public class AbstractTableController <E extends Entity, K> extends Abst
         this.editWindow = editWindow;
     }
 
-    protected void setCollection(ObservableCollection<E,K> collection) {
+    protected void setCollection(ObservableCollection<E> collection) {
         this.collection = collection;
     }
 
