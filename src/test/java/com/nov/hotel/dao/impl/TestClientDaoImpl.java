@@ -1,7 +1,6 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.collections.impl.ClientTypeCollection;
-import com.nov.hotel.collections.impl.CountryCollection;
 import com.nov.hotel.collections.impl.DocumTypeCollection;
 import com.nov.hotel.collections.impl.RegionCollection;
 import com.nov.hotel.collections.interfaces.ObservableCollection;
@@ -28,15 +27,15 @@ public class TestClientDaoImpl {
     
     private static Logger LOG = Logger.getLogger(TestClientDaoImpl.class);
     @Autowired
-    private CrudDao<ClientType> clienTypeDao;
+    private  ClientTypeDaoImpl clienTypeDao;
     @Autowired
-    private CrudDao<Country> countryDao;
+    private CountryDaoImpl countryDao;
     @Autowired
-    private CrudDao<DocumType> documTypeDao;
+    private DocumTypeDaoImpl documTypeDao;
     @Autowired
-    private CrudDao<Region> regionDao;
+    private RegionDaoImpl regionDao;
     @Autowired
-    private  CrudDao<Client> dao;
+    private  ClientDaoImpl dao;
 
     private int count = 0;
     
@@ -50,9 +49,9 @@ public class TestClientDaoImpl {
     private static List<Client> testData = new LinkedList<>();
     private static List<Client> result = new LinkedList<>();
 
-    ObservableCollection<ClientType> clientTypes = ClientTypeCollection.getInstance().fillData();
-    ObservableCollection<DocumType> documTypes = DocumTypeCollection.getInstance().fillData();
-    ObservableCollection<Region> regions = RegionCollection.getInstance().fillData();
+    ObservableCollection<ClientType> clientTypes = ClientTypeCollection.getInstance().fillAllData();
+    ObservableCollection<DocumType> documTypes = DocumTypeCollection.getInstance().fillAllData();
+    ObservableCollection<Region> regions = RegionCollection.getInstance().fillAllData();
 
     @BeforeClass
     public static void setUpBeforClass(){
@@ -178,18 +177,19 @@ public class TestClientDaoImpl {
         if (count == 0) {
             List<ClientType> ctl = clientTypes.getList();
             List<DocumType> dtl = documTypes.getList();
-            Country citizenship = countryDao.getById("UA");
+            Country citizenship = countryDao.getOne("UA");
             List<Region> rl = regions.getList().filtered((a) -> a.getCountry().getId().equals("UA"));
             for (int i = 0; i < testData.size(); i++) {
                 testData.get(i).setType(ctl.get(i % ctl.size()));
                 testData.get(i).setDocType(dtl.get(i % dtl.size()));
                 if (i == testData.size()-1){
-                    citizenship = countryDao.getById("GB");
+                    citizenship = countryDao.getOne("GB");
                     rl = regions.getList().filtered((a) -> a.getCountry().getId().equals("GB"));
                 }
                 testData.get(i).setRegionAddress(rl.get(i % rl.size()));
                 testData.get(i).setCitizenship(citizenship);
             }
+            citizenship = countryDao.getOne("UA");
             count++;
         }
         LOG.warn("\nTest Data:\n"+ testData.toString());
@@ -203,7 +203,7 @@ public class TestClientDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Client x: testData) {
-            List<Client> clients = dao.getByName(x.getSurname());
+            List<Client> clients = dao.getPart(x.getSurname());
             for (Client t: testData) {
                 if (t.getId() == x.getId())
                     result.add(t);
@@ -211,18 +211,18 @@ public class TestClientDaoImpl {
             Client elem = result.get(result.size()-1);
             assertValues(x, elem);
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Client x:result ) {
-            Client elem = dao.getById(x.getId());
+            Client elem = dao.getOne(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -245,7 +245,7 @@ public class TestClientDaoImpl {
         td.setDocSeries("МН");
         td.setDocNumber("000000");
         dao.update(td);
-        Client elem = dao.getById(td.getId());
+        Client elem = dao.getOne(td.getId());
         assertValues(td, elem);
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ td.toString());

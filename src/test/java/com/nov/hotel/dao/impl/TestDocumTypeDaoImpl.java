@@ -22,7 +22,7 @@ public class TestDocumTypeDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestDocumTypeDaoImpl.class);
     @Autowired
-    private CrudDao<DocumType> dao;
+    private DocumTypeDaoImpl dao;
 
     private static DocumType elem1 = new DocumType();
     private static DocumType elem2 = new DocumType();
@@ -65,22 +65,22 @@ public class TestDocumTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (DocumType x: testData) {
-            List<DocumType> type = dao.getByName(x.getName());
+            List<DocumType> type = dao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (DocumType x:result ) {
-            DocumType type = dao.getById(x.getId());
+            DocumType type = dao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class TestDocumTypeDaoImpl {
         apartType.setId(result.get(0).getId());
         apartType.setName("Паспорт");
         dao.update(apartType);
-        DocumType type = dao.getById(apartType.getId());
+        DocumType type = dao.getOne(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.ApartType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("apartTypeDao")
-public class ApartTypeDaoImpl implements CrudDao<ApartType> {
+public class ApartTypeDaoImpl implements CrudDao<ApartType>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -39,7 +40,8 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
     }
 
     @Override
-    public ApartType getById(Object id) {
+    // int id
+    public ApartType getOne(Object id) {
         String sql = "SELECT * FROM apart_types WHERE app_typ_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -48,7 +50,8 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType> {
     }
 
     @Override
-    public List<ApartType> getByName(String name) {
+    // String name
+    public List<ApartType> getPart(Object name) {
         String sql = "SELECT * FROM apart_types WHERE app_typ_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

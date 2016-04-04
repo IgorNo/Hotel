@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.DocumType;
 import com.nov.hotel.entities.DocumType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("documTypeDao")
-public class DocumTypeDaoImpl implements CrudDao<DocumType> {
+public class DocumTypeDaoImpl implements CrudDao<DocumType>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -41,7 +42,8 @@ public class DocumTypeDaoImpl implements CrudDao<DocumType> {
     }
 
     @Override
-    public DocumType getById(Object id) {
+    // int id
+    public DocumType getOne(Object id) {
         String sql = "SELECT * FROM doc_types WHERE doc_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -51,7 +53,8 @@ public class DocumTypeDaoImpl implements CrudDao<DocumType> {
     }
 
     @Override
-    public List<DocumType> getByName(String name) {
+    // String name
+    public List<DocumType> getPart(Object name) {
         String sql = "SELECT * FROM doc_types WHERE doc_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

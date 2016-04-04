@@ -22,7 +22,7 @@ public class TestApartStatusDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartStatusDaoImpl.class);
     @Autowired
-    private CrudDao<ApartStatus> dao;
+    private ApartStatusDaoImpl dao;
 
     private static ApartStatus elem1 = new ApartStatus();
     private static ApartStatus elem2 = new ApartStatus();
@@ -63,24 +63,24 @@ public class TestApartStatusDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartStatus x: testData) {
-            List<ApartStatus> type = dao.getByName(x.getName());
+            List<ApartStatus> type = dao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getColor(),result.get(result.size()-1).getColor());
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ApartStatus x:result ) {
-            ApartStatus type = dao.getById(x.getId());
+            ApartStatus type = dao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class TestApartStatusDaoImpl {
         apartType.setName("Вільний номер");
         apartType.setColor("0xccffffff");
         dao.update(apartType);
-        ApartStatus type = dao.getById(apartType.getId());
+        ApartStatus type = dao.getOne(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         assertEquals(apartType.getColor(),type.getColor());

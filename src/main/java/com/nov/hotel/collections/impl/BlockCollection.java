@@ -8,7 +8,7 @@ import com.nov.hotel.main.Start;
 
 public class BlockCollection extends ObservableCollectionAbstract<Block> {
 
-    private CrudDao<ApartType> dao = (CrudDao<ApartType>) Start.APPLICATION_CONTEXT.getBean("blockDao");
+    private CrudDao<ApartType> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("blockDao");
 
     private static ObservableCollectionAbstract uniqueObsColl;
 

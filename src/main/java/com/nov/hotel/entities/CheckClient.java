@@ -1,15 +1,15 @@
 package com.nov.hotel.entities;
 
 public class CheckClient {
-    Check check;
+    Invoice invoice;
     Client client;
 
-    public Check getCheck() {
-        return check;
+    public Invoice getInvoice() {
+        return invoice;
     }
 
-    public void setCheck(Check check) {
-        this.check = check;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public Client getClient() {

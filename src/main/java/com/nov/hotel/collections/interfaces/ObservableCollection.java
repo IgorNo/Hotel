@@ -1,19 +1,23 @@
 package com.nov.hotel.collections.interfaces;
 
+import com.nov.hotel.services.transactions.utils.TransactionsEngine;
 import javafx.collections.ObservableList;
 
 public interface ObservableCollection<E> {
     // add records
-    ObservableCollection<E> add(E element);
+    ObservableCollection add(E element);
 
     // update records
-    ObservableCollection<E> update(E element);
+    ObservableCollection update(E element);
 
     // delete records
-    ObservableCollection<E> delete(E element);
+    ObservableCollection delete(E element);
 
-    public ObservableList<E> getList();
+    ObservableList<E> getList();
 
-    public ObservableCollection<E> fillData();
+    TransactionsEngine getTransactionsEngine();
 
+    ObservableCollection fillData();
+
+    <K> ObservableCollection fillData(K key);
 }

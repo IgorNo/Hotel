@@ -1,6 +1,6 @@
 package com.nov.hotel.gui.controllers.abstr;
 
-import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
+import com.nov.hotel.collections.interfaces.ObservableCollection;
 import com.nov.hotel.entities.interfaces.Entity;
 import com.nov.hotel.gui.windows.DialogManager;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
@@ -27,9 +27,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-abstract public class AbstractTableController <E extends Entity> extends AbstractController implements Initializable {
+abstract public class AbstractTableController <E extends Entity, K> extends AbstractController implements Initializable {
 
-    private ObservableCollectionAbstract<E> collection;
+    private ObservableCollection<E,K> collection;
 
     private AbstractWindow editWindow;
 
@@ -212,7 +212,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
         this.editWindow = editWindow;
     }
 
-    protected void setCollection(ObservableCollectionAbstract<E> collection) {
+    protected void setCollection(ObservableCollection<E,K> collection) {
         this.collection = collection;
     }
 

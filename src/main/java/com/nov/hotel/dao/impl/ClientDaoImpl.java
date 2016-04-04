@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,11 +22,11 @@ import java.util.List;
 public class ClientDaoImpl implements CrudDao<Client>{
 
     @Autowired
-    CrudDao<ClientType> clientTypeDao;
+    ClientTypeDaoImpl clientTypeDao;
     @Autowired
-    CrudDao<DocumType> documTypeDao;
+    DocumTypeDaoImpl documTypeDao;
     @Autowired
-    CrudDao<Region> regionDao;
+    RegionDaoImpl regionDao;
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -50,7 +51,8 @@ public class ClientDaoImpl implements CrudDao<Client>{
     }
 
     @Override
-    public Client getById(Object id) {
+    // Long id
+    public Client getOne(Object id) {
         String sql = "SELECT * FROM clients_view WHERE client_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -60,7 +62,8 @@ public class ClientDaoImpl implements CrudDao<Client>{
     }
 
     @Override
-    public List<Client> getByName(String name) {
+    // String name
+    public List<Client> getPart(Object name) {
         String sql = "SELECT * FROM clients_view WHERE client_surname_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

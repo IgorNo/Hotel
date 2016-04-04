@@ -8,44 +8,44 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-abstract class GetServiceAbstract<E> implements GetService<E> {
+abstract class GetServiceAbstract<E>  {
 
-    abstract CrudDao<E> getDao();
-
-
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    @Override
-    public E getById(int id) {
-        try {
-            return getDao().getById(id);
-        } catch (DataAccessException e) {
-            return null;
-        }
-    }
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    @Override
-    public List<E> getByName(String name) {
-        try {
-            return getDao().getByName(name);
-        } catch (DataAccessException e) {
-            return null;
-        }
-    }
-
-
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    @Override
-    public List<E> getAll() {
-        try {
-            return getDao().getAll();
-        } catch (DataAccessException e) {
-            return null;
-        }
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    @Override
-    public int count() {
-        return getDao().count();
-    }
+//    abstract CrudDao<E> getDao();
+//
+//
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//    @Override
+//    public E getById(int id) {
+//        try {
+//            return getDao().getOne(id);
+//        } catch (DataAccessException e) {
+//            return null;
+//        }
+//    }
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//    @Override
+//    public List<E> getByName(String name) {
+//        try {
+//            return getDao().getPart(name);
+//        } catch (DataAccessException e) {
+//            return null;
+//        }
+//    }
+//
+//
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//    @Override
+//    public List<E> getAll() {
+//        try {
+//            return getDao().getAll();
+//        } catch (DataAccessException e) {
+//            return null;
+//        }
+//    }
+//
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//    @Override
+//    public int count() {
+//        return getDao().count();
+//    }
 }

@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.Country;
 import com.nov.hotel.entities.Country;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class CountryDaoImpl implements CrudDao<Country>{
     }
 
     @Override
-    public Country getById(Object id) {
+    // String id
+    public Country getOne(Object id) {
         String sql = "SELECT * FROM countries WHERE country_id_iso_s = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -48,7 +50,8 @@ public class CountryDaoImpl implements CrudDao<Country>{
     }
 
     @Override
-    public List<Country> getByName(String name) {
+    // String name
+    public List<Country> getPart(Object name) {
         String sql = "SELECT * FROM countries WHERE country_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

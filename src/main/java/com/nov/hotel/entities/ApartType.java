@@ -22,15 +22,15 @@ public class ApartType implements Entity<ApartType> {
         assign(apartType);
     }
 
-    public void assign(ApartType apartType){
-        setId(apartType.getId());
-        setName(apartType.getName());
-        setSize(apartType.getSize());
-        setPriceDay(apartType.getPriceDay());
-        setPriceHour(apartType.getPriceHour());
-        setPriceSlot(apartType.getPriceSlot());
-        setnSlots(apartType.getnSlots());
-        setDescription(apartType.getDescription());
+    public void assign(ApartType elem){
+        setId(elem.getId());
+        setName(elem.getName());
+        setSize(elem.getSize());
+        setPriceDay(elem.getPriceDay());
+        setPriceHour(elem.getPriceHour());
+        setPriceSlot(elem.getPriceSlot());
+        setnSlots(elem.getnSlots());
+        setDescription(elem.getDescription());
     }
 
     @Override

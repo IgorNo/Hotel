@@ -8,7 +8,7 @@ import com.nov.hotel.main.Start;
 
 public class ClientCollection extends ObservableCollectionAbstract<Client>{
 
-    private CrudDao<ApartType> dao = (CrudDao<ApartType>) Start.APPLICATION_CONTEXT.getBean("clientDao");
+    private CrudDao<ApartType> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("clientDao");
 
     private static ObservableCollectionAbstract uniqueObsColl;
 

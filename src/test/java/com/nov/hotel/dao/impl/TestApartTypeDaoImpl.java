@@ -23,7 +23,7 @@ public class TestApartTypeDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartTypeDaoImpl.class);
     @Autowired
-    private CrudDao<ApartType> apartTypeDao;
+    private ApartTypeDaoImpl apartTypeDao;
 
     private static ApartType apartType1 = new ApartType();
     private static ApartType apartType2 = new ApartType();
@@ -75,7 +75,7 @@ public class TestApartTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartType x: testData) {
-            List<ApartType> type = apartTypeDao.getByName(x.getName());
+            List<ApartType> type = apartTypeDao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getSize(),result.get(result.size()-1).getSize());
@@ -85,14 +85,14 @@ public class TestApartTypeDaoImpl {
             assertEquals(x.getnSlots(),result.get(result.size()-1).getnSlots());
             assertEquals(x.getDescription(),result.get(result.size()-1).getDescription());
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ApartType x:result ) {
-            ApartType type = apartTypeDao.getById(x.getId());
+            ApartType type = apartTypeDao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getSize(),type.getSize());
@@ -102,7 +102,7 @@ public class TestApartTypeDaoImpl {
             assertEquals(x.getnSlots(),type.getnSlots());
             assertEquals(x.getDescription(),type.getDescription());
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -138,7 +138,7 @@ public class TestApartTypeDaoImpl {
         testType.setnSlots(1);
         testType.setDescription("Description luxury");
         apartTypeDao.update(testType);
-        ApartType type = apartTypeDao.getById(testType.getId());
+        ApartType type = apartTypeDao.getOne(testType.getId());
         assertEquals(testType.getId(),type.getId());
         assertEquals(testType.getName(),type.getName());
         assertEquals(testType.getSize(),type.getSize());

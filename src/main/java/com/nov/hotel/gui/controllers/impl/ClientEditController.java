@@ -6,21 +6,12 @@ import com.nov.hotel.collections.impl.DocumTypeCollection;
 import com.nov.hotel.collections.impl.RegionCollection;
 import com.nov.hotel.collections.interfaces.ObservableCollection;
 import com.nov.hotel.entities.*;
-import com.nov.hotel.gui.controllers.abstr.AbstractController;
 import com.nov.hotel.gui.controllers.abstr.AbstractEditDialogController;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import org.controlsfx.control.IndexedCheckModel;
-import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 public class ClientEditController extends AbstractEditDialogController<Client> {
 
@@ -96,9 +87,9 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
                     Country currCountry = (Country) comboCountry.getValue();
                     regionsCountry = regionsAll.getList().filtered((a) -> a.getCountry().getId().equals(currCountry.getId()));
                 comboRegion.setItems(regionsCountry);
-                if ( !regionsCountry.isEmpty() )
-                    comboRegion.getSelectionModel().select(getElem().getRegionAddress());
-                else
+//                if ( !regionsCountry.isEmpty() )
+//                    comboRegion.getSelectionModel().select(getElem().getRegionAddress());
+//                else
                     comboRegion.getSelectionModel().select(null);
             }
         });
@@ -113,12 +104,12 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
 
 //        regionsAll.fillData();
 
-//        if (getElem().getRegionAddress().getCountry() != null){
-//            Country currCountry = getElem().getRegionAddress().getCountry();
-//            regionsCountry = regionsAll.getList().filtered((a) -> a.equals(currCountry));
-//        }
-//        comboRegion.setItems(regionsCountry);
-//        comboRegion.getSelectionModel().select(getElem().getRegionAddress());
+        if (getElem().getRegionAddress().getCountry() != null){
+            Country currCountry = getElem().getRegionAddress().getCountry();
+            regionsCountry = regionsAll.getList().filtered((a) ->  a.getCountry().getId().equals(currCountry.getId()));
+        }
+        comboRegion.setItems(regionsCountry);
+        comboRegion.getSelectionModel().select(getElem().getRegionAddress());
 
     }
 

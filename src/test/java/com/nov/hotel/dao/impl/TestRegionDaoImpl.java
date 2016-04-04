@@ -23,9 +23,9 @@ public class TestRegionDaoImpl {
     private static Logger LOG = Logger.getLogger(TestRegionDaoImpl.class);
     
     @Autowired
-    private CrudDao<Country> countryDao;
+    private CountryDaoImpl countryDao;
     @Autowired
-    private  CrudDao<Region> dao;
+    private  RegionDaoImpl dao;
 
     Country country;
 
@@ -70,16 +70,17 @@ public class TestRegionDaoImpl {
     public void setUp(){
         dao.deleteAll();
         assertEquals(0, dao.count());
-        country = countryDao.getById("UA");
+        country = countryDao.getOne("UA");
         for (Region x:testData) {
             x.setCountry(country);
         }
-        country = countryDao.getById("GB");
+        country = countryDao.getOne("GB");
         testData.get(testData.size()-1).setCountry(country);
         LOG.warn("\nTest Data:\n"+ testData.toString());
         for (Region x: testData) {
             dao.insert(x);
         }
+        country = countryDao.getOne("UA");
         assertEquals(testData.size(), dao.count());
     }
 
@@ -87,23 +88,23 @@ public class TestRegionDaoImpl {
     public void testGetByName(){
         results.clear();
         for (Region x: testData) {
-            List<Region> regions = dao.getByName(x.getName());
+            List<Region> regions = dao.getPart(x.getName());
             results.add(regions.get(0));
             Region elem = results.get(results.size()-1);
             assertValues(x, elem);
         }
-        LOG.warn("\ngetByName Data:\n"+ results.toString());
+        LOG.warn("\ngetPart Data:\n"+ results.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Region x: results) {
-            Region elem = dao.getById(x.getId());
+            Region elem = dao.getOne(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetById Data:\n"+ results.toString());
+        LOG.warn("\ngetOne Data:\n"+ results.toString());
     }
 
     @Test
@@ -123,7 +124,7 @@ public class TestRegionDaoImpl {
         testData.setName("м.Київ");
         testData.setCountry(country);
         dao.update(testData);
-        Region elem = dao.getById(testData.getId());
+        Region elem = dao.getOne(testData.getId());
         assertValues(testData, elem);
         LOG.warn("\nBefor Update:\n"+ results.toString());
         LOG.warn("\nUpdate Data:\n"+ testData.toString());

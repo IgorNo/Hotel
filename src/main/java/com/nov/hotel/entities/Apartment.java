@@ -1,19 +1,16 @@
 package com.nov.hotel.entities;
 
 import com.nov.hotel.entities.interfaces.Entity;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class Apartment implements Entity<Apartment> {
 
     private long id;
-    private SimpleStringProperty roomNumber = new SimpleStringProperty();
-    private SimpleIntegerProperty levelNumber = new SimpleIntegerProperty();
-    private SimpleObjectProperty<Block> block = new SimpleObjectProperty<>();
-    private SimpleBooleanProperty status = new SimpleBooleanProperty();
-    private SimpleObjectProperty<ApartType> type = new SimpleObjectProperty<>();
+    private StringProperty roomNumber = new SimpleStringProperty();
+    private IntegerProperty levelNumber = new SimpleIntegerProperty();
+    private ObjectProperty<Block> block = new SimpleObjectProperty<>();
+    private BooleanProperty status = new SimpleBooleanProperty();
+    private ObjectProperty<ApartType> type = new SimpleObjectProperty<>();
 
     public Apartment() {  }
 
@@ -54,7 +51,7 @@ public class Apartment implements Entity<Apartment> {
         return roomNumber.get();
     }
 
-    public SimpleStringProperty roomNumberProperty() {
+    public StringProperty roomNumberProperty() {
         return roomNumber;
     }
 
@@ -66,7 +63,7 @@ public class Apartment implements Entity<Apartment> {
         return levelNumber.get();
     }
 
-    public SimpleIntegerProperty levelNumberProperty() {
+    public IntegerProperty levelNumberProperty() {
         return levelNumber;
     }
 
@@ -78,7 +75,7 @@ public class Apartment implements Entity<Apartment> {
         return status.get();
     }
 
-    public SimpleBooleanProperty statusProperty() {
+    public BooleanProperty statusProperty() {
         return status;
     }
 
@@ -90,7 +87,7 @@ public class Apartment implements Entity<Apartment> {
         return block.get();
     }
 
-    public SimpleObjectProperty<Block> blockProperty() {
+    public ObjectProperty<Block> blockProperty() {
         return block;
     }
 
@@ -102,7 +99,7 @@ public class Apartment implements Entity<Apartment> {
         return type.get();
     }
 
-    public SimpleObjectProperty<ApartType> typeProperty() {
+    public ObjectProperty<ApartType> typeProperty() {
         return type;
     }
 

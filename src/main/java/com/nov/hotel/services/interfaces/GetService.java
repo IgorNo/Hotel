@@ -2,13 +2,13 @@ package com.nov.hotel.services.interfaces;
 
 import java.util.List;
 
-public interface GetService<E> {
+public interface GetService<E,O,P> {
 
     //Read
-    E getById(int id);
+    E getById(O id);
 
     //Read
-    List<E> getByName(String name);
+    List<E> getByName(P name);
 
     //Read All
     List<E> getAll();

@@ -24,11 +24,11 @@ public class TestApartmentDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestApartmentDaoImpl.class);
     @Autowired
-    private CrudDao<ApartType> apartTypeDao;
+    private ApartTypeDaoImpl apartTypeDao;
     @Autowired
-    private CrudDao<Block> blockDao;
+    private BlockDaoImpl blockDao;
     @Autowired
-    private  CrudDao<Apartment> dao;
+    private  ApartmentDaoImpl dao;
 
     private static int count = 0;
 
@@ -161,23 +161,23 @@ public class TestApartmentDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Apartment x: testData) {
-            List<Apartment> apartments = dao.getByName(x.getRoomNumber());
+            List<Apartment> apartments = dao.getPart(x.getRoomNumber());
             result.add(apartments.get(0));
             Apartment elem = result.get(result.size()-1);
             assertValues(x, elem);
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Apartment x:result ) {
-            Apartment elem = dao.getById(x.getId());
+            Apartment elem = dao.getOne(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -200,7 +200,7 @@ public class TestApartmentDaoImpl {
         testData.setBlock(block2);
         testData.setType(apartType2);
         dao.update(testData);
-        Apartment elem = dao.getById(testData.getId());
+        Apartment elem = dao.getOne(testData.getId());
         assertValues(testData, elem);
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ testData.toString());

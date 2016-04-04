@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.Country;
 import com.nov.hotel.entities.Region;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("regionDao")
-public class RegionDaoImpl implements CrudDao<Region> {
+public class RegionDaoImpl implements CrudDao<Region>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -45,7 +46,8 @@ public class RegionDaoImpl implements CrudDao<Region> {
     }
     
     @Override
-    public Region getById(Object id) {
+    // int id
+    public Region getOne(Object id) {
         String sql = "SELECT * FROM regions_view WHERE region_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -55,11 +57,12 @@ public class RegionDaoImpl implements CrudDao<Region> {
     }
 
     @Override
-    public List<Region> getByName(String name) {
-        String sql = "SELECT * FROM regions_view WHERE region_name_s = :name";
+    // int name
+    public List<Region> getPart(Object countryId) {
+        String sql = "SELECT * FROM regions_view WHERE region_country_fk = :countryId";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
+        params.addValue("countryId", countryId);
 
         return jdbcTemplate.query(sql, params, rowMapper);
     }

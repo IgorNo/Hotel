@@ -7,7 +7,7 @@ import com.nov.hotel.main.Start;
 
 public class DocumTypeCollection extends ObservableCollectionAbstract<DocumType>{
 
-    private CrudDao<DocumType> dao = (CrudDao<DocumType>) Start.APPLICATION_CONTEXT.getBean("documTypeDao");
+    private CrudDao<DocumType> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("documTypeDao");
 
     private static ObservableCollectionAbstract uniqueObsColl;
 

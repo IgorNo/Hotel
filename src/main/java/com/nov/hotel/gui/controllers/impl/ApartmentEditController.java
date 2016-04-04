@@ -25,18 +25,18 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
     public TextField txtLevel;
     public CheckBox chekbStatus;
 
-    ObservableCollection<Block> blocks = BlockCollection.getInstance().fillData();
-    ObservableCollection<ApartType> types = ApartTypeCollection.getInstance().fillData();
+    ObservableCollection<Block> blocks = BlockCollection.getInstance().fillAllData();
+    ObservableCollection<ApartType> types = ApartTypeCollection.getInstance().fillAllData();
 
     @Override
     protected void fillField() {
         txtRoomNumber.setText(getElem().getRoomNumber());
         txtLevel.setText(Integer.toString(getElem().getLevelNumber()));
         chekbStatus.setSelected(getElem().getStatus());
-//        blocks.fillData();
+//        blocks.fillAllData();
         comboBlock.setItems(blocks.getList());
         comboBlock.getSelectionModel().select(getElem().getBlock());
-//        types.fillData();
+//        types.fillAllData();
         comboType.setItems(types.getList());
         comboType.getSelectionModel().select(getElem().getType());
     }

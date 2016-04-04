@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.Block;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository("blockDao")
-public class BlockDaoImpl implements CrudDao<Block> {
+public class BlockDaoImpl implements CrudDao<Block>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -42,7 +43,8 @@ public class BlockDaoImpl implements CrudDao<Block> {
     }
 
     @Override
-    public Block getById(Object id) {
+    // int id
+    public Block getOne(Object id) {
         String sql = "SELECT * FROM blocks WHERE block_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -52,7 +54,8 @@ public class BlockDaoImpl implements CrudDao<Block> {
     }
 
     @Override
-    public List<Block> getByName(String name) {
+    // String name
+    public List<Block> getPart(Object name) {
         String sql = "SELECT * FROM blocks WHERE block_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

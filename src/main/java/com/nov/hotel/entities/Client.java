@@ -1,11 +1,12 @@
 package com.nov.hotel.entities;
 
+import com.nov.hotel.entities.interfaces.Customer;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
-public class Client implements Entity<Client>{
+public class Client implements Entity<Client>, Customer {
 
     private long id;
     private ObjectProperty<LocalDate> regDate = new SimpleObjectProperty<>();
@@ -115,13 +116,13 @@ public class Client implements Entity<Client>{
 
     public StringProperty fullNameProperty(){
         StringProperty fullName = new SimpleStringProperty();
-        fullName.bind(surname.concat(name.concat(patronymic)));
+        fullName.bind(surname.concat(" " + name.concat(" " + patronymic.get()).get()));
         return fullName;
     }
 
     public StringProperty passportProperty(){
         StringProperty passport = new SimpleStringProperty();
-        passport.bind(docSeries.concat(docNumber));
+        passport.bind(docSeries.concat(" " + docNumber.get()));
         return passport;
     }
 

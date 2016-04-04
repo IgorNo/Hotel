@@ -7,7 +7,7 @@ import com.nov.hotel.main.Start;
 
 public class CountryCollection extends ObservableCollectionAbstract<Country>{
 
-    private CrudDao<Country> dao = (CrudDao<Country>) Start.APPLICATION_CONTEXT.getBean("countryDao");
+    private CrudDao<Country> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("countryDao");
 
     private static ObservableCollectionAbstract uniqueObsColl;
 

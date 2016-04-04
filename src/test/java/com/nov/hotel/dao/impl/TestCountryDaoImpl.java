@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 public class TestCountryDaoImpl {
     private static Logger LOG = Logger.getLogger(TestCountryDaoImpl.class);
     @Autowired
-    private CrudDao<Country> dao;
+    private CountryDaoImpl dao;
 
     private static Country elem1 = new Country();
     private static Country elem2 = new Country();
@@ -74,22 +74,22 @@ public class TestCountryDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Country x: testData) {
-            List<Country> type = dao.getByName(x.getName());
+            List<Country> type = dao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Country x:result ) {
-            Country type = dao.getById(x.getId());
+            Country type = dao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class TestCountryDaoImpl {
         apartType.setId("US");
         apartType.setName("США");
         dao.update(apartType);
-        Country type = dao.getById(apartType.getId());
+        Country type = dao.getOne(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

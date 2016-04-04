@@ -3,7 +3,6 @@ package com.nov.hotel.collections.abstr;
 import com.nov.hotel.collections.interfaces.ObservableCollection;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.interfaces.Entity;
-import com.nov.hotel.gui.windows.interfaces.Singelton;
 import com.nov.hotel.services.transactions.impl.AddTransaction;
 import com.nov.hotel.services.transactions.impl.GetAllTransaction;
 import com.nov.hotel.services.transactions.impl.UpdateTransaction;
@@ -13,6 +12,7 @@ import javafx.collections.ObservableList;
 
 abstract public class ObservableCollectionAbstract<E extends Entity> implements ObservableCollection<E>{
 
+
     private ObservableList<E> list = FXCollections.observableArrayList();
 
     private TransactionsEngine transactionsEngine = new TransactionsEngine();
@@ -21,7 +21,7 @@ abstract public class ObservableCollectionAbstract<E extends Entity> implements 
     protected abstract CrudDao getDao();
 
     @Override
-    public ObservableCollection<E> add(E element) {
+    public ObservableCollection add(E element) {
         if (!element.validate()){
             return null;
         }
@@ -32,7 +32,7 @@ abstract public class ObservableCollectionAbstract<E extends Entity> implements 
 
 
     @Override
-    public ObservableCollection<E> update(E element) {
+    public ObservableCollection update(E element) {
         if (!element.validate()){
             return null;
         }
@@ -41,7 +41,7 @@ abstract public class ObservableCollectionAbstract<E extends Entity> implements 
     }
 
     @Override
-    public ObservableCollection<E> delete(E element) {
+    public ObservableCollection delete(E element) {
         if (!element.validate()){
             return null;
         }
@@ -60,11 +60,18 @@ abstract public class ObservableCollectionAbstract<E extends Entity> implements 
     }
 
     @Override
-    public ObservableCollection<E> fillData() {
+    public ObservableCollection fillData() {
         list.clear();
         GetAllTransaction<E> t = new GetAllTransaction(getDao());
         t.execute();
         list.addAll(t.geteList());
+        return this;
+    }
+
+    @Override
+    public <K> ObservableCollection fillData(K key) {
+        list.clear();
+        list.addAll(getDao().getPart(key));
         return this;
     }
 }

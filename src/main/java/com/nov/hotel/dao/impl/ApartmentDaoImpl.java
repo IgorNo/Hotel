@@ -1,6 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
+import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.entities.Apartment;
 import com.nov.hotel.entities.Block;
@@ -24,9 +25,9 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Autowired
-    CrudDao<Block> blockDao;
+    BlockDaoImpl blockDao;
     @Autowired
-    CrudDao<ApartType> apartTypeDao;
+    ApartTypeDaoImpl apartTypeDao;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -47,7 +48,8 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
     }
 
     @Override
-    public Apartment getById(Object id) {
+    // Long id
+    public Apartment getOne(Object id) {
         String sql = "SELECT * FROM apartments_view WHERE apart_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -57,7 +59,8 @@ public class ApartmentDaoImpl implements CrudDao<Apartment>{
     }
 
     @Override
-    public List<Apartment> getByName(String name) {
+    // String name
+    public List<Apartment> getPart(Object name) {
         String sql = "SELECT * FROM apartments_view WHERE apart_room_number_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

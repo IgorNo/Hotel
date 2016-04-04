@@ -22,7 +22,7 @@ public class TestBlockDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestBlockDaoImpl.class);
     @Autowired
-    private CrudDao<Block> dao;
+    private BlockDaoImpl dao;
 
     private static Block elem1 = new Block();
     private static Block elem2 = new Block();
@@ -59,22 +59,22 @@ public class TestBlockDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Block x: testData) {
-            List<Block> type = dao.getByName(x.getName());
+            List<Block> type = dao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Block x:result ) {
-            Block type = dao.getById(x.getId());
+            Block type = dao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class TestBlockDaoImpl {
         apartType.setId(result.get(0).getId());
         apartType.setName("Корпус люкс");
         dao.update(apartType);
-        Block type = dao.getById(apartType.getId());
+        Block type = dao.getOne(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

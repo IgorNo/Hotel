@@ -22,7 +22,7 @@ public class TestClientTypeDaoImpl {
 
     private static Logger LOG = Logger.getLogger(TestClientTypeDaoImpl.class);
     @Autowired
-    private CrudDao<ClientType> dao;
+    private ClientTypeDaoImpl dao;
 
     private static ClientType elem1 = new ClientType();
     private static ClientType elem2 = new ClientType();
@@ -67,26 +67,26 @@ public class TestClientTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ClientType x: testData) {
-            List<ClientType> type = dao.getByName(x.getName());
+            List<ClientType> type = dao.getPart(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getColor(),result.get(result.size()-1).getColor());
             assertEquals(x.getDiscount(),result.get(result.size()-1).getDiscount(),0.001f);
         }
-        LOG.warn("\ngetByName Data:\n"+result.toString());
+        LOG.warn("\ngetPart Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ClientType x:result ) {
-            ClientType type = dao.getById(x.getId());
+            ClientType type = dao.getOne(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
             assertEquals(x.getDiscount(),type.getDiscount(),0.001f);
         }
-        LOG.warn("\ngetById Data:\n"+result.toString());
+        LOG.warn("\ngetOne Data:\n"+result.toString());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class TestClientTypeDaoImpl {
         elem.setColor("0xccffffff");
         elem.setDiscount(1.0f);
         dao.update(elem);
-        ClientType type = dao.getById(elem.getId());
+        ClientType type = dao.getOne(elem.getId());
         assertEquals(elem.getId(),type.getId());
         assertEquals(elem.getName(),type.getName());
         assertEquals(elem.getColor(),type.getColor());
