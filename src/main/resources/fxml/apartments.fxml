@@ -39,7 +39,7 @@
                      </accelerator></MenuItem>
             <MenuItem fx:id="mItemChange" mnemonicParsing="false" onAction="#change" text="%menu.title.change">
                      <accelerator>
-                        <KeyCodeCombination alt="ANY" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                        <KeyCodeCombination alt="ANY" code="V" control="UP" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
             <MenuItem fx:id="mItemDelete" mnemonicParsing="false" onAction="#delete" text="%menu.title.delete">
                      <accelerator>

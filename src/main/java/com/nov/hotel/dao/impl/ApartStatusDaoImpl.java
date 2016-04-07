@@ -1,9 +1,7 @@
 package com.nov.hotel.dao.impl;
 
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.ApartStatus;
-import com.nov.hotel.entities.Apartment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -18,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("apartStatusDao")
-public class ApartStatusDaoImpl implements CrudDao<ApartStatus>{
+public class ApartStatusDaoImpl implements CrudDao<Integer,ApartStatus>{
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -46,7 +44,7 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus>{
 
     @Override
     // int id
-    public ApartStatus getOne(Object id) {
+    public ApartStatus getSingle(Integer id) {
         String sql = "SELECT * FROM apart_status WHERE app_stat_id_n = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -57,7 +55,7 @@ public class ApartStatusDaoImpl implements CrudDao<ApartStatus>{
 
     @Override
     // String name
-    public List<ApartStatus> getPart(Object name) {
+    public List<ApartStatus> getSelected(Object name) {
         String sql = "SELECT * FROM apart_status WHERE app_stat_name_s = :name";
 
         MapSqlParameterSource params = new MapSqlParameterSource();

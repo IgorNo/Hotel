@@ -1,21 +1,25 @@
 package com.nov.hotel.collections.impl;
 
 import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
+import com.nov.hotel.collections.interfaces.ObservableCollection;
+import com.nov.hotel.dao.impl.ApartTypeDaoImpl;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.main.Start;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class ApartTypeCollection extends ObservableCollectionAbstract<ApartType> {
+public class ApartTypeCollection extends ObservableCollectionAbstract<Integer, ApartType> {
 
-    private CrudDao<ApartType> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("apartTypeDao");
+    @Autowired
+    private ApartTypeDaoImpl dao = (ApartTypeDaoImpl) Start.APPLICATION_CONTEXT.getBean("apartTypeDao");
 
-    private static ObservableCollectionAbstract uniqueObsColl;
+    private static ApartTypeCollection uniqueObsColl;
 
     private ApartTypeCollection() {
     }
 
-    public static ObservableCollectionAbstract getInstance() {
+    public static ApartTypeCollection getInstance() {
         if (uniqueObsColl == null){
             uniqueObsColl = new ApartTypeCollection();
         }

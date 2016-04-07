@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Region;
 import com.nov.hotel.entities.Country;
 import org.apache.log4j.Logger;
@@ -21,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = {"/spring/app-context.xml"})
 public class TestRegionDaoImpl {
     private static Logger LOG = Logger.getLogger(TestRegionDaoImpl.class);
-    
+
     @Autowired
     private CountryDaoImpl countryDao;
     @Autowired
@@ -70,17 +69,17 @@ public class TestRegionDaoImpl {
     public void setUp(){
         dao.deleteAll();
         assertEquals(0, dao.count());
-        country = countryDao.getOne("UA");
+        country = countryDao.getSingle("UA");
         for (Region x:testData) {
             x.setCountry(country);
         }
-        country = countryDao.getOne("GB");
+        country = countryDao.getSingle("GB");
         testData.get(testData.size()-1).setCountry(country);
         LOG.warn("\nTest Data:\n"+ testData.toString());
         for (Region x: testData) {
             dao.insert(x);
         }
-        country = countryDao.getOne("UA");
+        country = countryDao.getSingle("UA");
         assertEquals(testData.size(), dao.count());
     }
 
@@ -88,23 +87,23 @@ public class TestRegionDaoImpl {
     public void testGetByName(){
         results.clear();
         for (Region x: testData) {
-            List<Region> regions = dao.getPart(x.getName());
-            results.add(regions.get(0));
-            Region elem = results.get(results.size()-1);
-            assertValues(x, elem);
+            List<Region> regions = dao.getSelected(x.getCountry().getId());
+            for (Region y: regions) {
+                assertEquals(x.getCountry().getId(), y.getCountry().getId());
+            }
         }
-        LOG.warn("\ngetPart Data:\n"+ results.toString());
+        LOG.warn("\ngetSelected Data:\n"+ results.toString());
     }
 
     @Test
     public void testGetById(){
-        testGetByName();
-        for (Region x: results) {
-            Region elem = dao.getOne(x.getId());
+//        testGetByName();
+        for (Region x: testData) {
+            Region elem = dao.getSingle(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetOne Data:\n"+ results.toString());
+        LOG.warn("\ngetSingle Data:\n"+ results.toString());
     }
 
     @Test
@@ -124,7 +123,7 @@ public class TestRegionDaoImpl {
         testData.setName("м.Київ");
         testData.setCountry(country);
         dao.update(testData);
-        Region elem = dao.getOne(testData.getId());
+        Region elem = dao.getSingle(testData.getId());
         assertValues(testData, elem);
         LOG.warn("\nBefor Update:\n"+ results.toString());
         LOG.warn("\nUpdate Data:\n"+ testData.toString());

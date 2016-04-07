@@ -39,6 +39,6 @@ public class BlockController extends AbstractTableController<Block> {
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new Block((Block) getTable().getSelectionModel().getSelectedItem()));
+        copyAbst(new Block((Block) getTable().getSelectionModel().getSelectedItem()));
     }
 }

@@ -13,7 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import org.controlsfx.validation.Validator;
 
-public class ClientEditController extends AbstractEditDialogController<Client> {
+public class ClientEditController extends AbstractEditDialogController<Long, Client> {
 
     public TextField txtSurname;
     public TextField txtName;
@@ -45,10 +45,10 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
     public TextField txtDiscount;
 
 
-    ObservableCollection<Country> countries = CountryCollection.getInstance().fillData();
-    ObservableCollection<DocumType> docTypes = DocumTypeCollection.getInstance().fillData();
-    ObservableCollection<Region> regionsAll = RegionCollection.getInstance().fillData();
-    ObservableCollection<ClientType> types = ClientTypeCollection.getInstance().fillData();
+    ObservableCollection<Country> countries;// = CountryCollection.getInstance().readAllData();
+    ObservableCollection<DocumType> docTypes ;//= DocumTypeCollection.getInstance().readAllData();
+    ObservableCollection<Region> regionsAll;// = RegionCollection.getInstance().readAllData();
+    ObservableCollection<ClientType> types; // = ClientTypeCollection.getInstance().readAllData();
 
     ObservableList<Region> regionsCountry;
 
@@ -77,15 +77,15 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
 
         txtDiscount.setText(Float.toString(getElem().getDiscount()));
 
-//        countries.fillData();
-        comboCitizenship.setItems(countries.getList());
+//        countries.readAllData();
+        comboCitizenship.setItems(countries.getViewList());
         comboCitizenship.getSelectionModel().select(getElem().getCitizenship());
-        comboCountry.setItems(countries.getList());
+        comboCountry.setItems(countries.getViewList());
         comboCountry.getSelectionModel().select(getElem().getRegionAddress().getCountry());
         comboCountry.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     Country currCountry = (Country) comboCountry.getValue();
-                    regionsCountry = regionsAll.getList().filtered((a) -> a.getCountry().getId().equals(currCountry.getId()));
+                    regionsCountry = regionsAll.getViewList().filtered((a) -> a.getCountry().getId().equals(currCountry.getId()));
                 comboRegion.setItems(regionsCountry);
 //                if ( !regionsCountry.isEmpty() )
 //                    comboRegion.getSelectionModel().select(getElem().getRegionAddress());
@@ -94,19 +94,19 @@ public class ClientEditController extends AbstractEditDialogController<Client> {
             }
         });
 
-//        docTypes.fillData();
-        comboDocType.setItems(docTypes.getList());
+//        docTypes.readAllData();
+        comboDocType.setItems(docTypes.getViewList());
         comboDocType.getSelectionModel().select(getElem().getDocType());
 
-//        types.fillData();
-        comboType.setItems(types.getList());
+//        types.readAllData();
+        comboType.setItems(types.getViewList());
         comboType.getSelectionModel().select(getElem().getType());
 
-//        regionsAll.fillData();
+//        regionsAll.readAllData();
 
         if (getElem().getRegionAddress().getCountry() != null){
             Country currCountry = getElem().getRegionAddress().getCountry();
-            regionsCountry = regionsAll.getList().filtered((a) ->  a.getCountry().getId().equals(currCountry.getId()));
+            regionsCountry = regionsAll.getViewList().filtered((a) ->  a.getCountry().getId().equals(currCountry.getId()));
         }
         comboRegion.setItems(regionsCountry);
         comboRegion.getSelectionModel().select(getElem().getRegionAddress());

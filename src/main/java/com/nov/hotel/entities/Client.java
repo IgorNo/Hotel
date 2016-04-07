@@ -6,7 +6,7 @@ import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
-public class Client implements Entity<Client>, Customer {
+public class Client implements Entity<Long, Client>, Customer, Comparable<Client> {
 
     private long id;
     private ObjectProperty<LocalDate> regDate = new SimpleObjectProperty<>();
@@ -94,11 +94,11 @@ public class Client implements Entity<Client>, Customer {
         this.sex.set(sex);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -292,5 +292,13 @@ public class Client implements Entity<Client>, Customer {
 
     public void setRegionAddress(Region regionAddress) {
         this.regionAddress.set(regionAddress);
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
     }
 }

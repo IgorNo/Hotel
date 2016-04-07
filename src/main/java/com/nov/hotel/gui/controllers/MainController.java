@@ -1,7 +1,11 @@
 package com.nov.hotel.gui.controllers;
 
 
+import com.nov.hotel.collections.impl.BlockCollection;
+import com.nov.hotel.entities.Block;
 import com.nov.hotel.gui.controllers.abstr.AbstractController;
+import com.nov.hotel.gui.controllers.abstr.AbstractTableController;
+import com.nov.hotel.gui.controllers.interfaces.Controller;
 import com.nov.hotel.gui.windows.impl.AbstractWindow;
 import com.nov.hotel.gui.windows.impl.*;
 import javafx.event.ActionEvent;
@@ -50,6 +54,7 @@ public class MainController extends AbstractController {
     public void editBlocks(ActionEvent actionEvent) {
         blocksWindow = BlockWindow.getInstance();
         blocksWindow.initOwner(MainWindow.getInstance().getStage());
+        BlockCollection.getInstance().readAllData();
         blocksWindow.showAndWait();
     }
 

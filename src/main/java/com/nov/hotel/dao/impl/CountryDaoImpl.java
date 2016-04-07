@@ -1,15 +1,12 @@
 package com.nov.hotel.dao.impl;
 
+import com.nov.hotel.dao.abstr.CrudDaoAbstrString;
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.dao.interfaces.GetDao;
-import com.nov.hotel.entities.Country;
 import com.nov.hotel.entities.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -18,85 +15,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("countryDao")
-public class CountryDaoImpl implements CrudDao<Country>{
+public class CountryDaoImpl extends CrudDaoAbstrString<Country> {
+    {
+          nameDataBase = "countries";
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+          sqlInsert = "INSERT INTO countries (country_id_iso_s, country_name_s) VALUES (:id, :name)";
+          sqlUpdate = "UPDATE countries SET country_name_s= :name WHERE country_id_iso_s";
+          sqlDelete = "DELETE FROM countries WHERE country_id_iso_s";
+          sqlSelectSingle = "SELECT * FROM countries WHERE country_id_iso_s";
+          sqlSelectSome = "SELECT * FROM countries WHERE country_name_s";
+          sqlSelectAll = "SELECT * FROM countries";
     }
-
     @Override
-    public void insert(Country elem) {
-        String sql = "INSERT INTO countries (country_id_iso_s, country_name_s) VALUES (:id, :name)";
-
+    protected MapSqlParameterSource getParams(Country elem) {
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
+        params.addValue("id",elem.getId());
         params.addValue("name", elem.getName());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    // String id
-    public Country getOne(Object id) {
-        String sql = "SELECT * FROM countries WHERE country_id_iso_s = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
-
-        return jdbcTemplate.queryForObject(sql, params, rowMapper);
-    }
-
-    @Override
-    // String name
-    public List<Country> getPart(Object name) {
-        String sql = "SELECT * FROM countries WHERE country_name_s = :name";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
-
-        return jdbcTemplate.query(sql, params, rowMapper);
-    }
-
-    @Override
-    public List<Country> getAll() {
-        String sql = "SELECT * FROM countries";
-        return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    @Override
-    public void update(Country elem) {
-        String sql = "UPDATE countries SET country_name_s= :name WHERE country_id_iso_s = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-        params.addValue("name", elem.getName());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void delete(Country elem) {
-        String sql = "DELETE FROM countries WHERE country_id_iso_s = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void deleteAll() {
-        String sql = "DELETE FROM countries";
-        jdbcTemplate.update(sql, new MapSqlParameterSource());
-    }
-
-    @Override
-    public int count() {
-        String sql = "select count(*) from countries";
-        return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
+        return params;
     }
 
     private static final RowMapper<Country> rowMapper = new RowMapper<Country>() {
@@ -109,4 +44,13 @@ public class CountryDaoImpl implements CrudDao<Country>{
         }
     };
 
+    @Override
+    public  RowMapper<Country> getRowMapper() {
+        return rowMapper;
+    }
+
+    @Override
+    protected void checkId(Country elem) {
+
+    }
 }

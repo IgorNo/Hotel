@@ -5,7 +5,7 @@ import com.nov.hotel.gui.controllers.abstr.AbstractEditDialogController;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class ApartTypeEditController extends AbstractEditDialogController<ApartType> {
+public class ApartTypeEditController extends AbstractEditDialogController<Integer, ApartType> {
 
     public TextField txtName;
     public TextField txtPrice1;

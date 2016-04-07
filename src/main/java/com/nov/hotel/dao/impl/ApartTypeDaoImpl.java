@@ -1,83 +1,38 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.dao.interfaces.GetDao;
+import com.nov.hotel.collections.impl.ApartTypeCollection;
+import com.nov.hotel.dao.abstr.CrudDaoAbstractInt;
 import com.nov.hotel.entities.ApartType;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @Repository("apartTypeDao")
-public class ApartTypeDaoImpl implements CrudDao<ApartType>{
+public class ApartTypeDaoImpl extends CrudDaoAbstractInt<ApartType> {
+    {
+          nameDataBase = "apart_types";
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }
-
-
-    @Override
-    public void insert(ApartType apartType) {
-        String sql = "INSERT INTO apart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n, app_typ_slot_n, app_typ_description_s) " +
+          sqlInsert = "INSERT INTO apart_types (app_typ_name_s, app_typ_sizing_n, app_typ_price1_n, app_typ_price2_n, app_typ_price3_n, app_typ_slot_n, app_typ_description_s) " +
                 "VALUES (:name, :sizing, :price1, :price2, :price3, :nSlots, :description)";
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        MapSqlParameterSource params = getMapSqlParameterSource(apartType);
-        jdbcTemplate.update(sql, params, keyHolder);
-        apartType.setId(keyHolder.getKey().intValue());
-    }
-
-    @Override
-    // int id
-    public ApartType getOne(Object id) {
-        String sql = "SELECT * FROM apart_types WHERE app_typ_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
-        return jdbcTemplate.queryForObject(sql, params, rowMapper);
-    }
-
-    @Override
-    // String name
-    public List<ApartType> getPart(Object name) {
-        String sql = "SELECT * FROM apart_types WHERE app_typ_name_s = :name";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
-        return jdbcTemplate.query(sql, params, rowMapper);
-    }
-
-    @Override
-    public List<ApartType> getAll(){
-        String sql = "SELECT * FROM apart_types";
-        return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    @Override
-    public void update(ApartType apartType) {
-        String sql = "UPDATE apart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
+          sqlUpdate = "UPDATE apart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
                 "app_typ_price1_n=  :price1, app_typ_price2_n= :price2, app_typ_price3_n= :price3, " +
                 "app_typ_slot_n= :nSlots, app_typ_description_s= :description " +
-                "WHERE app_typ_id_n = :id";
+                "WHERE app_typ_id_n";
 
-        MapSqlParameterSource params = getMapSqlParameterSource(apartType);
-        jdbcTemplate.update(sql, params);
+          sqlDelete = "DELETE FROM apart_types WHERE app_typ_id_n";
 
+          sqlSelectSingle = "SELECT * FROM apart_types WHERE app_typ_id_n";
+
+          sqlSelectSome = "SELECT * FROM apart_types WHERE app_typ_name_s";
+
+          sqlSelectAll = "SELECT * FROM apart_types";
     }
 
-    private MapSqlParameterSource getMapSqlParameterSource(ApartType apartType) {
+    protected MapSqlParameterSource getParams(ApartType apartType) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", apartType.getId());
         params.addValue("name", apartType.getName());
@@ -89,29 +44,7 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType>{
         params.addValue("description", apartType.getDescription());
         return params;
     }
-
-    @Override
-    public void delete(ApartType elem) {
-        String sql = "DELETE FROM apart_types WHERE app_typ_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void deleteAll() {
-        String sql = "DELETE FROM apart_types";
-        jdbcTemplate.update(sql, new MapSqlParameterSource());
-    }
-
-    @Override
-    public int count() {
-        String sql = "select count(*) from apart_types";
-        return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
-    }
-
+    
     private static final RowMapper<ApartType> rowMapper = new RowMapper<ApartType>() {
 
         @Override
@@ -125,8 +58,17 @@ public class ApartTypeDaoImpl implements CrudDao<ApartType>{
             apartType.setPriceSlot(rs.getFloat("app_typ_price3_n"));
             apartType.setnSlots(rs.getInt("app_typ_slot_n"));
             apartType.setDescription(rs.getString("app_typ_description_s"));
-            return apartType;
+            return ApartTypeCollection.getInstance().putValue(apartType);
         }
     };
 
+    @Override
+    public RowMapper<ApartType> getRowMapper() {
+        return rowMapper;
+    }
+
+    @Override
+    protected void checkId(ApartType elem) {
+
+    }
 }

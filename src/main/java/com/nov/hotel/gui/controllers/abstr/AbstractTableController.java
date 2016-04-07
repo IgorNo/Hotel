@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-abstract public class AbstractTableController <E extends Entity> extends AbstractController implements Initializable {
+abstract public class AbstractTableController<E extends Entity> extends AbstractController implements Initializable {
 
     private ObservableCollection<E> collection;
 
@@ -77,18 +77,18 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
             Method m = TextFields.class.getDeclaredMethod("setupClearButtonField", TextField.class, ObjectProperty.class);
             m.setAccessible(true);
             m.invoke(null, customTextField, customTextField.rightProperty());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void actionClose(ActionEvent actionEvent) {
-        if (!collection.getTransactionsEngine().isEmpty()) {
+        if (collection.isChanged()) {
             Optional<ButtonType> result = DialogManager.showConfirmDialog(rBundle.getString("message.alert"), rBundle.getString("message.save.data"));
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 save(actionEvent);
             } else {
-                collection.getTransactionsEngine().clear();
+                collection.cancelChanges();
             }
         }
         closeWindow();
@@ -96,23 +96,18 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
     }
 
     public void save(ActionEvent actionEvent) {
-        collection.getTransactionsEngine().run();
-        if (collection.getTransactionsEngine().getExceptMess().size() > 0){
-            String errMsg = "";
-            for (int i = 0; i < collection.getTransactionsEngine().getExceptMess().size(); i++) {
-                errMsg += collection.getTransactionsEngine().getExceptMess().get(i);
-            }
+        String errMsg = collection.saveChanges();
+        if (errMsg.length() > 0) {
             DialogManager.showErrorDialog(rBundle.getString("message.error"), errMsg);
         } else {
             DialogManager.showInfoDialog(rBundle.getString("message.information"), rBundle.getString("message.save"));
-            collection.getTransactionsEngine().getExceptMess().clear();
         }
 
     }
 
     protected void initListeners() {
 
-        collection.getList().addListener(new ListChangeListener<E>() {
+        collection.getViewList().addListener(new ListChangeListener<E>() {
             @Override
             public void onChanged(Change<? extends E> c) {
                 updateCountLabel();
@@ -138,13 +133,13 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
 
 
     public void change(ActionEvent actionEvent) {
-        E elem = (E) getTable().getSelectionModel().getSelectedItem();
-        if (!elemIsSelected(elem)) {
+        E oldElem = (E) getTable().getSelectionModel().getSelectedItem();
+        if (!isElemSelected(oldElem) || !isElemSaved(oldElem)) {
             return;
         }
-        edController.setElem(elem);
+        edController.setElem(oldElem);
         showDialog();
-        if (edController.isSaveAction() && collection.update((E) edController.getElem()) == null) {
+        if (edController.isSaveAction() && collection.update((E) edController.getElem(), oldElem) == null) {
             DialogManager.showErrorDialog(rBundle.getString("message.error"), rBundle.getString("message.invalid.data"));
             showDialog();
         }
@@ -152,7 +147,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
 
     public void delete(ActionEvent actionEvent) {
         E elem = (E) getTable().getSelectionModel().getSelectedItem();
-        if (!elemIsSelected(elem)) {
+        if (!isElemSelected(elem)) {
             return;
         }
         if (collection.delete(elem) == null) {
@@ -162,28 +157,29 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
     }
 
     public void find(ActionEvent actionEvent) {
-        if (isFind){
+        if (isFind) {
             backupList.clear();
-            backupList.addAll(collection.getList());
+            backupList.addAll(collection.getViewList());
             isFind = false;
         }
 
-        collection.getList().clear();
+        collection.getViewList().clear();
 
         if (!txtFind.getText().isEmpty()) {
             for (E elem : backupList) {
                 if (isElemFound(elem)) {
-                    collection.getList().add(elem);
+                    collection.getViewList().add(elem);
                 }
             }
         } else {
-            collection.getList().addAll(backupList);
+            collection.getViewList().addAll(backupList);
             isFind = true;
         }
     }
+
     public void select(ActionEvent actionEvent) {
         selectedElem = (E) getTable().getSelectionModel().getSelectedItem();
-        if(selectedElem == null){
+        if (selectedElem == null) {
             DialogManager.showInfoDialog(rBundle.getString("message.error"), rBundle.getString("message.select.element"));
             return;
         }
@@ -202,7 +198,12 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
         }
     }
 
-    private void editElem(E elem){
+    protected void copyAbst(E elem) {
+        elem.setId(null);
+        addAbst(elem);
+    }
+
+    private void editElem(E elem) {
         edController.setElem(elem);
         showDialog();
         return;
@@ -217,15 +218,23 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
     }
 
     private void fillData() {
-        collection.fillData();
+//        collection.readAllData();
 
-        getTable().setItems(collection.getList());
+        getTable().setItems(collection.getViewList());
     }
 
 
-    private boolean elemIsSelected(E elem) {
-        if(elem == null){
+    private boolean isElemSelected(E elem) {
+        if (elem == null) {
             DialogManager.showInfoDialog(rBundle.getString("message.error"), rBundle.getString("message.select.element"));
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isElemSaved(E elem) {
+        if (elem.getId() == null) {
+            DialogManager.showInfoDialog(rBundle.getString("message.error"), rBundle.getString("message.saved.element"));
             return false;
         }
         return true;
@@ -235,7 +244,8 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
         if (editWindow.getStage().getOwner() == null) {
             editWindow.initOwner(getItsStage());
             editWindow.getScene().getRoot().sceneProperty().addListener(new InvalidationListener() {
-                @Override public void invalidated(Observable o) {
+                @Override
+                public void invalidated(Observable o) {
                     if (editWindow.getScene().getRoot().getScene() != null) {
                         editWindow.getScene().getRoot().getScene().getStylesheets().add(AbstractController.class.getResource("/styles/validation.css").toExternalForm());
                     }
@@ -247,7 +257,7 @@ abstract public class AbstractTableController <E extends Entity> extends Abstrac
     }
 
     private void updateCountLabel() {
-        labelCount.setText(rBundle.getString("label.records") + ": " + collection.getList().size());
+        labelCount.setText(rBundle.getString("label.records") + ": " + collection.getViewList().size());
     }
 
 }

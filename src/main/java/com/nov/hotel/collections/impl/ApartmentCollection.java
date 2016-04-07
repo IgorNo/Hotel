@@ -5,17 +5,20 @@ import com.nov.hotel.dao.impl.ApartmentDaoImpl;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Apartment;
 import com.nov.hotel.main.Start;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ApartmentCollection extends ObservableCollectionAbstract<Apartment> {
+import static com.nov.hotel.main.Start.APPLICATION_CONTEXT;
 
-    private ApartmentDaoImpl dao = (ApartmentDaoImpl) Start.APPLICATION_CONTEXT.getBean("apartmentDao");
+public class ApartmentCollection extends ObservableCollectionAbstract<Long, Apartment> {
 
-    private static ObservableCollectionAbstract uniqueObsColl;
+    private ApartmentDaoImpl dao = (ApartmentDaoImpl) APPLICATION_CONTEXT.getBean("apartmentDao");
+
+    private static ApartmentCollection uniqueObsColl;
 
     private ApartmentCollection() {
     }
 
-    public static ObservableCollectionAbstract getInstance() {
+    public static ApartmentCollection getInstance() {
         if (uniqueObsColl == null){
             uniqueObsColl = new ApartmentCollection();
         }

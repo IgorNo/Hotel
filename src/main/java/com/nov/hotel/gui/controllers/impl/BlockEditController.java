@@ -5,7 +5,7 @@ import com.nov.hotel.entities.Block;
 import com.nov.hotel.gui.controllers.abstr.AbstractEditDialogController;
 import javafx.scene.control.TextField;
 
-public class BlockEditController extends AbstractEditDialogController<Block> {
+public class BlockEditController extends AbstractEditDialogController<Integer,Block> {
 
     public TextField txtName;
 

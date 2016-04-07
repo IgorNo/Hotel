@@ -17,7 +17,7 @@ abstract class GetServiceAbstract<E>  {
 //    @Override
 //    public E getById(int id) {
 //        try {
-//            return getDao().getOne(id);
+//            return getDao().getSingle(id);
 //        } catch (DataAccessException e) {
 //            return null;
 //        }
@@ -26,7 +26,7 @@ abstract class GetServiceAbstract<E>  {
 //    @Override
 //    public List<E> getByName(String name) {
 //        try {
-//            return getDao().getPart(name);
+//            return getDao().getSelected(name);
 //        } catch (DataAccessException e) {
 //            return null;
 //        }

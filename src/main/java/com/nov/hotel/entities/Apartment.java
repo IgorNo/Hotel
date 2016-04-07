@@ -3,9 +3,9 @@ package com.nov.hotel.entities;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.*;
 
-public class Apartment implements Entity<Apartment> {
+public class Apartment implements Entity<Long, Apartment>, Comparable<Apartment>{
 
-    private long id;
+    private Long id;
     private StringProperty roomNumber = new SimpleStringProperty();
     private IntegerProperty levelNumber = new SimpleIntegerProperty();
     private ObjectProperty<Block> block = new SimpleObjectProperty<>();
@@ -39,11 +39,11 @@ public class Apartment implements Entity<Apartment> {
         return getRoomNumber() != null && !getRoomNumber().trim().isEmpty() && getBlock() != null && getType() != null;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -110,5 +110,12 @@ public class Apartment implements Entity<Apartment> {
     @Override
     public String toString() {
         return getRoomNumber();
+    }
+
+    @Override
+    public int compareTo(Apartment o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
     }
 }

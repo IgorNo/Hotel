@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.DocumType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -65,22 +64,22 @@ public class TestDocumTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (DocumType x: testData) {
-            List<DocumType> type = dao.getPart(x.getName());
+            List<DocumType> type = dao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (DocumType x:result ) {
-            DocumType type = dao.getOne(x.getId());
+            DocumType type = dao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -103,7 +102,7 @@ public class TestDocumTypeDaoImpl {
         apartType.setId(result.get(0).getId());
         apartType.setName("Паспорт");
         dao.update(apartType);
-        DocumType type = dao.getOne(apartType.getId());
+        DocumType type = dao.getSingle(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

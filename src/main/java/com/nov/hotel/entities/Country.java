@@ -4,7 +4,7 @@ import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Country implements Entity<Country> {
+public class Country implements Entity<String, Country>, Comparable<Country> {
 
     private StringProperty id = new SimpleStringProperty();
     private StringProperty name = new SimpleStringProperty();
@@ -54,5 +54,11 @@ public class Country implements Entity<Country> {
 
     public void setName(String name) {
         this.name.set(name);
+    }
+
+    @Override
+    public int compareTo(Country o) {
+        return getId().compareTo(o.getId());
+
     }
 }

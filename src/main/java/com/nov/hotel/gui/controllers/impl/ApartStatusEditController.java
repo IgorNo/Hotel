@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 
-public class ApartStatusEditController extends AbstractEditDialogController<ApartStatus> {
+public class ApartStatusEditController extends AbstractEditDialogController<Integer,ApartStatus> {
 
     public TextField txtName;
     public ColorPicker colorPicker;

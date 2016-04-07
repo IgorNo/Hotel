@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Country;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -74,22 +73,22 @@ public class TestCountryDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Country x: testData) {
-            List<Country> type = dao.getPart(x.getName());
+            List<Country> type = dao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Country x:result ) {
-            Country type = dao.getOne(x.getId());
+            Country type = dao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -108,7 +107,7 @@ public class TestCountryDaoImpl {
         apartType.setId("US");
         apartType.setName("США");
         dao.update(apartType);
-        Country type = dao.getOne(apartType.getId());
+        Country type = dao.getSingle(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());
@@ -124,5 +123,5 @@ public class TestCountryDaoImpl {
         dao.delete(result.get(0));
         assertEquals(testData.size()-1, dao.count());
     }
-    
+
 }

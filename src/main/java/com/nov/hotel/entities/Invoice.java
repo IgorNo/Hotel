@@ -7,7 +7,7 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Invoice implements Entity<Invoice> {
+public class Invoice implements Entity<Long, Invoice>, Comparable<Invoice> {
 
     private long id;
     private ObjectProperty<LocalDateTime> createTime = new SimpleObjectProperty<>();
@@ -26,5 +26,21 @@ public class Invoice implements Entity<Invoice> {
     @Override
     public boolean validate() {
         return false;
+    }
+
+    @Override
+    public Long getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(Long id) {
+
+    }
+
+
+    @Override
+    public int compareTo(Invoice o) {
+        return 0;
     }
 }

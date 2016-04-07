@@ -3,9 +3,9 @@ package com.nov.hotel.entities;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.*;
 
-public class ApartType implements Entity<ApartType> {
+public class ApartType implements Entity<Integer, ApartType>, Comparable<ApartType> {
 
-    private int id;
+    private Integer id;
     private StringProperty name = new SimpleStringProperty();
     private IntegerProperty size = new SimpleIntegerProperty();
     private FloatProperty priceDay = new SimpleFloatProperty();
@@ -43,11 +43,11 @@ public class ApartType implements Entity<ApartType> {
         return getName();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -135,4 +135,11 @@ public class ApartType implements Entity<ApartType> {
         this.description.set(description);
     }
 
+    @Override
+    public int compareTo(ApartType o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
+    }
 }

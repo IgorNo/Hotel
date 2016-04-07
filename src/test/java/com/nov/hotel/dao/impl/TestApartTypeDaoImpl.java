@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -75,7 +74,7 @@ public class TestApartTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartType x: testData) {
-            List<ApartType> type = apartTypeDao.getPart(x.getName());
+            List<ApartType> type = apartTypeDao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getSize(),result.get(result.size()-1).getSize());
@@ -85,14 +84,14 @@ public class TestApartTypeDaoImpl {
             assertEquals(x.getnSlots(),result.get(result.size()-1).getnSlots());
             assertEquals(x.getDescription(),result.get(result.size()-1).getDescription());
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ApartType x:result ) {
-            ApartType type = apartTypeDao.getOne(x.getId());
+            ApartType type = apartTypeDao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getSize(),type.getSize());
@@ -102,7 +101,7 @@ public class TestApartTypeDaoImpl {
             assertEquals(x.getnSlots(),type.getnSlots());
             assertEquals(x.getDescription(),type.getDescription());
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -138,7 +137,7 @@ public class TestApartTypeDaoImpl {
         testType.setnSlots(1);
         testType.setDescription("Description luxury");
         apartTypeDao.update(testType);
-        ApartType type = apartTypeDao.getOne(testType.getId());
+        ApartType type = apartTypeDao.getSingle(testType.getId());
         assertEquals(testType.getId(),type.getId());
         assertEquals(testType.getName(),type.getName());
         assertEquals(testType.getSize(),type.getSize());

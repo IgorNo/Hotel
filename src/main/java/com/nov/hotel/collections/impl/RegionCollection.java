@@ -1,20 +1,21 @@
 package com.nov.hotel.collections.impl;
 
 import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
+import com.nov.hotel.dao.impl.RegionDaoImpl;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Region;
 import com.nov.hotel.main.Start;
 
-public class RegionCollection extends ObservableCollectionAbstract<Region> {
+public class RegionCollection extends ObservableCollectionAbstract<Integer, Region> {
 
-    private CrudDao<Region> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("regionDao");
+    private RegionDaoImpl dao = (RegionDaoImpl) Start.APPLICATION_CONTEXT.getBean("regionDao");
 
-    private static ObservableCollectionAbstract uniqueObsColl;
+    private static RegionCollection uniqueObsColl;
 
     private RegionCollection() {
     }
 
-    public static ObservableCollectionAbstract getInstance() {
+    public static RegionCollection getInstance() {
         if (uniqueObsColl == null){
             uniqueObsColl = new RegionCollection();
         }

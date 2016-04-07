@@ -6,9 +6,9 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class ClientType implements Entity<ClientType> {
+public class ClientType implements Entity<Integer, ClientType>, Comparable<ClientType> {
 
-    private int id;
+    private Integer id;
     private StringProperty name = new SimpleStringProperty();
     private FloatProperty discount = new SimpleFloatProperty();
     private StringProperty color = new SimpleStringProperty();
@@ -39,11 +39,11 @@ public class ClientType implements Entity<ClientType> {
         return getName();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -81,5 +81,13 @@ public class ClientType implements Entity<ClientType> {
 
     public void setColor(String color) {
         this.color.set(color);
+    }
+
+    @Override
+    public int compareTo(ClientType o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
     }
 }

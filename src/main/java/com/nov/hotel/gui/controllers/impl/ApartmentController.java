@@ -137,6 +137,6 @@ public class ApartmentController extends AbstractTableController<Apartment> {
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new Apartment((Apartment) getTable().getSelectionModel().getSelectedItem()));
+        copyAbst(new Apartment((Apartment) getTable().getSelectionModel().getSelectedItem()));
     }
 }

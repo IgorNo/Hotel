@@ -56,7 +56,7 @@ public class ApartTypeController extends AbstractTableController<ApartType> {
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new ApartType((ApartType) getTable().getSelectionModel().getSelectedItem()));
+        copyAbst(new ApartType((ApartType) getTable().getSelectionModel().getSelectedItem()));
     }
 
 }

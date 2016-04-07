@@ -3,7 +3,7 @@ package com.nov.hotel.entities;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ApartStatus implements Entity<ApartStatus>{
+public class ApartStatus implements Entity<Integer, ApartStatus>, Comparable<ApartStatus>{
     private int id;
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty color = new SimpleStringProperty();
@@ -21,11 +21,11 @@ public class ApartStatus implements Entity<ApartStatus>{
         setColor(apartType.getColor());
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,6 +56,11 @@ public class ApartStatus implements Entity<ApartStatus>{
     @Override
     public boolean validate() {
         return getName() != null && !getName().trim().isEmpty() && getColor() != null && !getColor().trim().isEmpty() && getColor().length() == 10;
+    }
+
+    @Override
+    public int compareTo(ApartStatus o) {
+        return 0;
     }
 
 }

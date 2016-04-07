@@ -4,9 +4,9 @@ import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class DocumType implements Entity<DocumType> {
+public class DocumType implements Entity<Integer, DocumType>, Comparable<DocumType> {
 
-    private int id;
+    private Integer id;
     private StringProperty name = new SimpleStringProperty();
 
     public DocumType() {
@@ -40,16 +40,24 @@ public class DocumType implements Entity<DocumType> {
         this.name.set(name);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public int compareTo(DocumType o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
     }
 }

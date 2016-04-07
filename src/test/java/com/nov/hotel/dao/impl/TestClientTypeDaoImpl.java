@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ClientType;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -67,26 +66,26 @@ public class TestClientTypeDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ClientType x: testData) {
-            List<ClientType> type = dao.getPart(x.getName());
+            List<ClientType> type = dao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getColor(),result.get(result.size()-1).getColor());
             assertEquals(x.getDiscount(),result.get(result.size()-1).getDiscount(),0.001f);
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ClientType x:result ) {
-            ClientType type = dao.getOne(x.getId());
+            ClientType type = dao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
             assertEquals(x.getDiscount(),type.getDiscount(),0.001f);
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -113,7 +112,7 @@ public class TestClientTypeDaoImpl {
         elem.setColor("0xccffffff");
         elem.setDiscount(1.0f);
         dao.update(elem);
-        ClientType type = dao.getOne(elem.getId());
+        ClientType type = dao.getSingle(elem.getId());
         assertEquals(elem.getId(),type.getId());
         assertEquals(elem.getName(),type.getName());
         assertEquals(elem.getColor(),type.getColor());

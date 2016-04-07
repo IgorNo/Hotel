@@ -30,7 +30,7 @@ public class ClientController extends AbstractTableController<Client> {
     @Override
     protected void initData() {
         setEditWindow(ClientEditWindow.getInstance());
-        setCollection(ClientCollection.getInstance());
+      //  setCollection(ClientCollection.getInstance());
 
         columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
         columnRegDate.setCellValueFactory(new PropertyValueFactory<>("regDate"));
@@ -74,6 +74,6 @@ public class ClientController extends AbstractTableController<Client> {
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new Client((Client) getTable().getSelectionModel().getSelectedItem()));
+        copyAbst(new Client((Client) getTable().getSelectionModel().getSelectedItem()));
     }
 }

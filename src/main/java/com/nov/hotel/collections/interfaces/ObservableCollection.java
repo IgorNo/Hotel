@@ -1,23 +1,36 @@
 package com.nov.hotel.collections.interfaces;
 
-import com.nov.hotel.services.transactions.utils.TransactionsEngine;
 import javafx.collections.ObservableList;
 
-public interface ObservableCollection<E> {
+import java.util.Map;
+
+public interface ObservableCollection<V> {
     // add records
-    ObservableCollection add(E element);
+    ObservableCollection add(V element);
 
     // update records
-    ObservableCollection update(E element);
+    ObservableCollection update(V newElem, V oldElem);
 
     // delete records
-    ObservableCollection delete(E element);
+    ObservableCollection delete(V element);
 
-    ObservableList<E> getList();
+//    ObservableCollection clear();
 
-    TransactionsEngine getTransactionsEngine();
+    ObservableList<V> getViewList();
 
-    ObservableCollection fillData();
+//    <K> Map<K, V> getRepository();
 
-    <K> ObservableCollection fillData(K key);
+    ObservableCollection readAllData();
+
+    <S> ObservableCollection readSelectedData(S sample);
+
+    String saveChanges();
+
+    void cancelChanges();
+
+    boolean isChanged();
+
+    // return value from repository with same Id
+    V putValue(V value);
+
 }

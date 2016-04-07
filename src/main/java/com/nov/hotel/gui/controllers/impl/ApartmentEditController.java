@@ -17,7 +17,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class ApartmentEditController extends AbstractEditDialogController<Apartment> {
+public class ApartmentEditController extends AbstractEditDialogController<Long,Apartment> {
 
     public ComboBox comboBlock;
     public ComboBox comboType;
@@ -25,19 +25,19 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
     public TextField txtLevel;
     public CheckBox chekbStatus;
 
-    ObservableCollection<Block> blocks = BlockCollection.getInstance().fillData();
-    ObservableCollection<ApartType> types = ApartTypeCollection.getInstance().fillData();
+    ObservableCollection<Block> blocks = BlockCollection.getInstance().readAllData();
+    ObservableCollection<ApartType> types = ApartTypeCollection.getInstance().readAllData();
 
     @Override
     protected void fillField() {
         txtRoomNumber.setText(getElem().getRoomNumber());
         txtLevel.setText(Integer.toString(getElem().getLevelNumber()));
         chekbStatus.setSelected(getElem().getStatus());
-//        blocks.fillData();
-        comboBlock.setItems(blocks.getList());
+//        blocks.readAllData();
+        comboBlock.setItems(blocks.getViewList());
         comboBlock.getSelectionModel().select(getElem().getBlock());
-//        types.fillData();
-        comboType.setItems(types.getList());
+//        types.readAllData();
+        comboType.setItems(types.getViewList());
         comboType.getSelectionModel().select(getElem().getType());
     }
 
@@ -66,7 +66,7 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         window.initOwner(ApartmentsWindow.getInstance().getStage());
         window.showAndWait();
         AbstractTableController<Block> controller = window.getLoader().getController();
-//        comboBlock.setItems(blocks.getList());
+//        comboBlock.setItems(blocks.getViewList());
         if (controller.getSelectedElem() != null) {
             comboBlock.getSelectionModel().select(controller.getSelectedElem());
         }
@@ -77,7 +77,7 @@ public class ApartmentEditController extends AbstractEditDialogController<Apartm
         window.initOwner(ApartmentsWindow.getInstance().getStage());
         window.showAndWait();
         AbstractTableController<ApartType> controller = window.getLoader().getController();
-//        comboType.setItems(types.getList());
+//        comboType.setItems(types.getViewList());
         if (controller.getSelectedElem() != null) {
             comboType.getSelectionModel().select(controller.getSelectedElem());
         }

@@ -28,7 +28,7 @@ public class ApartStatusController extends AbstractTableController<ApartStatus> 
     @Override
     protected void initData() {
         setEditWindow(ApartStatusEditWindow.getInstance());
-        setCollection(ApartStatusCollection.getInstance());
+     //   setCollection(ApartStatusCollection.getInstance());
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnColor.setCellValueFactory(new PropertyValueFactory<>("color"));
         // Custom rendering of the table cell.
@@ -71,6 +71,6 @@ public class ApartStatusController extends AbstractTableController<ApartStatus> 
     }
 
     public void copyAndEdit(ActionEvent actionEvent) {
-        addAbst(new ApartStatus((ApartStatus) getTable().getSelectionModel().getSelectedItem()));
+        copyAbst(new ApartStatus((ApartStatus) getTable().getSelectionModel().getSelectedItem()));
     }
 }

@@ -1,21 +1,23 @@
 package com.nov.hotel.collections.impl;
 
 import com.nov.hotel.collections.abstr.ObservableCollectionAbstract;
+import com.nov.hotel.dao.impl.BlockDaoImpl;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.entities.Block;
 import com.nov.hotel.main.Start;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class BlockCollection extends ObservableCollectionAbstract<Block> {
+public class BlockCollection extends ObservableCollectionAbstract<Integer, Block> {
 
-    private CrudDao<ApartType> dao = (CrudDao) Start.APPLICATION_CONTEXT.getBean("blockDao");
+    private BlockDaoImpl dao = (BlockDaoImpl) Start.APPLICATION_CONTEXT.getBean("blockDao");
 
-    private static ObservableCollectionAbstract uniqueObsColl;
+    private static BlockCollection uniqueObsColl;
 
     private BlockCollection() {
     }
 
-    public static ObservableCollectionAbstract getInstance() {
+    public static BlockCollection getInstance() {
         if (uniqueObsColl == null){
             uniqueObsColl = new BlockCollection();
         }

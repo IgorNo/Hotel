@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-abstract public class AbstractEditDialogController<E extends Entity>  extends AbstractController implements Initializable {
+abstract public class AbstractEditDialogController<K, E extends Entity<K,E>>  extends AbstractController implements Initializable {
 
     private E elem;
 
@@ -44,8 +44,8 @@ abstract public class AbstractEditDialogController<E extends Entity>  extends Ab
         if (elem == null){
             return;
         }
-        this.elem = elem;
-        backupElem = copyElem(elem);
+        this.elem = copyElem(elem);
+        backupElem = elem;
         fillField();
     }
 

@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartType;
 import com.nov.hotel.entities.Apartment;
 import com.nov.hotel.entities.Block;
@@ -161,23 +160,23 @@ public class TestApartmentDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Apartment x: testData) {
-            List<Apartment> apartments = dao.getPart(x.getRoomNumber());
+            List<Apartment> apartments = dao.getSelected(x.getRoomNumber());
             result.add(apartments.get(0));
             Apartment elem = result.get(result.size()-1);
             assertValues(x, elem);
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Apartment x:result ) {
-            Apartment elem = dao.getOne(x.getId());
+            Apartment elem = dao.getSingle(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -200,7 +199,7 @@ public class TestApartmentDaoImpl {
         testData.setBlock(block2);
         testData.setType(apartType2);
         dao.update(testData);
-        Apartment elem = dao.getOne(testData.getId());
+        Apartment elem = dao.getSingle(testData.getId());
         assertValues(testData, elem);
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ testData.toString());

@@ -1,7 +1,8 @@
 package com.nov.hotel.dao.impl;
 
+import com.nov.hotel.collections.impl.ClientTypeCollection;
+import com.nov.hotel.dao.abstr.CrudDaoAbstractInt;
 import com.nov.hotel.dao.interfaces.CrudDao;
-import com.nov.hotel.dao.interfaces.GetDao;
 import com.nov.hotel.entities.ClientType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,92 +18,26 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("clientTypeDao")
-public class ClientTypeDaoImpl implements CrudDao<ClientType>{
+public class ClientTypeDaoImpl extends CrudDaoAbstractInt<ClientType> {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    {
+          nameDataBase = "client_types";
 
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+          sqlInsert = "INSERT INTO client_types (cltyp_name_s, cltyp_color_s, cltyp_discount_n) VALUES (:name, :color, :discount)";
+          sqlUpdate = "UPDATE client_types SET cltyp_name_s= :name, cltyp_discount_n= :discount, cltyp_color_s= :color  WHERE cltyp_id_n";
+          sqlDelete = "DELETE FROM client_types WHERE cltyp_id_n";
+          sqlSelectSingle = "SELECT * FROM client_types WHERE cltyp_id_n";
+          sqlSelectSome = "SELECT * FROM client_types WHERE cltyp_name_s";
+          sqlSelectAll = "SELECT * FROM client_types";
     }
-
     @Override
-    public void insert(ClientType elem) {
-        String sql = "INSERT INTO client_types (cltyp_name_s, cltyp_color_s, cltyp_discount_n) VALUES (:name, :color, :discount)";
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-
+    protected MapSqlParameterSource getParams(ClientType elem) {
         MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id",elem.getId());
         params.addValue("name", elem.getName());
         params.addValue("color", elem.getColor());
         params.addValue("discount", elem.getDiscount());
-
-        jdbcTemplate.update(sql, params, keyHolder);
-
-        elem.setId(keyHolder.getKey().intValue());
-    }
-
-    @Override
-    // int id
-    public ClientType getOne(Object id) {
-        String sql = "SELECT * FROM client_types WHERE cltyp_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
-
-        return jdbcTemplate.queryForObject(sql, params, rowMapper);
-    }
-
-    @Override
-    // String name
-    public List<ClientType> getPart(Object name) {
-        String sql = "SELECT * FROM client_types WHERE cltyp_name_s = :name";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
-
-        return jdbcTemplate.query(sql, params, rowMapper);
-    }
-
-    @Override
-    public List<ClientType> getAll() {
-        String sql = "SELECT * FROM client_types";
-        return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    @Override
-    public void update(ClientType elem) {
-        String sql = "UPDATE client_types SET cltyp_name_s= :name, cltyp_discount_n= :discount, cltyp_color_s= :color  WHERE cltyp_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-        params.addValue("name", elem.getName());
-        params.addValue("color", elem.getColor());
-        params.addValue("discount", elem.getDiscount());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void delete(ClientType elem) {
-        String sql = "DELETE FROM client_types WHERE cltyp_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void deleteAll() {
-        String sql = "DELETE FROM client_types";
-        jdbcTemplate.update(sql, new MapSqlParameterSource());
-    }
-
-    @Override
-    public int count() {
-        String sql = "select count(*) from client_types";
-        return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
+        return params;
     }
 
     private static final RowMapper<ClientType> rowMapper = new RowMapper<ClientType>() {
@@ -113,8 +48,17 @@ public class ClientTypeDaoImpl implements CrudDao<ClientType>{
             elem.setDiscount(rs.getFloat("cltyp_discount_n"));
             elem.setName(rs.getString("cltyp_name_s"));
             elem.setColor(rs.getString("cltyp_color_s"));
-            return elem;
+            return ClientTypeCollection.getInstance().putValue(elem);
         }
     };
 
+    @Override
+    public  RowMapper<ClientType> getRowMapper() {
+        return rowMapper;
+    }
+
+    @Override
+    protected void checkId(ClientType elem) {
+
+    }
 }

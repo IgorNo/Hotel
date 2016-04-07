@@ -3,7 +3,7 @@ package com.nov.hotel.entities;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.*;
 
-public class Price implements Entity<Price> {
+public class Price implements Entity<Integer, Price>, Comparable<Price> {
 
     private int id;
     private StringProperty name = new SimpleStringProperty();
@@ -29,11 +29,11 @@ public class Price implements Entity<Price> {
         return false;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -59,5 +59,13 @@ public class Price implements Entity<Price> {
 
     public void setPrice(float price) {
         this.price.set(price);
+    }
+
+    @Override
+    public int compareTo(Price o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
     }
 }

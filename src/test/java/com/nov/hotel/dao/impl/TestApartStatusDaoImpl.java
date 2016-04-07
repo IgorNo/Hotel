@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartStatus;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -63,24 +62,24 @@ public class TestApartStatusDaoImpl {
     public void testGetByName(){
         result.clear();
         for (ApartStatus x: testData) {
-            List<ApartStatus> type = dao.getPart(x.getName());
+            List<ApartStatus> type = dao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
             assertEquals(x.getColor(),result.get(result.size()-1).getColor());
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (ApartStatus x:result ) {
-            ApartStatus type = dao.getOne(x.getId());
+            ApartStatus type = dao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -105,7 +104,7 @@ public class TestApartStatusDaoImpl {
         apartType.setName("Вільний номер");
         apartType.setColor("0xccffffff");
         dao.update(apartType);
-        ApartStatus type = dao.getOne(apartType.getId());
+        ApartStatus type = dao.getSingle(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         assertEquals(apartType.getColor(),type.getColor());

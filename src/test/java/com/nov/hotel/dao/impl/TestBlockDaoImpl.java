@@ -1,6 +1,5 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Block;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -59,22 +58,22 @@ public class TestBlockDaoImpl {
     public void testGetByName(){
         result.clear();
         for (Block x: testData) {
-            List<Block> type = dao.getPart(x.getName());
+            List<Block> type = dao.getSelected(x.getName());
             result.add(type.get(0));
             assertEquals(x.getName(),result.get(result.size()-1).getName());
         }
-        LOG.warn("\ngetPart Data:\n"+result.toString());
+        LOG.warn("\ngetSelected Data:\n"+result.toString());
     }
 
     @Test
     public void testGetById(){
         testGetByName();
         for (Block x:result ) {
-            Block type = dao.getOne(x.getId());
+            Block type = dao.getSingle(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetOne Data:\n"+result.toString());
+        LOG.warn("\ngetSingle Data:\n"+result.toString());
     }
 
     @Test
@@ -97,7 +96,7 @@ public class TestBlockDaoImpl {
         apartType.setId(result.get(0).getId());
         apartType.setName("Корпус люкс");
         dao.update(apartType);
-        Block type = dao.getOne(apartType.getId());
+        Block type = dao.getSingle(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

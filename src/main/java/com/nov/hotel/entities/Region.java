@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Region implements Entity<Region> {
+public class Region implements Entity<Integer, Region>, Comparable<Region> {
 
     private int id;
     private StringProperty name = new SimpleStringProperty();
@@ -49,11 +49,11 @@ public class Region implements Entity<Region> {
         this.name.set(name);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,5 +72,13 @@ public class Region implements Entity<Region> {
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public int compareTo(Region o) {
+        if (id - o.getId() < 0) return -1;
+        if (id - o.getId() > 0) return 1;
+        return 0;
+
     }
 }
