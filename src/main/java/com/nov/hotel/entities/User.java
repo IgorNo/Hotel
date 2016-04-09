@@ -27,7 +27,8 @@ public class User implements Entity<String, User>, Comparable<User> {
 
     @Override
     public boolean validate() {
-        return true;
+        return getId() != null && !getId().trim().isEmpty() && getName() != null && !getName().trim().isEmpty()
+            && getName() != null && !getPassword().trim().isEmpty();
     }
 
     @Override

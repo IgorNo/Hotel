@@ -1,1220 +1,358 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - hotel@localhost" uuid="af67be32-85e4-4c28-93bf-ae1ba84588cb">
-    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.7.11-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
-      <schema id="1" name="hotel"/>
-      <table id="2" parent="1" name="clients"/>
-      <table id="3" parent="1" name="services"/>
-      <table id="4" parent="1" name="apart_status"/>
-      <table id="5" parent="1" name="apart_types"/>
-      <table id="6" parent="1" name="apartments"/>
-      <table id="7" parent="1" name="blocks"/>
-      <table id="8" parent="1" name="prices"/>
-      <table id="9" parent="1" name="units"/>
-      <table id="10" parent="1" name="client_contacts"/>
-      <table id="11" parent="1" name="client_types"/>
-      <table id="12" parent="1" name="countries"/>
-      <table id="13" parent="1" name="doc_types"/>
-      <table id="14" parent="1" name="foreigners"/>
-      <table id="15" parent="1" name="offices"/>
-      <table id="16" parent="1" name="purposes"/>
-      <table id="17" parent="1" name="regions"/>
-      <table id="18" parent="1" name="settings"/>
-      <table id="19" parent="1" name="serv_types"/>
-      <table id="20" parent="1" name="alloc_clients"/>
-      <table id="21" parent="1" name="inv_room"/>
-      <table id="22" parent="1" name="inv_service"/>
-      <table id="23" parent="1" name="invoices"/>
-      <table id="24" parent="1" name="roles"/>
-      <table id="25" parent="1" name="user_role"/>
-      <table id="26" parent="1" name="users"/>
-      <view id="27" parent="1" name="apartments_view">
-        <comment>VIEW</comment>
-      </view>
-      <view id="28" parent="1" name="clients_view">
-        <comment>VIEW</comment>
-      </view>
-      <view id="29" parent="1" name="regions_view">
-        <comment>VIEW</comment>
-      </view>
-      <column id="30" parent="2" name="client_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="31" parent="2" name="client_regdate_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="32" parent="2" name="client_surname_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="33" parent="2" name="client_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="34" parent="2" name="client_patronymic_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="35" parent="2" name="client_sex_b">
-        <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
-      </column>
-      <column id="36" parent="2" name="client_birthday_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="37" parent="2" name="client_doctype_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="38" parent="2" name="client_docser_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(4)</data-type>
-      </column>
-      <column id="39" parent="2" name="client_docnum_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="40" parent="2" name="client_docdate_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="41" parent="2" name="client_docissue_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="42" parent="2" name="client_type_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="43" parent="2" name="client_citizen_fk">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="44" parent="2" name="client_region_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="45" parent="2" name="client_address_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="46" parent="2" name="client_discount_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(3,2)</data-type>
-        <default-expression>&apos;1.00&apos;</default-expression>
-      </column>
-      <index id="47" parent="2" name="client_types_idx">
-        <columns>client_type_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="48" parent="2" name="country_idx">
-        <columns>client_citizen_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="49" parent="2" name="doc_type_idx">
-        <columns>client_doctype_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="50" parent="2" name="region_idx">
-        <columns>client_region_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="51" parent="2" name="PRIMARY">
-        <columns>client_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="52" parent="2" name="citizen">
-        <columns>client_citizen_fk</columns>
-        <ref-key>~.countries.country_iso2_s_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="53" parent="2" name="client_types">
-        <columns>client_type_fk</columns>
-        <ref-key>~.client_types.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="54" parent="2" name="doc_type">
-        <columns>client_doctype_fk</columns>
-        <ref-key>~.doc_types.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="55" parent="2" name="region">
-        <columns>client_region_fk</columns>
-        <ref-key>~.regions.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="56" parent="3" name="service_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="57" parent="3" name="service_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="58" parent="3" name="service_price_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10,2)</data-type>
-      </column>
-      <column id="59" parent="3" name="service_type_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="60" parent="3" name="service_unit_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <index id="61" parent="3" name="service_type_fk_idx">
-        <columns>service_type_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="62" parent="3" name="service_unit_fk_idx">
-        <columns>service_unit_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="63" parent="3" name="PRIMARY">
-        <columns>service_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="64" parent="3" name="service_type_fk">
-        <columns>service_type_fk</columns>
-        <ref-key>~.serv_types.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="65" parent="3" name="service_unit_fk">
-        <columns>service_unit_fk</columns>
-        <ref-key>~.units.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="66" parent="4" name="app_stat_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="67" parent="4" name="app_stat_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <column id="68" parent="4" name="app_stat_color_s">
-        <mandatory>1</mandatory>
-        <data-type>char(10)</data-type>
-      </column>
-      <index id="69" parent="4" name="app_stat_name_s_UNIQUE">
-        <columns>app_stat_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="70" parent="4" name="app_stat_name_s_UNIQUE">
-        <columns>app_stat_name_s</columns>
-        <underlying-index>app_stat_name_s_UNIQUE</underlying-index>
-      </key>
-      <key id="71" parent="4" name="PRIMARY">
-        <columns>app_stat_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="72" parent="5" name="app_typ_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="73" parent="5" name="app_typ_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="74" parent="5" name="app_typ_sizing_n">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="75" parent="5" name="app_typ_price1_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(12,2) unsigned</data-type>
-      </column>
-      <column id="76" parent="5" name="app_typ_price2_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(12,2) unsigned</data-type>
-      </column>
-      <column id="77" parent="5" name="app_typ_slot_n">
-        <mandatory>1</mandatory>
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="78" parent="5" name="app_typ_price3_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(12,2)</data-type>
-      </column>
-      <column id="79" parent="5" name="app_typ_description_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(400)</data-type>
-      </column>
-      <index id="80" parent="5" name="app_typ_name_s_UNIQUE">
-        <columns>app_typ_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="81" parent="5" name="app_typ_name_s_UNIQUE">
-        <columns>app_typ_name_s</columns>
-        <underlying-index>app_typ_name_s_UNIQUE</underlying-index>
-      </key>
-      <key id="82" parent="5" name="PRIMARY">
-        <columns>app_typ_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="83" parent="6" name="apart_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="84" parent="6" name="apart_room_number_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="85" parent="6" name="apart_level_number_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;1&apos;</default-expression>
-      </column>
-      <column id="86" parent="6" name="apart_block_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="87" parent="6" name="apart_status_b">
-        <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="88" parent="6" name="apart_type_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <index id="89" parent="6" name="block_fk_idx">
-        <columns>apart_block_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="90" parent="6" name="room_type_idx">
-        <columns>apart_type_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="91" parent="6" name="PRIMARY">
-        <columns>apart_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="92" parent="6" name="block_fk">
-        <columns>apart_block_fk</columns>
-        <ref-key>~.blocks.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="93" parent="6" name="room_type">
-        <columns>apart_type_fk</columns>
-        <ref-key>~.apart_types.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="94" parent="7" name="block_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="95" parent="7" name="block_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="96" parent="7" name="block_nlevel_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;1&apos;</default-expression>
-      </column>
-      <column id="97" parent="7" name="block_description_s">
-        <data-type>varchar(400)</data-type>
-      </column>
-      <key id="98" parent="7" name="PRIMARY">
-        <columns>block_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="99" parent="8" name="price_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="100" parent="8" name="price_name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="101" parent="8" name="price_value">
-        <mandatory>1</mandatory>
-        <data-type>decimal(3,2)</data-type>
-      </column>
-      <index id="102" parent="8" name="price_name_UNIQUE">
-        <columns>price_name</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="103" parent="8" name="price_name_UNIQUE">
-        <columns>price_name</columns>
-        <underlying-index>price_name_UNIQUE</underlying-index>
-      </key>
-      <key id="104" parent="8" name="PRIMARY">
-        <columns>price_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="105" parent="9" name="unit_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="106" parent="9" name="unit_name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(15)</data-type>
-      </column>
-      <index id="107" parent="9" name="unit_name_UNIQUE">
-        <columns>unit_name</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="108" parent="9" name="PRIMARY">
-        <columns>unit_id</columns>
-        <primary>1</primary>
-      </key>
-      <key id="109" parent="9" name="unit_name_UNIQUE">
-        <columns>unit_name</columns>
-        <underlying-index>unit_name_UNIQUE</underlying-index>
-      </key>
-      <column id="110" parent="10" name="contact_inn_s">
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="111" parent="10" name="contact_birthdayplace_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="112" parent="10" name="contact_phone_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="113" parent="10" name="contact_email_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="114" parent="10" name="contact_client_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="115" parent="10" name="contact_purpose_fk">
-        <data-type>int(11)</data-type>
-      </column>
-      <index id="116" parent="10" name="contact_client_fk_UNIQUE">
-        <columns>contact_client_fk</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="117" parent="10" name="contact_purpose_fk_idx">
-        <columns>contact_purpose_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="118" parent="10" name="contact_client_fk_UNIQUE">
-        <columns>contact_client_fk</columns>
-        <underlying-index>contact_client_fk_UNIQUE</underlying-index>
-      </key>
-      <key id="119" parent="10" name="PRIMARY">
-        <columns>contact_client_fk</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="120" parent="10" name="client">
-        <columns>contact_client_fk</columns>
-        <ref-key>~.clients.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="121" parent="10" name="contact_purpose_fk">
-        <columns>contact_purpose_fk</columns>
-        <ref-key>~.purposes.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="122" parent="11" name="cltyp_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="123" parent="11" name="cltyp_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="124" parent="11" name="cltyp_discount_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(3,2)</data-type>
-        <default-expression>&apos;1.00&apos;</default-expression>
-      </column>
-      <column id="125" parent="11" name="cltyp_color_s">
-        <data-type>char(10)</data-type>
-      </column>
-      <index id="126" parent="11" name="cltyp_name_s_UNIQUE">
-        <columns>cltyp_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="127" parent="11" name="cltyp_name_s_UNIQUE">
-        <columns>cltyp_name_s</columns>
-        <underlying-index>cltyp_name_s_UNIQUE</underlying-index>
-      </key>
-      <key id="128" parent="11" name="PRIMARY">
-        <columns>cltyp_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="129" parent="12" name="country_id_iso_s">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="130" parent="12" name="country_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <index id="131" parent="12" name="country_iso2_s_UNIQUE">
-        <columns>country_id_iso_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="132" parent="12" name="country_iso2_s_UNIQUE">
-        <columns>country_id_iso_s</columns>
-        <underlying-index>country_iso2_s_UNIQUE</underlying-index>
-      </key>
-      <key id="133" parent="12" name="PRIMARY">
-        <columns>country_id_iso_s</columns>
-        <primary>1</primary>
-      </key>
-      <column id="134" parent="13" name="doc_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="135" parent="13" name="doc_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <key id="136" parent="13" name="PRIMARY">
-        <columns>doc_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="137" parent="14" name="foreig_client_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="138" parent="14" name="foreign_visa_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <index id="139" parent="14" name="client_idx">
-        <columns>foreig_client_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <foreign-key id="140" parent="14" name="foreig_client">
-        <columns>foreig_client_fk</columns>
-        <ref-key>~.clients.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="141" parent="15" name="office_region_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="142" parent="15" name="office_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="143" parent="15" name="office_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="144" parent="15" name="office_fullname_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="145" parent="15" name="office_kod_s">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="146" parent="15" name="office_bankmfo_s">
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="147" parent="15" name="office_bankname_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="148" parent="15" name="office_account_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="149" parent="15" name="office_address_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="150" parent="15" name="office_phone_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="151" parent="15" name="office_fax_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="152" parent="15" name="office_email_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="153" parent="15" name="office_director_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="154" parent="15" name="office_accountant_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <index id="155" parent="15" name="office_region_fk_idx">
-        <columns>office_region_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="156" parent="15" name="PRIMARY">
-        <columns>office_id_n
-office_address_s</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="157" parent="15" name="office_region_fk">
-        <columns>office_region_fk</columns>
-        <ref-key>~.regions.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="158" parent="16" name="purpose_id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="159" parent="16" name="purpose_name">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <key id="160" parent="16" name="PRIMARY">
-        <columns>purpose_id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="161" parent="17" name="region_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="162" parent="17" name="region_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="163" parent="17" name="region_country_fk">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <index id="164" parent="17" name="country_idx">
-        <columns>region_country_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="165" parent="17" name="PRIMARY">
-        <columns>region_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="166" parent="17" name="country">
-        <columns>region_country_fk</columns>
-        <ref-key>~.countries.country_iso2_s_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="167" parent="18" name="setting_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="168" parent="18" name="setting_fullname_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="169" parent="18" name="setting_country_fk">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="170" parent="18" name="setting_adress_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="171" parent="18" name="setting_office_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="172" parent="18" name="setting_language_s">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <index id="173" parent="18" name="setting_adress_s_UNIQUE">
-        <columns>setting_adress_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="174" parent="18" name="setting_country_fk_idx">
-        <columns>setting_country_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="175" parent="18" name="setting_country_fk_UNIQUE">
-        <columns>setting_country_fk</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="176" parent="18" name="setting_fullname_s_UNIQUE">
-        <columns>setting_fullname_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="177" parent="18" name="setting_language_s_UNIQUE">
-        <columns>setting_language_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="178" parent="18" name="setting_name_s_UNIQUE">
-        <columns>setting_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <index id="179" parent="18" name="setting_office_fk_idx">
-        <columns>setting_office_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="180" parent="18" name="setting_office_fk_UNIQUE">
-        <columns>setting_office_fk</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="181" parent="18" name="setting_adress_s_UNIQUE">
-        <columns>setting_adress_s</columns>
-        <underlying-index>setting_adress_s_UNIQUE</underlying-index>
-      </key>
-      <key id="182" parent="18" name="setting_country_fk_UNIQUE">
-        <columns>setting_country_fk</columns>
-        <underlying-index>setting_country_fk_UNIQUE</underlying-index>
-      </key>
-      <key id="183" parent="18" name="setting_fullname_s_UNIQUE">
-        <columns>setting_fullname_s</columns>
-        <underlying-index>setting_fullname_s_UNIQUE</underlying-index>
-      </key>
-      <key id="184" parent="18" name="setting_language_s_UNIQUE">
-        <columns>setting_language_s</columns>
-        <underlying-index>setting_language_s_UNIQUE</underlying-index>
-      </key>
-      <key id="185" parent="18" name="setting_name_s_UNIQUE">
-        <columns>setting_name_s</columns>
-        <underlying-index>setting_name_s_UNIQUE</underlying-index>
-      </key>
-      <key id="186" parent="18" name="setting_office_fk_UNIQUE">
-        <columns>setting_office_fk</columns>
-        <underlying-index>setting_office_fk_UNIQUE</underlying-index>
-      </key>
-      <foreign-key id="187" parent="18" name="setting_country_fk">
-        <columns>setting_country_fk</columns>
-        <ref-key>~.countries.country_iso2_s_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="188" parent="18" name="setting_office_fk">
-        <columns>setting_office_fk</columns>
-        <ref-key>hotel.offices(office_id_n)</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="189" parent="19" name="stype_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="190" parent="19" name="stype_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <key id="191" parent="19" name="PRIMARY">
-        <columns>stype_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <column id="192" parent="20" name="alloc_inv_room_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="193" parent="20" name="alloc_client_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <index id="194" parent="20" name="acc_client_fk_idx">
-        <columns>alloc_client_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="195" parent="20" name="acc_inv_accom_fk_idx">
-        <columns>alloc_inv_room_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <foreign-key id="196" parent="20" name="acc_client_fk">
-        <columns>alloc_client_fk</columns>
-        <ref-key>~.clients.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="197" parent="20" name="acc_inv_accom_fk">
-        <columns>alloc_inv_room_fk</columns>
-        <ref-key>~.inv_room.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="198" parent="21" name="invd_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="199" parent="21" name="invd_invoice_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="200" parent="21" name="invd_apart_id_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="201" parent="21" name="invd_start_date_d">
-        <mandatory>1</mandatory>
-        <data-type>datetime</data-type>
-      </column>
-      <column id="202" parent="21" name="invd_end_date_d">
-        <mandatory>1</mandatory>
-        <data-type>datetime</data-type>
-      </column>
-      <column id="203" parent="21" name="invd_dt_arriv_dt">
-        <mandatory>1</mandatory>
-        <data-type>datetime</data-type>
-      </column>
-      <column id="204" parent="21" name="invd_price_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="205" parent="21" name="invd_master_bads_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="206" parent="21" name="invd_extra_bads_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="207" parent="21" name="invd_apart_status_fk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <index id="208" parent="21" name="appartments_idx">
-        <columns>invd_apart_id_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="209" parent="21" name="invd_apart_status_fk_idx">
-        <columns>invd_apart_status_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="210" parent="21" name="invd_invoice_fk_idx">
-        <columns>invd_invoice_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="211" parent="21" name="invd_price_fk_idx">
-        <columns>invd_price_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="212" parent="21" name="PRIMARY">
-        <columns>invd_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="213" parent="21" name="appartments">
-        <columns>invd_apart_id_fk</columns>
-        <ref-key>~.apartments.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="214" parent="21" name="invd_apart_status_fk">
-        <columns>invd_apart_status_fk</columns>
-        <ref-key>~.apart_status.app_stat_name_s_UNIQUE</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="215" parent="21" name="invd_invoice_fk">
-        <columns>invd_invoice_fk</columns>
-        <ref-key>~.invoices.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="216" parent="21" name="invd_price_fk">
-        <columns>invd_price_fk</columns>
-        <ref-key>~.prices.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="217" parent="22" name="invs_invoice_id_fk">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="218" parent="22" name="invs_serv_id_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="219" parent="22" name="invs_quantity_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10,2)</data-type>
-      </column>
-      <column id="220" parent="22" name="invs_det_price_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(10,2)</data-type>
-      </column>
-      <index id="221" parent="22" name="invs_invoice_id_fk_idx">
-        <columns>invs_invoice_id_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="222" parent="22" name="service_id_idx">
-        <columns>invs_serv_id_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <foreign-key id="223" parent="22" name="invs_invoice_id_fk">
-        <columns>invs_invoice_id_fk</columns>
-        <ref-key>~.invoices.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="224" parent="22" name="service_id">
-        <columns>invs_serv_id_fk</columns>
-        <ref-key>~.services.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="225" parent="23" name="inv_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <sequence-identity>1</sequence-identity>
-      </column>
-      <column id="226" parent="23" name="inv_datetime_dt">
-        <mandatory>1</mandatory>
-        <data-type>datetime</data-type>
-      </column>
-      <column id="227" parent="23" name="inv_number_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="228" parent="23" name="inv_date_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="229" parent="23" name="inv_amount_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(14,2)</data-type>
-      </column>
-      <column id="230" parent="23" name="inv_client_fk">
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="231" parent="23" name="inv_office_fk">
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="232" parent="23" name="inv_user_fk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <index id="233" parent="23" name="inv_client_fk_idx">
-        <columns>inv_client_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="234" parent="23" name="inv_office_fk_idx">
-        <columns>inv_office_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="235" parent="23" name="inv_user_fk_idx">
-        <columns>inv_user_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="236" parent="23" name="PRIMARY">
-        <columns>inv_id_n</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="237" parent="23" name="inv_client_fk">
-        <columns>inv_client_fk</columns>
-        <ref-key>~.clients.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="238" parent="23" name="inv_office_fk">
-        <columns>inv_office_fk</columns>
-        <ref-key>hotel.offices(office_id_n)</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="239" parent="23" name="inv_user_fk">
-        <columns>inv_user_fk</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="240" parent="24" name="role_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="241" parent="24" name="role_name_s_UNIQUE">
-        <columns>role_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="242" parent="24" name="PRIMARY">
-        <columns>role_name_s</columns>
-        <primary>1</primary>
-      </key>
-      <key id="243" parent="24" name="role_name_s_UNIQUE">
-        <columns>role_name_s</columns>
-        <underlying-index>role_name_s_UNIQUE</underlying-index>
-      </key>
-      <column id="244" parent="25" name="ur_user_name_fk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <column id="245" parent="25" name="ur_role_name_fk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <index id="246" parent="25" name="ur_role_name_fk_idx">
-        <columns>ur_role_name_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="247" parent="25" name="ur_user_name_fk_idx">
-        <columns>ur_user_name_fk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <foreign-key id="248" parent="25" name="ur_role_name_fk">
-        <columns>ur_role_name_fk</columns>
-        <ref-key>~.roles.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="249" parent="25" name="ur_user_name_fk">
-        <columns>ur_user_name_fk</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="250" parent="26" name="user_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <column id="251" parent="26" name="user_full_name_fk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="252" parent="26" name="user_password_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(25)</data-type>
-      </column>
-      <index id="253" parent="26" name="user_nickname_s_UNIQUE">
-        <columns>user_name_s</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="254" parent="26" name="PRIMARY">
-        <columns>user_name_s</columns>
-        <primary>1</primary>
-      </key>
-      <key id="255" parent="26" name="user_nickname_s_UNIQUE">
-        <columns>user_name_s</columns>
-        <underlying-index>user_nickname_s_UNIQUE</underlying-index>
-      </key>
-      <column id="256" parent="27" name="apart_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="257" parent="27" name="apart_room_number_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="258" parent="27" name="apart_level_number_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;1&apos;</default-expression>
-      </column>
-      <column id="259" parent="27" name="apart_block_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="260" parent="27" name="apart_status_b">
-        <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="261" parent="27" name="apart_type_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="262" parent="27" name="block_id_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="263" parent="27" name="block_name_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="264" parent="27" name="block_nlevel_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;1&apos;</default-expression>
-      </column>
-      <column id="265" parent="27" name="block_description_s">
-        <data-type>varchar(400)</data-type>
-      </column>
-      <column id="266" parent="27" name="app_typ_id_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="267" parent="27" name="app_typ_name_s">
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="268" parent="27" name="app_typ_sizing_n">
-        <data-type>int(10) unsigned</data-type>
-      </column>
-      <column id="269" parent="27" name="app_typ_price1_n">
-        <data-type>decimal(12,2) unsigned</data-type>
-      </column>
-      <column id="270" parent="27" name="app_typ_price2_n">
-        <data-type>decimal(12,2) unsigned</data-type>
-      </column>
-      <column id="271" parent="27" name="app_typ_slot_n">
-        <data-type>int(10) unsigned</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="272" parent="27" name="app_typ_price3_n">
-        <data-type>decimal(12,2)</data-type>
-      </column>
-      <column id="273" parent="27" name="app_typ_description_s">
-        <data-type>varchar(400)</data-type>
-      </column>
-      <column id="274" parent="28" name="client_id_n">
-        <mandatory>1</mandatory>
-        <data-type>bigint(20)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="275" parent="28" name="client_regdate_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="276" parent="28" name="client_surname_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="277" parent="28" name="client_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="278" parent="28" name="client_patronymic_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="279" parent="28" name="client_sex_b">
-        <mandatory>1</mandatory>
-        <data-type>tinyint(1)</data-type>
-      </column>
-      <column id="280" parent="28" name="client_birthday_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="281" parent="28" name="client_doctype_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="282" parent="28" name="client_docser_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(4)</data-type>
-      </column>
-      <column id="283" parent="28" name="client_docnum_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="284" parent="28" name="client_docdate_d">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="285" parent="28" name="client_docissue_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="286" parent="28" name="client_type_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="287" parent="28" name="client_citizen_fk">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="288" parent="28" name="client_region_fk">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="289" parent="28" name="client_address_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="290" parent="28" name="client_discount_n">
-        <mandatory>1</mandatory>
-        <data-type>decimal(3,2)</data-type>
-        <default-expression>&apos;1.00&apos;</default-expression>
-      </column>
-      <column id="291" parent="28" name="cltyp_id_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="292" parent="28" name="cltyp_name_s">
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="293" parent="28" name="cltyp_discount_n">
-        <data-type>decimal(3,2)</data-type>
-        <default-expression>&apos;1.00&apos;</default-expression>
-      </column>
-      <column id="294" parent="28" name="cltyp_color_s">
-        <data-type>char(10)</data-type>
-      </column>
-      <column id="295" parent="28" name="doc_id_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="296" parent="28" name="doc_name_s">
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="297" parent="28" name="region_id_n">
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="298" parent="28" name="region_name_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="299" parent="28" name="citiz_country_id_iso_s">
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="300" parent="28" name="citiz_country_name_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="301" parent="28" name="addr_country_id_iso_s">
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="302" parent="28" name="addr_country_name_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="303" parent="29" name="region_id_n">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-        <default-expression>&apos;0&apos;</default-expression>
-      </column>
-      <column id="304" parent="29" name="region_name_s">
-        <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
-      </column>
-      <column id="305" parent="29" name="region_country_fk">
-        <mandatory>1</mandatory>
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="306" parent="29" name="country_id_iso_s">
-        <data-type>char(2)</data-type>
-      </column>
-      <column id="307" parent="29" name="country_name_s">
-        <data-type>varchar(45)</data-type>
-      </column>
-    </database-model>
+    <schema name="" catalog="hotel"/>
+    <table name="alloc_clients" schema="" catalog="hotel" type="TABLE">
+      <column name="alloc_inv_room_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="alloc_client_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <foreign-key name="acc_client_fk" columns="alloc_client_fk" ref-table="clients" ref-schema="" ref-catalog="hotel" ref-columns="client_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="acc_inv_accom_fk" columns="alloc_inv_room_fk" ref-table="inv_room" ref-schema="" ref-catalog="hotel" ref-columns="invd_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="acc_client_fk_idx" unique="false" columns="alloc_client_fk"/>
+      <index name="acc_inv_accom_fk_idx" unique="false" columns="alloc_inv_room_fk"/>
+    </table>
+    <table name="apart_status" schema="" catalog="hotel" type="TABLE">
+      <column name="app_stat_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app_stat_name_s" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="app_stat_color_s" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="app_stat_id_n"/>
+      <exported-key name="invd_apart_status_fk" table="inv_room" schema="" catalog="hotel" columns="invd_apart_status_fk"/>
+      <index name="app_stat_name_s_UNIQUE" unique="true" columns="app_stat_name_s"/>
+    </table>
+    <table name="apart_types" schema="" catalog="hotel" type="TABLE">
+      <column name="app_typ_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app_typ_name_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="app_typ_sizing_n" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="app_typ_price1_n" sqlType="DECIMAL UNSIGNED" precision="12" scale="2" nullable="false" jdbcType="3"/>
+      <column name="app_typ_price2_n" sqlType="DECIMAL UNSIGNED" precision="12" scale="2" nullable="false" jdbcType="3"/>
+      <column name="app_typ_slot_n" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="app_typ_price3_n" sqlType="DECIMAL" precision="12" scale="2" nullable="false" jdbcType="3"/>
+      <column name="app_typ_description_s" sqlType="VARCHAR" precision="400" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="app_typ_id_n"/>
+      <exported-key name="room_type" table="apartments" schema="" catalog="hotel" columns="apart_type_fk"/>
+      <index name="app_typ_name_s_UNIQUE" unique="true" columns="app_typ_name_s"/>
+    </table>
+    <table name="apartments" schema="" catalog="hotel" type="TABLE">
+      <column name="apart_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="apart_room_number_s" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apart_level_number_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="apart_block_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="apart_status_b" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="apart_type_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="apart_id_n"/>
+      <foreign-key name="block_fk" columns="apart_block_fk" ref-table="blocks" ref-schema="" ref-catalog="hotel" ref-columns="block_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="room_type" columns="apart_type_fk" ref-table="apart_types" ref-schema="" ref-catalog="hotel" ref-columns="app_typ_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="appartments" table="inv_room" schema="" catalog="hotel" columns="invd_apart_id_fk"/>
+      <index name="block_fk_idx" unique="false" columns="apart_block_fk"/>
+      <index name="room_type_idx" unique="false" columns="apart_type_fk"/>
+    </table>
+    <table name="apartments_view" schema="" catalog="hotel" type="VIEW">
+      <column name="apart_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="apart_room_number_s" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apart_level_number_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="apart_block_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="apart_status_b" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="apart_type_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="block_id_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="block_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="block_nlevel_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="block_description_s" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+      <column name="app_typ_id_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="app_typ_name_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="app_typ_sizing_n" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="app_typ_price1_n" sqlType="DECIMAL UNSIGNED" precision="12" scale="2" nullable="true" jdbcType="3"/>
+      <column name="app_typ_price2_n" sqlType="DECIMAL UNSIGNED" precision="12" scale="2" nullable="true" jdbcType="3"/>
+      <column name="app_typ_slot_n" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="app_typ_price3_n" sqlType="DECIMAL" precision="12" scale="2" nullable="true" jdbcType="3"/>
+      <column name="app_typ_description_s" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="blocks" schema="" catalog="hotel" type="TABLE">
+      <column name="block_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="block_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="block_nlevel_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="block_description_s" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="block_id_n"/>
+      <exported-key name="block_fk" table="apartments" schema="" catalog="hotel" columns="apart_block_fk"/>
+    </table>
+    <table name="client_contacts" schema="" catalog="hotel" type="TABLE">
+      <column name="contact_inn_s" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contact_birthdayplace_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contact_phone_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contact_email_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contact_client_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="contact_purpose_fk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="contact_client_fk"/>
+      <foreign-key name="client" columns="contact_client_fk" ref-table="clients" ref-schema="" ref-catalog="hotel" ref-columns="client_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="contact_purpose_fk" columns="contact_purpose_fk" ref-table="purposes" ref-schema="" ref-catalog="hotel" ref-columns="purpose_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="contact_client_fk_UNIQUE" unique="true" columns="contact_client_fk"/>
+      <index name="contact_purpose_fk_idx" unique="false" columns="contact_purpose_fk"/>
+    </table>
+    <table name="client_types" schema="" catalog="hotel" type="TABLE">
+      <column name="cltyp_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cltyp_name_s" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cltyp_discount_n" sqlType="DECIMAL" precision="3" scale="2" nullable="false" jdbcType="3" def="MS4wMA=="/>
+      <column name="cltyp_color_s" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="cltyp_id_n"/>
+      <exported-key name="client_types" table="clients" schema="" catalog="hotel" columns="client_type_fk"/>
+      <index name="cltyp_name_s_UNIQUE" unique="true" columns="cltyp_name_s"/>
+    </table>
+    <table name="clients" schema="" catalog="hotel" type="TABLE">
+      <column name="client_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="client_regdate_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_surname_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_patronymic_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="client_sex_b" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="client_birthday_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_doctype_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_docser_s" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_docnum_s" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_docdate_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_docissue_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_type_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_citizen_fk" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="client_region_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_address_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_discount_n" sqlType="DECIMAL" precision="3" scale="2" nullable="false" jdbcType="3" def="MS4wMA=="/>
+      <primary-key name="PRIMARY" columns="client_id_n"/>
+      <foreign-key name="citizen" columns="client_citizen_fk" ref-table="countries" ref-schema="" ref-catalog="hotel" ref-columns="country_id_iso_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="client_types" columns="client_type_fk" ref-table="client_types" ref-schema="" ref-catalog="hotel" ref-columns="cltyp_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="doc_type" columns="client_doctype_fk" ref-table="doc_types" ref-schema="" ref-catalog="hotel" ref-columns="doc_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="region" columns="client_region_fk" ref-table="regions" ref-schema="" ref-catalog="hotel" ref-columns="region_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="acc_client_fk" table="alloc_clients" schema="" catalog="hotel" columns="alloc_client_fk"/>
+      <exported-key name="client" table="client_contacts" schema="" catalog="hotel" columns="contact_client_fk"/>
+      <exported-key name="foreig_client" table="foreigners" schema="" catalog="hotel" columns="foreig_client_fk"/>
+      <exported-key name="inv_client_fk" table="invoices" schema="" catalog="hotel" columns="inv_client_fk"/>
+      <index name="client_types_idx" unique="false" columns="client_type_fk"/>
+      <index name="country_idx" unique="false" columns="client_citizen_fk"/>
+      <index name="doc_type_idx" unique="false" columns="client_doctype_fk"/>
+      <index name="region_idx" unique="false" columns="client_region_fk"/>
+    </table>
+    <table name="clients_view" schema="" catalog="hotel" type="VIEW">
+      <column name="client_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="client_regdate_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_surname_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_patronymic_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="client_sex_b" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="client_birthday_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_doctype_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_docser_s" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_docnum_s" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_docdate_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="client_docissue_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_type_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_citizen_fk" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="client_region_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="client_address_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="client_discount_n" sqlType="DECIMAL" precision="3" scale="2" nullable="false" jdbcType="3" def="MS4wMA=="/>
+      <column name="cltyp_id_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="cltyp_name_s" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cltyp_discount_n" sqlType="DECIMAL" precision="3" scale="2" nullable="true" jdbcType="3" def="MS4wMA=="/>
+      <column name="cltyp_color_s" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="doc_id_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="doc_name_s" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="region_id_n" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="region_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="citiz_country_id_iso_s" sqlType="CHAR" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="citiz_country_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="addr_country_id_iso_s" sqlType="CHAR" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="addr_country_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="countries" schema="" catalog="hotel" type="TABLE">
+      <column name="country_id_iso_s" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="country_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="country_id_iso_s"/>
+      <exported-key name="citizen" table="clients" schema="" catalog="hotel" columns="client_citizen_fk"/>
+      <exported-key name="country" table="regions" schema="" catalog="hotel" columns="region_country_fk"/>
+      <exported-key name="setting_country_fk" table="settings" schema="" catalog="hotel" columns="setting_country_fk"/>
+      <index name="country_iso2_s_UNIQUE" unique="true" columns="country_id_iso_s"/>
+    </table>
+    <table name="doc_types" schema="" catalog="hotel" type="TABLE">
+      <column name="doc_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="doc_name_s" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="doc_id_n"/>
+      <exported-key name="doc_type" table="clients" schema="" catalog="hotel" columns="client_doctype_fk"/>
+    </table>
+    <table name="foreigners" schema="" catalog="hotel" type="TABLE">
+      <column name="foreig_client_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="foreign_visa_s" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <foreign-key name="foreig_client" columns="foreig_client_fk" ref-table="clients" ref-schema="" ref-catalog="hotel" ref-columns="client_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="client_idx" unique="false" columns="foreig_client_fk"/>
+    </table>
+    <table name="inv_room" schema="" catalog="hotel" type="TABLE">
+      <column name="invd_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="invd_invoice_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="invd_apart_id_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="invd_start_date_d" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="invd_end_date_d" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="invd_dt_arriv_dt" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="invd_price_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="invd_master_bads_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="invd_extra_bads_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="invd_apart_status_fk" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="invd_id_n"/>
+      <foreign-key name="appartments" columns="invd_apart_id_fk" ref-table="apartments" ref-schema="" ref-catalog="hotel" ref-columns="apart_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="invd_apart_status_fk" columns="invd_apart_status_fk" ref-table="apart_status" ref-schema="" ref-catalog="hotel" ref-columns="app_stat_name_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="invd_invoice_fk" columns="invd_invoice_fk" ref-table="invoices" ref-schema="" ref-catalog="hotel" ref-columns="inv_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="invd_price_fk" columns="invd_price_fk" ref-table="prices" ref-schema="" ref-catalog="hotel" ref-columns="price_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="acc_inv_accom_fk" table="alloc_clients" schema="" catalog="hotel" columns="alloc_inv_room_fk"/>
+      <index name="appartments_idx" unique="false" columns="invd_apart_id_fk"/>
+      <index name="invd_apart_status_fk_idx" unique="false" columns="invd_apart_status_fk"/>
+      <index name="invd_invoice_fk_idx" unique="false" columns="invd_invoice_fk"/>
+      <index name="invd_price_fk_idx" unique="false" columns="invd_price_fk"/>
+    </table>
+    <table name="inv_service" schema="" catalog="hotel" type="TABLE">
+      <column name="invs_invoice_id_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="invs_serv_id_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="invs_quantity_n" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <column name="invs_det_price_n" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <foreign-key name="invs_invoice_id_fk" columns="invs_invoice_id_fk" ref-table="invoices" ref-schema="" ref-catalog="hotel" ref-columns="inv_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="service_id" columns="invs_serv_id_fk" ref-table="services" ref-schema="" ref-catalog="hotel" ref-columns="service_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="invs_invoice_id_fk_idx" unique="false" columns="invs_invoice_id_fk"/>
+      <index name="service_id_idx" unique="false" columns="invs_serv_id_fk"/>
+    </table>
+    <table name="invoices" schema="" catalog="hotel" type="TABLE">
+      <column name="inv_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="inv_datetime_dt" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="inv_number_s" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="inv_date_d" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="inv_amount_n" sqlType="DECIMAL" precision="14" scale="2" nullable="false" jdbcType="3"/>
+      <column name="inv_client_fk" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="inv_office_fk" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="inv_user_fk" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="inv_id_n"/>
+      <foreign-key name="inv_client_fk" columns="inv_client_fk" ref-table="clients" ref-schema="" ref-catalog="hotel" ref-columns="client_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="inv_office_fk" columns="inv_office_fk" ref-table="offices" ref-schema="" ref-catalog="hotel" ref-columns="office_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="inv_user_fk" columns="inv_user_fk" ref-table="users" ref-schema="" ref-catalog="hotel" ref-columns="user_name_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="invd_invoice_fk" table="inv_room" schema="" catalog="hotel" columns="invd_invoice_fk"/>
+      <exported-key name="invs_invoice_id_fk" table="inv_service" schema="" catalog="hotel" columns="invs_invoice_id_fk"/>
+      <index name="inv_client_fk_idx" unique="false" columns="inv_client_fk"/>
+      <index name="inv_office_fk_idx" unique="false" columns="inv_office_fk"/>
+      <index name="inv_user_fk_idx" unique="false" columns="inv_user_fk"/>
+    </table>
+    <table name="offices" schema="" catalog="hotel" type="TABLE">
+      <column name="office_region_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="office_id_n" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="office_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="office_fullname_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_kod_s" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_bankmfo_s" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_bankname_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_account_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_address_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="office_phone_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_fax_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_email_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="office_director_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="office_accountant_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="office_id_n,office_address_s"/>
+      <foreign-key name="office_region_fk" columns="office_region_fk" ref-table="regions" ref-schema="" ref-catalog="hotel" ref-columns="region_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="inv_office_fk" table="invoices" schema="" catalog="hotel" columns="inv_office_fk"/>
+      <exported-key name="setting_office_fk" table="settings" schema="" catalog="hotel" columns="setting_office_fk"/>
+      <index name="office_region_fk_idx" unique="false" columns="office_region_fk"/>
+    </table>
+    <table name="prices" schema="" catalog="hotel" type="TABLE">
+      <column name="price_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="price_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="price_value" sqlType="DECIMAL" precision="3" scale="2" nullable="false" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="price_id"/>
+      <exported-key name="invd_price_fk" table="inv_room" schema="" catalog="hotel" columns="invd_price_fk"/>
+      <index name="price_name_UNIQUE" unique="true" columns="price_name"/>
+    </table>
+    <table name="purposes" schema="" catalog="hotel" type="TABLE">
+      <column name="purpose_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="purpose_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="purpose_id"/>
+      <exported-key name="contact_purpose_fk" table="client_contacts" schema="" catalog="hotel" columns="contact_purpose_fk"/>
+    </table>
+    <table name="regions" schema="" catalog="hotel" type="TABLE">
+      <column name="region_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="region_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="region_country_fk" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="region_id_n"/>
+      <foreign-key name="country" columns="region_country_fk" ref-table="countries" ref-schema="" ref-catalog="hotel" ref-columns="country_id_iso_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="region" table="clients" schema="" catalog="hotel" columns="client_region_fk"/>
+      <exported-key name="office_region_fk" table="offices" schema="" catalog="hotel" columns="office_region_fk"/>
+      <index name="country_idx" unique="false" columns="region_country_fk"/>
+    </table>
+    <table name="regions_view" schema="" catalog="hotel" type="VIEW">
+      <column name="region_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="region_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="region_country_fk" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="country_id_iso_s" sqlType="CHAR" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="country_name_s" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="roles" schema="" catalog="hotel" type="TABLE">
+      <column name="role_name_s" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="role_name_s"/>
+      <exported-key name="ur_role_name_fk" table="user_role" schema="" catalog="hotel" columns="ur_role_name_fk"/>
+      <index name="role_name_s_UNIQUE" unique="true" columns="role_name_s"/>
+    </table>
+    <table name="serv_types" schema="" catalog="hotel" type="TABLE">
+      <column name="stype_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="stype_name_s" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="stype_id_n"/>
+      <exported-key name="service_type_fk" table="services" schema="" catalog="hotel" columns="service_type_fk"/>
+    </table>
+    <table name="services" schema="" catalog="hotel" type="TABLE">
+      <column name="service_id_n" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="service_name_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="service_price_n" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3"/>
+      <column name="service_type_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="service_unit_fk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="service_id_n"/>
+      <foreign-key name="service_type_fk" columns="service_type_fk" ref-table="serv_types" ref-schema="" ref-catalog="hotel" ref-columns="stype_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="service_unit_fk" columns="service_unit_fk" ref-table="units" ref-schema="" ref-catalog="hotel" ref-columns="unit_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="service_id" table="inv_service" schema="" catalog="hotel" columns="invs_serv_id_fk"/>
+      <index name="service_type_fk_idx" unique="false" columns="service_type_fk"/>
+      <index name="service_unit_fk_idx" unique="false" columns="service_unit_fk"/>
+    </table>
+    <table name="settings" schema="" catalog="hotel" type="TABLE">
+      <column name="setting_name_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="setting_fullname_s" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="setting_country_fk" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="setting_adress_s" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="setting_office_fk" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="setting_language_s" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <foreign-key name="setting_country_fk" columns="setting_country_fk" ref-table="countries" ref-schema="" ref-catalog="hotel" ref-columns="country_id_iso_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="setting_office_fk" columns="setting_office_fk" ref-table="offices" ref-schema="" ref-catalog="hotel" ref-columns="office_id_n" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="setting_adress_s_UNIQUE" unique="true" columns="setting_adress_s"/>
+      <index name="setting_country_fk_UNIQUE" unique="true" columns="setting_country_fk"/>
+      <index name="setting_fullname_s_UNIQUE" unique="true" columns="setting_fullname_s"/>
+      <index name="setting_language_s_UNIQUE" unique="true" columns="setting_language_s"/>
+      <index name="setting_name_s_UNIQUE" unique="true" columns="setting_name_s"/>
+      <index name="setting_office_fk_UNIQUE" unique="true" columns="setting_office_fk"/>
+      <index name="setting_country_fk_idx" unique="false" columns="setting_country_fk"/>
+      <index name="setting_office_fk_idx" unique="false" columns="setting_office_fk"/>
+    </table>
+    <table name="units" schema="" catalog="hotel" type="TABLE">
+      <column name="unit_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="unit_name" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="unit_id"/>
+      <exported-key name="service_unit_fk" table="services" schema="" catalog="hotel" columns="service_unit_fk"/>
+      <index name="unit_name_UNIQUE" unique="true" columns="unit_name"/>
+    </table>
+    <table name="user_role" schema="" catalog="hotel" type="TABLE">
+      <column name="ur_user_name_fk" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ur_role_name_fk" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <foreign-key name="ur_role_name_fk" columns="ur_role_name_fk" ref-table="roles" ref-schema="" ref-catalog="hotel" ref-columns="role_name_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ur_user_name_fk" columns="ur_user_name_fk" ref-table="users" ref-schema="" ref-catalog="hotel" ref-columns="user_name_s" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="ur_role_name_fk_idx" unique="false" columns="ur_role_name_fk"/>
+      <index name="ur_user_name_fk_idx" unique="false" columns="ur_user_name_fk"/>
+    </table>
+    <table name="users" schema="" catalog="hotel" type="TABLE">
+      <column name="user_name_s" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_full_name_fk" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_password_s" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="user_name_s"/>
+      <exported-key name="inv_user_fk" table="invoices" schema="" catalog="hotel" columns="inv_user_fk"/>
+      <exported-key name="ur_user_name_fk" table="user_role" schema="" catalog="hotel" columns="ur_user_name_fk"/>
+      <index name="user_nickname_s_UNIQUE" unique="true" columns="user_name_s"/>
+    </table>
   </data-source>
 </component>

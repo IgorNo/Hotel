@@ -1,5 +1,6 @@
 package com.nov.hotel.dao.impl;
 
+import com.nov.hotel.collections.impl.CountryCollection;
 import com.nov.hotel.dao.abstr.CrudDaoAbstrString;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.Country;
@@ -40,7 +41,7 @@ public class CountryDaoImpl extends CrudDaoAbstrString<Country> {
             Country country = new Country();
             country.setId(rs.getString("country_id_iso_s"));
             country.setName(rs.getString("country_name_s"));
-            return country;
+            return CountryCollection.getInstance().putValue(country);
         }
     };
 

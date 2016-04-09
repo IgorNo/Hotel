@@ -5,14 +5,15 @@ import javafx.beans.property.*;
 
 public class Apartment implements Entity<Long, Apartment>, Comparable<Apartment>{
 
-    private Long id;
+    private Long id = new Long(0);;
     private StringProperty roomNumber = new SimpleStringProperty();
     private IntegerProperty levelNumber = new SimpleIntegerProperty();
     private ObjectProperty<Block> block = new SimpleObjectProperty<>();
     private BooleanProperty status = new SimpleBooleanProperty();
     private ObjectProperty<ApartType> type = new SimpleObjectProperty<>();
 
-    public Apartment() {  }
+    public Apartment() {
+    }
 
     public Apartment(ApartType type, Block block) {
         setType(type);

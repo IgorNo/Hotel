@@ -6,11 +6,10 @@ import javafx.beans.property.StringProperty;
 
 public class Block implements Entity<Integer, Block>, Comparable<Block> {
 
-    private Integer id;
+    private Integer id = new Integer(0);;
     private StringProperty name = new SimpleStringProperty();
 
-    public Block() {
-    }
+    public Block() { }
 
     public Block(Block block) {
         this();

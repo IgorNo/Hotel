@@ -5,7 +5,7 @@ import javafx.beans.property.*;
 
 public class Price implements Entity<Integer, Price>, Comparable<Price> {
 
-    private int id;
+    private Integer id = new Integer(0);
     private StringProperty name = new SimpleStringProperty();
     private FloatProperty price = new SimpleFloatProperty();
 
@@ -26,7 +26,7 @@ public class Price implements Entity<Integer, Price>, Comparable<Price> {
 
     @Override
     public boolean validate() {
-        return false;
+        return getId() != null && getName() != null && !getName().trim().isEmpty();
     }
 
     public Integer getId() {
