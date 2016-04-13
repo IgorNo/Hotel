@@ -11,10 +11,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CrudDaoAbstract<K, V extends Entity<K,V>> implements CrudDao<K,V>{
-
-
-    protected NamedParameterJdbcTemplate jdbcTemplate;
+public abstract class CrudDaoAbstract<K extends Comparable, V> implements CrudDao<K,V>{
 
     protected String nameDataBase;
     protected String sqlInsert;
@@ -24,6 +21,7 @@ public abstract class CrudDaoAbstract<K, V extends Entity<K,V>> implements CrudD
     protected String sqlSelectSome;
     protected String sqlSelectAll;
 
+    protected NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -38,18 +36,16 @@ public abstract class CrudDaoAbstract<K, V extends Entity<K,V>> implements CrudD
 
     @Override
     public void update(V elem) {
-        String sql = sqlUpdate + " = :id";
-        jdbcTemplate.update(sql, getParams(elem));
+        jdbcTemplate.update(sqlUpdate, getParams(elem));
     }
 
     @Override
     public void delete(V elem) {
-        String sql = sqlDelete + " = :id";
-        jdbcTemplate.update(sql, getParams(elem));
+        jdbcTemplate.update(sqlDelete, getParams(elem));
     }
 
     @Override
-    public V getSingle(K id) {
+    public V getRow(K id) {
         String sql = sqlSelectSingle + " = :id";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -59,11 +55,11 @@ public abstract class CrudDaoAbstract<K, V extends Entity<K,V>> implements CrudD
     }
 
     @Override
-    public List<V> getSelected(Object name) {
-        String sql = sqlSelectSome + " = :name";
+    public <S extends Comparable> List<V> getSelected(S sample) {
+        String sql = sqlSelectSome + " = :sample";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
+        params.addValue("sample", sample);
 
         return jdbcTemplate.query(sql, params, getRowMapper());
     }

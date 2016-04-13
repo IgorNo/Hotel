@@ -172,11 +172,11 @@ public class TestApartmentDaoImpl {
     public void testGetById(){
         testGetByName();
         for (Apartment x:result ) {
-            Apartment elem = dao.getSingle(x.getId());
+            Apartment elem = dao.getRow(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -199,7 +199,7 @@ public class TestApartmentDaoImpl {
         testData.setBlock(block2);
         testData.setType(apartType2);
         dao.update(testData);
-        Apartment elem = dao.getSingle(testData.getId());
+        Apartment elem = dao.getRow(testData.getId());
         assertValues(testData, elem);
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ testData.toString());

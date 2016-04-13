@@ -1,6 +1,6 @@
 package com.nov.hotel.dao.impl;
 
-import com.nov.hotel.dao.abstr.CrudDaoAbstrString;
+import com.nov.hotel.dao.abstr.CrudDaoAbstrObject;
 import com.nov.hotel.entities.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,14 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Repository("userDao")
-public class UserDaoImpl extends CrudDaoAbstrString<User> {
+public class UserDaoImpl extends CrudDaoAbstrObject<String, User> {
 
     {
         nameDataBase = "users";
 
         sqlInsert = "INSERT INTO users (user_name_s, user_full_name_s, user_password_s) VALUES (:id, :name, :password)";
-        sqlUpdate = "UPDATE users SET user_full_name_s = :name, user_password_s = :password  WHERE user_name_s";
-        sqlDelete = "DELETE FROM users WHERE user_name_s";
+        sqlUpdate = "UPDATE users SET user_full_name_s = :name, user_password_s = :password  WHERE user_name_s = :id";
+        sqlDelete = "DELETE FROM users WHERE user_name_s = :id";
         sqlSelectSingle = "SELECT * FROM users WHERE user_name_s";
         sqlSelectSome = "SELECT * FROM users WHERE user_full_name_s";
         sqlSelectAll = "SELECT * FROM users";

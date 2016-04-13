@@ -1,8 +1,5 @@
 package com.nov.hotel.entities;
 
-import com.nov.hotel.collections.impl.ClientAllocCollection;
-import com.nov.hotel.collections.impl.ClientCollection;
-import com.nov.hotel.collections.interfaces.ObservableCollection;
 import com.nov.hotel.entities.interfaces.Entity;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -19,10 +16,10 @@ public class Allocation implements Entity<Long, Allocation>, Comparable<Allocati
     private ObjectProperty<LocalDateTime> endDate = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDateTime> arrivalDate = new SimpleObjectProperty<>();
     private ObjectProperty<Price> priceType = new SimpleObjectProperty<>();
-    private IntegerProperty masterBadsN = new SimpleIntegerProperty();
-    private IntegerProperty extraBadsN = new SimpleIntegerProperty();
+    private IntegerProperty masterBedsN = new SimpleIntegerProperty();
+    private IntegerProperty extraBedsN = new SimpleIntegerProperty();
     private ObjectProperty<ApartStatus> allocType = new SimpleObjectProperty<>();
-    private ObjectProperty<AllocClients> clients = new SimpleObjectProperty<>();
+    private ObjectProperty<AllocClient> clients = new SimpleObjectProperty<>();
 
     @Override
     public void assign(Allocation elem) {

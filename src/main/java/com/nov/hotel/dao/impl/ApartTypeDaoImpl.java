@@ -21,9 +21,9 @@ public class ApartTypeDaoImpl extends CrudDaoAbstractInt<ApartType> {
           sqlUpdate = "UPDATE apart_types SET app_typ_name_s= :name, app_typ_sizing_n= :sizing, " +
                 "app_typ_price1_n=  :price1, app_typ_price2_n= :price2, app_typ_price3_n= :price3, " +
                 "app_typ_slot_n= :nSlots, app_typ_description_s= :description " +
-                "WHERE app_typ_id_n";
+                "WHERE app_typ_id_n = :id";
 
-          sqlDelete = "DELETE FROM apart_types WHERE app_typ_id_n";
+          sqlDelete = "DELETE FROM apart_types WHERE app_typ_id_n = :id";
 
           sqlSelectSingle = "SELECT * FROM apart_types WHERE app_typ_id_n";
 

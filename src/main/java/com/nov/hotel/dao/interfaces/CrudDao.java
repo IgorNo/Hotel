@@ -4,16 +4,16 @@ import com.nov.hotel.entities.interfaces.Entity;
 
 import java.util.List;
 
-public interface CrudDao<K, V> {
+public interface CrudDao<K extends Comparable, V> {
 
     //Create
     void insert(V elem);
 
     //Read
-    V getSingle(K id);
+    V getRow(K id);
 
     //Read
-    List<V> getSelected(Object sample);
+    <S extends Comparable> List<V> getSelected(S sample);
 
     //Read All
     List<V> getAll();

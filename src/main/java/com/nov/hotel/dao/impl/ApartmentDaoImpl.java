@@ -29,12 +29,24 @@ public class ApartmentDaoImpl extends CrudDaoAbstractLong<Apartment> {
           sqlInsert = "INSERT INTO apartments (apart_room_number_s, apart_level_number_n, apart_status_b, apart_block_fk, apart_type_fk) " +
                 "VALUES (:room, :level, :status, :blockId, :typeId)";
           sqlUpdate = "UPDATE apartments SET apart_room_number_s= :room, apart_level_number_n= :level, apart_status_b= :status, apart_block_fk= :blockId, apart_type_fk= :typeId " +
-                "WHERE apart_id_n";
-          sqlDelete = "DELETE FROM apartments WHERE apart_id_n";
+                "WHERE apart_id_n = :id";
+          sqlDelete = "DELETE FROM apartments WHERE apart_id_n = :id";
           sqlSelectSingle = "SELECT * FROM apartments_view WHERE apart_id_n";
           sqlSelectSome = "SELECT * FROM apartments_view WHERE apart_room_number_s";
           sqlSelectAll = "SELECT * FROM apartments_view";
     }
+
+    protected MapSqlParameterSource getParams(Apartment elem) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id", elem.getId());
+        params.addValue("room", elem.getRoomNumber());
+        params.addValue("level", elem.getLevelNumber());
+        params.addValue("status", elem.getStatus());
+        params.addValue("blockId", elem.getBlock().getId());
+        params.addValue("typeId", elem.getType().getId());
+        return params;
+    }
+
     private static final RowMapper<Apartment> rowMapper = new RowMapper<Apartment>() {
         @Override
         public Apartment mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -66,17 +78,6 @@ public class ApartmentDaoImpl extends CrudDaoAbstractLong<Apartment> {
             return ApartmentCollection.getInstance().putValue(apartment);
         }
     };
-
-    protected MapSqlParameterSource getParams(Apartment elem) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-        params.addValue("room", elem.getRoomNumber());
-        params.addValue("level", elem.getLevelNumber());
-        params.addValue("status", elem.getStatus());
-        params.addValue("blockId", elem.getBlock().getId());
-        params.addValue("typeId", elem.getType().getId());
-        return params;
-    }
 
     @Override
     protected void checkId(Apartment elem) {

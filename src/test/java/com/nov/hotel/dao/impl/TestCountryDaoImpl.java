@@ -84,11 +84,11 @@ public class TestCountryDaoImpl {
     public void testGetById(){
         testGetByName();
         for (Country x:result ) {
-            Country type = dao.getSingle(x.getId());
+            Country type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class TestCountryDaoImpl {
         apartType.setId("US");
         apartType.setName("США");
         dao.update(apartType);
-        Country type = dao.getSingle(apartType.getId());
+        Country type = dao.getRow(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

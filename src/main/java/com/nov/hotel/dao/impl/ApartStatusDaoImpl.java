@@ -1,5 +1,7 @@
 package com.nov.hotel.dao.impl;
 
+import com.nov.hotel.collections.impl.ApartStatusCollection;
+import com.nov.hotel.dao.abstr.CrudDaoAbstractInt;
 import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,93 +18,27 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository("apartStatusDao")
-public class ApartStatusDaoImpl implements CrudDao<Integer,ApartStatus>{
+public class ApartStatusDaoImpl extends CrudDaoAbstractInt<ApartStatus> {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }
-
-
-    @Override
-    public void insert(ApartStatus elem) {
-        String sql = "INSERT INTO apart_status (app_stat_name_s, app_stat_color_s) " +
+    {
+        nameDataBase = "apart_status";
+        sqlInsert = "INSERT INTO apart_status (app_stat_name_s, app_stat_color_s) " +
                 "VALUES (:name, :color)";
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", elem.getName());
-        params.addValue("color", elem.getColor());
-
-        jdbcTemplate.update(sql, params, keyHolder);
-
-        elem.setId(keyHolder.getKey().intValue());
-    }
-
-    @Override
-    // int id
-    public ApartStatus getSingle(Integer id) {
-        String sql = "SELECT * FROM apart_status WHERE app_stat_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
-
-        return jdbcTemplate.queryForObject(sql, params, rowMapper);
-    }
-
-    @Override
-    // String name
-    public List<ApartStatus> getSelected(Object name) {
-        String sql = "SELECT * FROM apart_status WHERE app_stat_name_s = :name";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", name);
-
-        return jdbcTemplate.query(sql, params, rowMapper);
-    }
-
-    @Override
-    public List<ApartStatus> getAll(){
-        String sql = "SELECT * FROM apart_status";
-        return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    @Override
-    public void update(ApartStatus elem) {
-        String sql = "UPDATE apart_status SET app_stat_name_s= :name, app_stat_color_s= :color " +
+        sqlUpdate = "UPDATE apart_status SET app_stat_name_s= :name, app_stat_color_s= :color " +
                 "WHERE app_stat_id_n = :id";
+        sqlDelete = "DELETE FROM apart_status WHERE block_id_n = :id";
+        sqlSelectSingle = "SELECT * FROM apart_status WHERE app_stat_id_n";
+        sqlSelectSome = "SELECT * FROM apart_status WHERE app_stat_name_s";
+        sqlSelectAll = "SELECT * FROM apart_status";
+    }
 
+    @Override
+    protected MapSqlParameterSource getParams(ApartStatus elem) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", elem.getId());
         params.addValue("name", elem.getName());
         params.addValue("color", elem.getColor());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void delete(ApartStatus elem) {
-        String sql = "DELETE FROM apart_status WHERE app_stat_id_n = :id";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", elem.getId());
-
-        jdbcTemplate.update(sql, params);
-    }
-
-    @Override
-    public void deleteAll() {
-        String sql = "DELETE FROM apart_status";
-        jdbcTemplate.update(sql, new MapSqlParameterSource());
-    }
-
-    @Override
-    public int count() {
-        String sql = "select count(*) from apart_status";
-        return jdbcTemplate.getJdbcOperations().queryForObject(sql, Integer.class);
+        return params;
     }
 
     private static final RowMapper<ApartStatus> rowMapper = new RowMapper<ApartStatus>() {
@@ -112,8 +48,17 @@ public class ApartStatusDaoImpl implements CrudDao<Integer,ApartStatus>{
             apartStatus.setId(rs.getInt("app_stat_id_n"));
             apartStatus.setName(rs.getString("app_stat_name_s"));
             apartStatus.setColor(rs.getString("app_stat_color_s"));
-            return apartStatus;
+            return ApartStatusCollection.getInstance().putValue(apartStatus);
         }
     };
 
+    @Override
+    protected RowMapper<ApartStatus> getRowMapper() {
+        return null;
+    }
+
+    @Override
+    protected void checkId(ApartStatus elem) {
+
+    }
 }

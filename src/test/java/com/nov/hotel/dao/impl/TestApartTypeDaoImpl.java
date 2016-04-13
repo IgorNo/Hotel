@@ -91,7 +91,7 @@ public class TestApartTypeDaoImpl {
     public void testGetById(){
         testGetByName();
         for (ApartType x:result ) {
-            ApartType type = apartTypeDao.getSingle(x.getId());
+            ApartType type = apartTypeDao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getSize(),type.getSize());
@@ -101,7 +101,7 @@ public class TestApartTypeDaoImpl {
             assertEquals(x.getnSlots(),type.getnSlots());
             assertEquals(x.getDescription(),type.getDescription());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class TestApartTypeDaoImpl {
         testType.setnSlots(1);
         testType.setDescription("Description luxury");
         apartTypeDao.update(testType);
-        ApartType type = apartTypeDao.getSingle(testType.getId());
+        ApartType type = apartTypeDao.getRow(testType.getId());
         assertEquals(testType.getId(),type.getId());
         assertEquals(testType.getName(),type.getName());
         assertEquals(testType.getSize(),type.getSize());

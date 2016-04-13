@@ -62,11 +62,11 @@ public class TestPriceDaoImpl {
     @Test
     public void testGetById(){
         for (Price x:testData ) {
-            Price type = dao.getSingle(x.getId());
+            Price type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class TestPriceDaoImpl {
         elemUp.setName("Травневі свята");
         elemUp.setPrice(2.0f);
         dao.update(elemUp);
-        Price elem = dao.getSingle(elemUp.getId());
+        Price elem = dao.getRow(elemUp.getId());
         assertEquals(elemUp.getId(),elem.getId());
         assertEquals(elemUp.getName(),elem.getName());
         assertEquals(elemUp.getPrice(),elem.getPrice(),0.00001);

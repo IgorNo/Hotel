@@ -74,12 +74,12 @@ public class TestApartStatusDaoImpl {
     public void testGetById(){
         testGetByName();
         for (ApartStatus x:result ) {
-            ApartStatus type = dao.getSingle(x.getId());
+            ApartStatus type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class TestApartStatusDaoImpl {
         apartType.setName("Вільний номер");
         apartType.setColor("0xccffffff");
         dao.update(apartType);
-        ApartStatus type = dao.getSingle(apartType.getId());
+        ApartStatus type = dao.getRow(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         assertEquals(apartType.getColor(),type.getColor());

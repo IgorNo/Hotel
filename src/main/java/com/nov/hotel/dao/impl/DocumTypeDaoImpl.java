@@ -24,8 +24,8 @@ public class DocumTypeDaoImpl extends CrudDaoAbstractInt<DocumType> {
           nameDataBase = "doc_types";
 
           sqlInsert = "INSERT INTO doc_types (doc_name_s) VALUES (:name)";
-          sqlUpdate = "UPDATE doc_types SET doc_name_s= :name WHERE doc_id_n";
-          sqlDelete = "DELETE FROM doc_types WHERE doc_id_n";
+          sqlUpdate = "UPDATE doc_types SET doc_name_s= :name WHERE doc_id_n = :id";
+          sqlDelete = "DELETE FROM doc_types WHERE doc_id_n = :id";
           sqlSelectSingle = "SELECT * FROM doc_types WHERE doc_id_n";
           sqlSelectSome = "SELECT * FROM doc_types WHERE doc_name_s";
           sqlSelectAll = "SELECT * FROM doc_types";

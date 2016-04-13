@@ -41,9 +41,9 @@ public class ClientDaoImpl extends CrudDaoAbstractLong<Client>{
                 "client_sex_b= :sex, client_birthday_d= :birthday, client_citizen_fk=  :citizenship, client_doctype_fk= :docType, " +
                 "client_docser_s= :docSeries, client_docnum_s= :docNumber, client_docdate_d= :docDate, client_docissue_s= :docIssue, " +
                 "client_region_fk= :regionAddress, client_address_s= :address, client_type_fk= :type, client_discount_n= :discount " +
-                "WHERE client_id_n";
+                "WHERE client_id_n = :id";
 
-          sqlDelete = "DELETE FROM clients WHERE client_id_n";
+          sqlDelete = "DELETE FROM clients WHERE client_id_n = :id";
           sqlSelectSingle = "SELECT * FROM clients_view WHERE client_id_n";
           sqlSelectSome = "SELECT * FROM clients_view WHERE client_surname_s";
           sqlSelectAll = "SELECT * FROM clients_view";

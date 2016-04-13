@@ -17,7 +17,7 @@ abstract class GetServiceAbstract<E>  {
 //    @Override
 //    public E getById(int id) {
 //        try {
-//            return getDao().getSingle(id);
+//            return getDao().getRow(id);
 //        } catch (DataAccessException e) {
 //            return null;
 //        }

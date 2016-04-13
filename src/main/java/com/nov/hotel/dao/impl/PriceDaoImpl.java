@@ -17,9 +17,9 @@ public class PriceDaoImpl extends CrudDaoAbstractInt<Price>{
 
         sqlInsert = "INSERT INTO prices (price_name_s, price_value_n) VALUES (:name, :price)";
 
-        sqlUpdate = "UPDATE prices SET price_name_s= :name, price_value_n= :price WHERE price_id_n";
+        sqlUpdate = "UPDATE prices SET price_name_s= :name, price_value_n= :price WHERE price_id_n = :id";
 
-        sqlDelete = "DELETE FROM prices WHERE price_id_n";
+        sqlDelete = "DELETE FROM prices WHERE price_id_n = :id";
 
         sqlSelectSingle = "SELECT * FROM prices WHERE price_id_n";
 

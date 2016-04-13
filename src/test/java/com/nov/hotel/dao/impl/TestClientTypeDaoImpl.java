@@ -79,13 +79,13 @@ public class TestClientTypeDaoImpl {
     public void testGetById(){
         testGetByName();
         for (ClientType x:result ) {
-            ClientType type = dao.getSingle(x.getId());
+            ClientType type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
             assertEquals(x.getColor(),type.getColor());
             assertEquals(x.getDiscount(),type.getDiscount(),0.001f);
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class TestClientTypeDaoImpl {
         elem.setColor("0xccffffff");
         elem.setDiscount(1.0f);
         dao.update(elem);
-        ClientType type = dao.getSingle(elem.getId());
+        ClientType type = dao.getRow(elem.getId());
         assertEquals(elem.getId(),type.getId());
         assertEquals(elem.getName(),type.getName());
         assertEquals(elem.getColor(),type.getColor());

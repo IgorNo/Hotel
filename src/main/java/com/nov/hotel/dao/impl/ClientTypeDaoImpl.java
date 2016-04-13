@@ -24,8 +24,8 @@ public class ClientTypeDaoImpl extends CrudDaoAbstractInt<ClientType> {
           nameDataBase = "client_types";
 
           sqlInsert = "INSERT INTO client_types (cltyp_name_s, cltyp_color_s, cltyp_discount_n) VALUES (:name, :color, :discount)";
-          sqlUpdate = "UPDATE client_types SET cltyp_name_s= :name, cltyp_discount_n= :discount, cltyp_color_s= :color  WHERE cltyp_id_n";
-          sqlDelete = "DELETE FROM client_types WHERE cltyp_id_n";
+          sqlUpdate = "UPDATE client_types SET cltyp_name_s= :name, cltyp_discount_n= :discount, cltyp_color_s= :color  WHERE cltyp_id_n = :id";
+          sqlDelete = "DELETE FROM client_types WHERE cltyp_id_n = :id";
           sqlSelectSingle = "SELECT * FROM client_types WHERE cltyp_id_n";
           sqlSelectSome = "SELECT * FROM client_types WHERE cltyp_name_s";
           sqlSelectAll = "SELECT * FROM client_types";

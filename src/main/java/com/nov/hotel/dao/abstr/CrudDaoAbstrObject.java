@@ -2,7 +2,7 @@ package com.nov.hotel.dao.abstr;
 
 import com.nov.hotel.entities.interfaces.Entity;
 
-public abstract class CrudDaoAbstrString<V extends Entity<String,V>> extends CrudDaoAbstract<String,V> {
+public abstract class CrudDaoAbstrObject<K extends Comparable, V> extends CrudDaoAbstract<K,V> {
 
     @Override
     public void insert(V elem) {

@@ -6,26 +6,26 @@ import com.nov.hotel.dao.interfaces.CrudDao;
 import com.nov.hotel.entities.ApartStatus;
 import com.nov.hotel.main.Start;
 
-public class ApartStatusCollection {
+public class ApartStatusCollection extends ObservableCollectionAbstract<Integer, ApartStatus>{
 
-//    private ApartStatusDaoImpl dao = (ApartStatusDaoImpl) Start.APPLICATION_CONTEXT.getBean("apartStatusDao");
-//
-//    private static ObservableCollectionAbstract uniqueObsColl;
-//
-//    private ApartStatusCollection() {
-//        readAllData();
-//    }
-//
-//    public static ObservableCollectionAbstract getInstance() {
-//        if (uniqueObsColl == null){
-//            uniqueObsColl = new ApartStatusCollection();
-//        }
-//        return uniqueObsColl;
-//    }
-//
-//    @Override
-//    protected CrudDao getDao() {
-//        return dao;
-//    }
+    private ApartStatusDaoImpl dao = (ApartStatusDaoImpl) Start.APPLICATION_CONTEXT.getBean("apartStatusDao");
+
+    private static ApartStatusCollection uniqueObsColl;
+
+    private ApartStatusCollection() {
+
+    }
+
+    public static ApartStatusCollection getInstance() {
+        if (uniqueObsColl == null){
+            uniqueObsColl = new ApartStatusCollection();
+        }
+        return uniqueObsColl;
+    }
+
+    @Override
+    protected CrudDao getDao() {
+        return dao;
+    }
 
 }

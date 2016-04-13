@@ -75,11 +75,11 @@ public class TestDocumTypeDaoImpl {
     public void testGetById(){
         testGetByName();
         for (DocumType x:result ) {
-            DocumType type = dao.getSingle(x.getId());
+            DocumType type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TestDocumTypeDaoImpl {
         apartType.setId(result.get(0).getId());
         apartType.setName("Паспорт");
         dao.update(apartType);
-        DocumType type = dao.getSingle(apartType.getId());
+        DocumType type = dao.getRow(apartType.getId());
         assertEquals(apartType.getId(),type.getId());
         assertEquals(apartType.getName(),type.getName());
         LOG.warn("\nBefor Update:\n"+result.toString());

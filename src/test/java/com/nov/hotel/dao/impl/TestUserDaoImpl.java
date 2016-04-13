@@ -63,11 +63,11 @@ public class TestUserDaoImpl {
     @Test
     public void testGetById(){
         for (User x:testData ) {
-            User type = dao.getSingle(x.getId());
+            User type = dao.getRow(x.getId());
             assertEquals(x.getId(),type.getId());
             assertEquals(x.getName(),type.getName());
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class TestUserDaoImpl {
         elemUp.setName("Петров Петро Петрович");
         elemUp.setPassword("user11");
         dao.update(elemUp);
-        User elem = dao.getSingle(elemUp.getId());
+        User elem = dao.getRow(elemUp.getId());
         assertEquals(elemUp.getId(),elem.getId());
         assertEquals(elemUp.getName(),elem.getName());
         assertEquals(elemUp.getPassword(),elem.getPassword());

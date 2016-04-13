@@ -176,19 +176,19 @@ public class TestClientDaoImpl {
         if (count == 0) {
             List<ClientType> ctl = clientTypes.getViewList();
             List<DocumType> dtl = documTypes.getViewList();
-            Country citizenship = countryDao.getSingle("UA");
+            Country citizenship = countryDao.getRow("UA");
             List<Region> rl = regions.getViewList().filtered((a) -> a.getCountry().getId().equals("UA"));
             for (int i = 0; i < testData.size(); i++) {
                 testData.get(i).setType(ctl.get(i % ctl.size()));
                 testData.get(i).setDocType(dtl.get(i % dtl.size()));
                 if (i == testData.size()-1){
-                    citizenship = countryDao.getSingle("GB");
+                    citizenship = countryDao.getRow("GB");
                     rl = regions.getViewList().filtered((a) -> a.getCountry().getId().equals("GB"));
                 }
                 testData.get(i).setRegionAddress(rl.get(i % rl.size()));
                 testData.get(i).setCitizenship(citizenship);
             }
-            citizenship = countryDao.getSingle("UA");
+            citizenship = countryDao.getRow("UA");
             count++;
         }
         LOG.warn("\nTest Data:\n"+ testData.toString());
@@ -213,11 +213,11 @@ public class TestClientDaoImpl {
     @Test
     public void testGetById(){
         for (Client x:testData ) {
-            Client elem = dao.getSingle(x.getId());
+            Client elem = dao.getRow(x.getId());
             assertEquals(x.getId(),elem.getId());
             assertValues(x, elem);
         }
-        LOG.warn("\ngetSingle Data:\n"+result.toString());
+        LOG.warn("\ngetRow Data:\n"+result.toString());
     }
 
     @Test
@@ -240,7 +240,7 @@ public class TestClientDaoImpl {
         td.setDocSeries("МН");
         td.setDocNumber("000000");
         dao.update(td);
-        Client elem = dao.getSingle(td.getId());
+        Client elem = dao.getRow(td.getId());
         assertValues(td, elem);
         LOG.warn("\nBefor Update:\n"+result.toString());
         LOG.warn("\nUpdate Data:\n"+ td.toString());

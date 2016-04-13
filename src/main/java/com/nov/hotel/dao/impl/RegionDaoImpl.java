@@ -25,8 +25,8 @@ public class RegionDaoImpl extends CrudDaoAbstractInt<Region> {
           nameDataBase = "regions";
 
           sqlInsert = "INSERT INTO regions (region_name_s, region_country_fk) VALUES (:name, :countryId)";
-          sqlUpdate = "UPDATE regions SET region_name_s= :name, region_country_fk= :countryId WHERE region_id_n";
-          sqlDelete = "DELETE FROM regions WHERE region_id_n";
+          sqlUpdate = "UPDATE regions SET region_name_s= :name, region_country_fk= :countryId WHERE region_id_n = :id";
+          sqlDelete = "DELETE FROM regions WHERE region_id_n = :id";
           sqlSelectSingle = "SELECT * FROM regions_view WHERE region_id_n";
           sqlSelectSome = "SELECT * FROM regions_view WHERE region_country_fk";
           sqlSelectAll = "SELECT * FROM regions_view";

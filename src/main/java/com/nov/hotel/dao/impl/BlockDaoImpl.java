@@ -17,12 +17,21 @@ public class BlockDaoImpl extends CrudDaoAbstractInt<Block> {
     {
         nameDataBase = "blocks";
         sqlInsert = "INSERT INTO blocks (block_name_s) VALUES (:name)";
-        sqlUpdate = "UPDATE blocks SET block_name_s= :name WHERE block_id_n";
-        sqlDelete = "DELETE FROM blocks WHERE block_id_n";
+        sqlUpdate = "UPDATE blocks SET block_name_s= :name WHERE block_id_n = :id";
+        sqlDelete = "DELETE FROM blocks WHERE block_id_n = :id";
         sqlSelectSingle = "SELECT * FROM blocks WHERE block_id_n";
         sqlSelectSome = "SELECT * FROM blocks WHERE block_name_s";
         sqlSelectAll = "SELECT * FROM blocks";
     }
+
+    @Override
+    protected MapSqlParameterSource getParams(Block elem) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("id",elem.getId());
+        params.addValue("name", elem.getName());
+        return params;
+    }
+
     private static final RowMapper<Block> rowMapper = new RowMapper<Block>() {
         @Override
         public Block mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -33,14 +42,6 @@ public class BlockDaoImpl extends CrudDaoAbstractInt<Block> {
             return BlockCollection.getInstance().putValue(block);
         }
     };
-
-    @Override
-    protected MapSqlParameterSource getParams(Block elem) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id",elem.getId());
-        params.addValue("name", elem.getName());
-        return params;
-    }
 
     @Override
     public RowMapper<Block> getRowMapper() {
